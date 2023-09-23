@@ -27,7 +27,7 @@ const Datatable = () => {
   const { data: dataProducts, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => {
-      return getProductsRequest(userInfo?.id as string)
+      return getProductsRequest(userInfo?._id as string)
     },
     cacheTime: 10000,
     refetchOnWindowFocus: false,

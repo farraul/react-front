@@ -51,7 +51,6 @@ const userSlice = createSlice({ //redux: para estados
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload as string;
-        debugger
       })
       // register user
       .addCase(userRegister.pending, (state) => {

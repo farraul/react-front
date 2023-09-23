@@ -28,8 +28,10 @@ function Layout() {
       console.log(isntAuth);
     } else {
       setIsntAuth(true);
+      console.log(location.pathname);
+      console.log({ isntAuth });
     }
-  }, [location]);
+  }, [location.pathname]);
 
   return (
     <CacheProvider value={myCache}>
@@ -41,7 +43,8 @@ function Layout() {
         }}
       >
         <SnackbarUtilitiesConfigurator />
-        {isntAuth ? <Header /> : <HeaderNotAuth />}
+        {/* {isntAuth ? <Header /> : <HeaderNotAuth />} */}
+        <Header />
         <main>
           <Outlet />
         </main>

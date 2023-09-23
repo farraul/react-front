@@ -40,6 +40,7 @@ function LoginPage() {
 
     if (value) {
       await dispatch(userLogin(value));
+      navigate('/dashboard');
     }
   }
 
