@@ -45,12 +45,13 @@ const userSlice = createSlice({ //redux: para estados
       })
       .addCase(userLogin.fulfilled, (state, action: PayloadAction<User>) => {
         state.loading = false;
-        state.userInfo = action.payload.userInfo;
+        state.userInfo = action.payload as UserInfo;
         state.userToken = action.payload.userToken;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload as string;
+        debugger
       })
       // register user
       .addCase(userRegister.pending, (state) => {

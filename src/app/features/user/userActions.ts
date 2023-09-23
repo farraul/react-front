@@ -22,10 +22,8 @@ export const userLogin = createAsyncThunk(
       );
       localStorage.setItem('userToken', data.userToken);
       return data;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message); // paramos la peticion para que redux lo sepa
-      }
+    } catch (error: unknown) {
+        return rejectWithValue(error); // paramos la peticion para que redux lo sepa
     }
   },
 );

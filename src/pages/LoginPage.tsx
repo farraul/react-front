@@ -40,7 +40,6 @@ function LoginPage() {
 
     if (value) {
       await dispatch(userLogin(value));
-      window.location.reload();
     }
   }
 

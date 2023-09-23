@@ -5,7 +5,7 @@ export interface Token {
 }
 
 export interface UserInfo extends Token {
-    id: string | null
+    _id: string | null
     firstName: string | null
     email: string | null
     products?: Product[] | null
