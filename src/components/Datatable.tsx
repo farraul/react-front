@@ -23,11 +23,12 @@ import { VscLoading } from 'react-icons/vsc';
 const Datatable = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { userInfo } = useAppSelector((state) => state.user);
+  const id = localStorage.getItem('userId');
 
   const { data: dataProducts, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => {
-      return getProductsRequest(userInfo?._id as string)
+      return getProductsRequest(id as string);
     },
     cacheTime: 10000,
     refetchOnWindowFocus: false,
@@ -57,19 +58,20 @@ const Datatable = () => {
   );
 
   const DeleteRenderer = (props: any) => {
-    const id = props.value
+    console.log(props)
+    const id = props.value;
     return (
       <div className="flex gap-4 justify-start items-center">
         <button
           className="p-4 bg-red-600 hover:opacity-80 font-semibold flex justify-center items-center w-20 h-10 rounded-3xl hover:scale-110 active:scale-90 transition"
           onClick={() => {
-            deleteProductMutation.mutate(id)
+            deleteProductMutation.mutate(id);
           }}
         >
           {deleteProductMutation.isLoading ? (
             <>
-            <VscLoading  className="h-5 w-5 animate-spin transition"/>
-            <h3>Deleting</h3>
+              <VscLoading className="h-5 w-5 animate-spin transition" />
+              <h3>Deleting</h3>
             </>
           ) : (
             <h3>Delete</h3>
@@ -78,7 +80,6 @@ const Datatable = () => {
       </div>
     );
   };
-  
 
   const [rowData, setRowData] = useState<Product[]>([]);
 
@@ -125,7 +126,7 @@ const Datatable = () => {
       </button>
 
       <Modal show={handleIsOpen} isOpen={isOpen}>
-        <FormCRUD handleIsOpen={handleIsOpen}/>
+        <FormCRUD handleIsOpen={handleIsOpen} />
       </Modal>
 
       <div style={containerStyle} className="mt-2">

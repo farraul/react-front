@@ -21,6 +21,8 @@ export const userLogin = createAsyncThunk(
         config,
       );
       localStorage.setItem('userToken', data.userToken);
+      localStorage.setItem('userId', data._id);
+
       return data;
     } catch (error: unknown) {
         return rejectWithValue(error); // paramos la peticion para que redux lo sepa

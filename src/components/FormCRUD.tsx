@@ -40,7 +40,7 @@ const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
       await addProductMutation.mutateAsync({
         ...values,
         price: `$${values.price}`,
-        _id: userInfo?.id as string,
+        _id: userInfo?._id as string,
       });
       handleIsOpen();
     }

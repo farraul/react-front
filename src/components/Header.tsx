@@ -25,7 +25,7 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location);
+  // console.log(location);
   const { data, isFetching, isError, error } = useGetDetailsQuery(
     'userDetails',
     { pollingInterval: 900000 },
