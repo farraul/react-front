@@ -37,6 +37,7 @@ function Layout() {
     <CacheProvider value={myCache}>
       <SnackbarProvider
         maxSnack={3}
+        autoHideDuration={3000}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
