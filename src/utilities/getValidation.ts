@@ -14,9 +14,9 @@ export const getValidationError = (errorCode: string) => {
 };
 
 export const getValidationSucces = (successCode: string) => {
+  console.log(successCode)
   const codeMatcher: TypeWithKey<string> = {
     '/api/user/login': 'Te has logueado super bien',
-    201: 'Te has logueado bien',
   };
 
   return codeMatcher[successCode]

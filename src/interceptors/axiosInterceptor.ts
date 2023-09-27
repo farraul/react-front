@@ -12,7 +12,7 @@ export const axiosInterceptor = () => {
       console.log({response})
 
        SnackbarUtilities.success(
-         getValidationSucces(response.status as unknown as string),
+         getValidationSucces(response.config.url as unknown as string),
        );
 
       return response;
