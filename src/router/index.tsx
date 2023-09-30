@@ -100,8 +100,12 @@ const App = () => {
 
   const fetchMe = async (userToken: string) => {
     try {
-      const data = await (await getMe(userToken)).data;
-      console.log({ data });
+      console.log("in")
+      const me = await (await getMe(userToken)).data;
+
+      console.log({ me });
+      if (me) dispatch(setCredentials(me));
+      console.log(setCredentials(me));
     } catch (error: unknown) {
       console.log(error.message);
     }

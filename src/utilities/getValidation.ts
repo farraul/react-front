@@ -17,8 +17,8 @@ export const getValidationError = (errorCode: string) => {
 export const getValidationSucces = (successCode: string) => {
   const codeMatcher: TypeWithKey<string> = {
     '/api/user/login': 'Te has logueado super bien',
-    '/api/user/products/6496c27c686d5ffb6cd69c8a':
-      'Productos descargados',
+    // '/api/user/products/6496c27c686d5ffb6cd69c8a':
+    //   'Productos descargados',
   };
   // console.log(codeMatcher[successCode] === undefined)
   //   if (codeMatcher[successCode] === undefined) return;
