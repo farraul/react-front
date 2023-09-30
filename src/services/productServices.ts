@@ -5,7 +5,6 @@ import { AxiosResponse } from 'axios';
 export const getProductsRequest = async (
   id: string,
 ): Promise<Product[]> => {
-
   const response = await axios.get(`/api/user/products/${id}`);
   return response.data;
 };

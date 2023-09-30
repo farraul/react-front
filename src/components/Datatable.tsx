@@ -19,19 +19,18 @@ import { Product } from '@/models/product';
 import { ColDef, ValueFormatterParams } from 'ag-grid-community';
 import { useAppSelector } from '@/hooks/useApp';
 import { VscLoading } from 'react-icons/vsc';
+import Cookies from 'js-cookie';
 
 const Datatable = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { userInfo } = useAppSelector((state) => state.user);
-  const id = localStorage.getItem('userId');
-  console.log("pass redux: ", userInfo?._id);
-  console.log("storage redux: ", id);
+  const id = Cookies.get('userId');
 
 
   const { data: dataProducts, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => {
-      return getProductsRequest(userInfo as any);
+      return getProductsRequest(id as any);
     },
     cacheTime: 10000,
     refetchOnWindowFocus: false,
@@ -61,7 +60,7 @@ const Datatable = () => {
   );
 
   const DeleteRenderer = (props: any) => {
-    console.log(props)
+    console.log(props);
     const id = props.value;
     return (
       <div className="flex gap-4 justify-start items-center">

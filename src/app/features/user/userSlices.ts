@@ -2,11 +2,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userRegister, userLogin } from './userActions';
 import { User, UserInfo } from '@/models/user/user';
-import {Product} from "@/models/product"
-// si esta jwt en localstorage colocarlo en el estado.
-const userToken = localStorage.getItem('userToken')
-  ? localStorage.getItem('userToken')
-  : null;
+import { Product } from '@/models/product';
+import Cookies from 'js-cookie';
+
+const userToken = Cookies.get('userToken') || null;
+
+console.log({ userToken });
 
 const initialState: User = {
   loading: false,
@@ -16,12 +17,13 @@ const initialState: User = {
   success: false,
 };
 
-const userSlice = createSlice({ //redux: para estados 
+const userSlice = createSlice({
+  //redux: para estados
   name: 'user',
   initialState,
   reducers: {
     logout: (state) => {
-      localStorage.removeItem('userToken');
+      Cookies.remove('userToken');
       state.loading = false;
       state.userInfo = null;
       state.userToken = null;
@@ -32,9 +34,12 @@ const userSlice = createSlice({ //redux: para estados
     },
     addProduct: (state, action: PayloadAction<Product>) => {
       if (state.userInfo && state.userInfo.products) {
-        state.userInfo.products = { ...state.userInfo.products, ...action.payload };
+        state.userInfo.products = {
+          ...state.userInfo.products,
+          ...action.payload,
+        };
       }
-    }
+    },
   },
   extraReducers: (builder) => {
     // login user
@@ -43,11 +48,14 @@ const userSlice = createSlice({ //redux: para estados
         state.loading = true;
         state.error = null;
       })
-      .addCase(userLogin.fulfilled, (state, action: PayloadAction<User>) => {
-        state.loading = false;
-        state.userInfo = action.payload as UserInfo;
-        state.userToken = action.payload.userToken;
-      })
+      .addCase(
+        userLogin.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.loading = false;
+          state.userInfo = action.payload as UserInfo;
+          state.userToken = action.payload.userToken;
+        },
+      )
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload as string;

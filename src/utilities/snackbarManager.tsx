@@ -1,4 +1,4 @@
-import { useSnackbar, VariantType, ProviderContext} from 'notistack';
+import { useSnackbar, VariantType, ProviderContext } from 'notistack';
 
 let useSnackbarRef: ProviderContext;
 export function SnackbarUtilitiesConfigurator() {

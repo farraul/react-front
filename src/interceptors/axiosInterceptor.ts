@@ -9,12 +9,9 @@ import {
 export const axiosInterceptor = () => {
   axios.interceptors.response.use(
     (response: AxiosResponse) => {
-      console.log({response})
-
-       SnackbarUtilities.success(
-         getValidationSucces(response.config.url as unknown as string),
-       );
-
+      SnackbarUtilities.success(
+        getValidationSucces(response.config.url as unknown as string),
+      );
       return response;
     },
 

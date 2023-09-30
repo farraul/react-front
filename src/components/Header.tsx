@@ -24,12 +24,7 @@ function Header() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
   // console.log(location);
-  const { data, isFetching, isError, error } = useGetDetailsQuery(
-    'userDetails',
-    { pollingInterval: 900000 },
-  );
 
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenu = (event: any) => {
@@ -44,20 +39,9 @@ function Header() {
     navigate('/login');
   };
 
-  useEffect(() => {
-    if (data) dispatch(setCredentials(data));
-  }, [data, dispatch]);
-
-  useEffect(() => {
-    if (isError) {
-      handleLogout();
-      navigate('/login');
-    }
-  }, [isError]);
-
   return (
     <>
-      {isFetching && <Spinner />}
+      {/* {isFetching && <Spinner />} */}
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>

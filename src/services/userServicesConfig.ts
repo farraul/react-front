@@ -3,4 +3,4 @@ enum UserServicesConfig {
   UserRegister = 'user/register',
 }
 
-export default UserServicesConfig
+export default UserServicesConfig;

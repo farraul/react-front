@@ -22,6 +22,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const { userInfo, loading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  console.log('render');
 
   type InputChangeEvent<T> = ChangeEvent<HTMLInputElement> & {
     target: {

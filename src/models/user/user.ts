@@ -1,19 +1,19 @@
-import { Product } from "../product"
+import { Product } from '../product';
 
 export interface Token {
-    userToken?: string | null
+  userToken?: string | null;
 }
 
 export interface UserInfo extends Token {
-    _id: string | null
-    firstName: string | null
-    email: string | null
-    products?: Product[] | null
+  _id: string | null;
+  firstName: string | null;
+  email: string | null;
+  products?: Product[] | null;
 }
 
 export interface User extends Token {
-    loading?: boolean
-    userInfo?: UserInfo | null
-    error?: string | null
-    success?: boolean
+  loading?: boolean;
+  userInfo?: UserInfo | null;
+  error?: string | null;
+  success?: boolean;
 }

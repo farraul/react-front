@@ -1,5 +1,10 @@
 import { Token, UserInfo } from '@/models/user/user';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  createApi,
+  fetchBaseQuery,
+} from '@reduxjs/toolkit/query/react';
+import Cookies from 'js-cookie';
+
 
 export const userApi = createApi({
   // redux: para apis
@@ -9,6 +14,7 @@ export const userApi = createApi({
     // eslint-disable-next-line consistent-return
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as { user: Token }).user.userToken;
+      console.log({ token });
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
         return headers;
