@@ -11,8 +11,7 @@ console.log({ userToken });
 
 const initialState: User = {
   loading: false,
-  userInfo: null,
-  userToken,
+  userInfo: { userToken },
   error: null,
   success: false,
 };
@@ -26,20 +25,19 @@ const userSlice = createSlice({
       Cookies.remove('userToken');
       state.loading = false;
       state.userInfo = null;
-      state.userToken = null;
       state.error = null;
     },
     setCredentials: (state, action: PayloadAction<UserInfo>) => {
       state.userInfo = action.payload;
     },
-    addProduct: (state, action: PayloadAction<Product>) => {
-      if (state.userInfo && state.userInfo.products) {
-        state.userInfo.products = {
-          ...state.userInfo.products,
-          ...action.payload,
-        };
-      }
-    },
+    // addProduct: (state, action: PayloadAction<Product>) => {
+    //   if (state.userInfo && state.userInfo.products) {
+    //     state.userInfo.products = {
+    //       ...state.userInfo.products,
+    //       ...action.payload,
+    //     };
+    //   }
+    // },
   },
   extraReducers: (builder) => {
     // login user
@@ -53,7 +51,6 @@ const userSlice = createSlice({
         (state, action: PayloadAction<User>) => {
           state.loading = false;
           state.userInfo = action.payload as UserInfo;
-          state.userToken = action.payload.userToken;
         },
       )
       .addCase(userLogin.rejected, (state, { payload }) => {

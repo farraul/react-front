@@ -13,7 +13,7 @@ export interface UserInfo extends Token {
 
 export interface User extends Token {
   loading?: boolean;
-  userInfo?: UserInfo | null;
+  userInfo?: object | null;
   error?: string | null;
   success?: boolean;
 }

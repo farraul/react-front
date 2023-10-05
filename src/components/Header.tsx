@@ -20,12 +20,16 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
 
 function Header() {
-  const { userToken } = useAppSelector((state) => state.user);
+  const { userToken } = useAppSelector((state) => state.user.userInfo,);
+  console.log({ userToken });
+
+  const b = useAppSelector((state) => state.user);
+  console.log({ b });
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
-  console.log({ userToken });
 
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenu = (event: any) => {
@@ -89,9 +93,14 @@ function Header() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={() => navigate('/')}>
+                    Home
+                  </MenuItem>
+                  <MenuItem onClick={() => navigate('/profile')}>
+                    Profile
+                  </MenuItem>
                   <MenuItem onClick={() => navigate('/dashboard')}>
-                    Dashboard
+                    Table
                   </MenuItem>
                   <MenuItem onClick={() => navigate('/wpo')}>
                     Wpo

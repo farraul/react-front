@@ -46,7 +46,8 @@ function LoginPage() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/');
+      console.log("redirection")
+      // navigate('/home-page');
     }
   }, [navigate, userInfo]);
 

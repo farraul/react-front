@@ -1,34 +1,39 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useRoutes } from 'react-router-dom';
+import { useRoutes, Navigate } from 'react-router-dom';
 import { Layout, ProtectedRoutes } from '@/components';
-import {
-  ErrorPage,
-  // LoginPage,
-  RegisterPage,
-  // DashboardPage,
-  CallApi,
-  HomeWpo,
-} from '@/pages';
-import React, { lazy, useEffect } from 'react';
+import React, { LazyExoticComponent, lazy, useEffect } from 'react';
 import { setCredentials } from '@/app/features/user/userSlices';
 import { useGetDetailsQuery } from '@/services';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import { getMe } from '@/api/axios';
 
+const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
+const ErrorPage = lazy(() => import('@/pages/ErrorPage'));
+const CallApi = lazy(() => import('@/pages/CallApi'));
+const HomeWpo = lazy(() => import('@/pages/HomeWpo'));
+const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const Seo = lazy(() => import('@/pages/Seo'));
 
-// interface Route {
-//   path?: string;
-//   element?: JSX.Element;
-//   errorElement?: JSX.Element;
-//   children?: Route[];
-//   index?: boolean;
-// }
+const routes = (userToken: string) => {
+  const pathSession = (
+    Componente: LazyExoticComponent<() => JSX.Element>,
+  ) => {
+    return userToken ? <Componente /> : <Navigate to={'/'} />;
+  };
 
-const routes = () => {
+  const notPathSession = (
+    Componente: LazyExoticComponent<() => JSX.Element>,
+  ) => {
+    return userToken ? (
+      <Navigate to={'/home-page'} />
+    ) : (
+      <Componente />
+    );
+  };
+
   return [
     {
       path: '/',
@@ -40,47 +45,35 @@ const routes = () => {
           children: [
             {
               index: true,
-              element: <HomePage />,
-            },
-            {
-              path: '/login',
-              element: <LoginPage />,
+              element: notPathSession(LoginPage),
             },
             {
               path: '/register',
-              element: <RegisterPage />,
+              element: notPathSession(RegisterPage),
+            },
+            {
+              path: '/home-page',
+              element: pathSession(HomePage),
+            },
+            {
+              path: '/profile',
+              element: pathSession(ProfilePage),
             },
             {
               path: '/dashboard',
-              element: (
-                <ProtectedRoutes>
-                  <DashboardPage />
-                </ProtectedRoutes>
-              ),
+              element: pathSession(DashboardPage),
             },
             {
               path: '/wpo',
-              element: (
-                <ProtectedRoutes>
-                  <HomeWpo />,
-                </ProtectedRoutes>
-              ),
+              element: pathSession(HomeWpo),
             },
             {
               path: '/seo',
-              element: (
-                // <ProtectedRoutes>
-                <Seo />
-              ),
-              // </ProtectedRoutes>
+              element: pathSession(Seo),
             },
             {
               path: '/call-api',
-              element: (
-                <ProtectedRoutes>
-                  <CallApi />
-                </ProtectedRoutes>
-              ),
+              element: pathSession(CallApi),
             },
           ],
         },
@@ -91,21 +84,17 @@ const routes = () => {
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const { userToken } = useAppSelector((state) => state.user);
-  const routing = useRoutes(routes());
-
-  // if (userInfo?.userToken) {
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //   const { data } = useGetDetailsQuery('userDetails', {
-  //     pollingInterval: 900000,
-  //   });
-  //   if (data) dispatch(setCredentials(data));
-  // }
+  const { userToken } = useAppSelector(
+    (state) => state.user.userInfo,
+  );
+  console.log({ userToken });
+  const routing = useRoutes(routes(userToken));
 
   const fetchMe = async (userToken: string) => {
+    console.log('tryyyy');
     try {
-      console.log('in');
-      const me = await (await getMe(userToken)).data;
+      let me = await (await getMe(userToken)).data;
+      me['userToken'] = userToken;
 
       console.log({ me });
       if (me) dispatch(setCredentials(me));
@@ -116,6 +105,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    console.log('innnnnn');
     if (userToken) {
       fetchMe(userToken);
     }
@@ -124,5 +114,4 @@ const App = () => {
   return <>{routing}</>;
 };
 
-// export const router = createBrowserRouter(routes as RouteObject[]);
 export default App;
