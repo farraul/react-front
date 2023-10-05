@@ -59,8 +59,12 @@ const routes = () => {
               ),
             },
             {
-              path: '/homewpo',
-              element: <HomeWpo />,
+              path: '/wpo',
+              element: (
+                <ProtectedRoutes>
+                  <HomeWpo />,
+                </ProtectedRoutes>
+              ),
             },
             {
               path: '/seo',
@@ -100,7 +104,7 @@ const App = () => {
 
   const fetchMe = async (userToken: string) => {
     try {
-      console.log("in")
+      console.log('in');
       const me = await (await getMe(userToken)).data;
 
       console.log({ me });

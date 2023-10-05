@@ -20,11 +20,12 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
 
 function Header() {
-  const { userInfo } = useAppSelector((state) => state.user);
+  const { userToken } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log(location);
+  console.log(location);
+  console.log({ userToken });
 
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenu = (event: any) => {
@@ -61,7 +62,7 @@ function Header() {
             >
               Test
             </Typography>
-            {userInfo ? (
+            {userToken ? (
               <div>
                 <IconButton
                   size="large"
@@ -92,7 +93,7 @@ function Header() {
                   <MenuItem onClick={() => navigate('/dashboard')}>
                     Dashboard
                   </MenuItem>
-                  <MenuItem onClick={() => navigate('/homewpo')}>
+                  <MenuItem onClick={() => navigate('/wpo')}>
                     Wpo
                   </MenuItem>
                   <MenuItem onClick={() => navigate('/seo')}>

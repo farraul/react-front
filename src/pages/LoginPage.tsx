@@ -41,13 +41,12 @@ function LoginPage() {
 
     if (value) {
       await dispatch(userLogin(value));
-      
     }
   }
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/dashboard');
+      navigate('/');
     }
   }, [navigate, userInfo]);
 
