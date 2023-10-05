@@ -5,13 +5,14 @@ import { User, UserInfo } from '@/models/user/user';
 import { Product } from '@/models/product';
 import Cookies from 'js-cookie';
 
-const userToken = Cookies.get('userToken') || null;
+const userToken = atob(Cookies.get('userToken') || '' );
 
 console.log({ userToken });
+const userInfoDefault = { _id: '', firstName: '', email: '' };
 
 const initialState: User = {
   loading: false,
-  userInfo: { userToken },
+  userInfo: { ...userInfoDefault, userToken },
   error: null,
   success: false,
 };
@@ -24,20 +25,20 @@ const userSlice = createSlice({
     logout: (state) => {
       Cookies.remove('userToken');
       state.loading = false;
-      state.userInfo = null;
+      state.userInfo= { ...userInfoDefault, userToken };
       state.error = null;
     },
     setCredentials: (state, action: PayloadAction<UserInfo>) => {
       state.userInfo = action.payload;
     },
-    // addProduct: (state, action: PayloadAction<Product>) => {
-    //   if (state.userInfo && state.userInfo.products) {
-    //     state.userInfo.products = {
-    //       ...state.userInfo.products,
-    //       ...action.payload,
-    //     };
-    //   }
-    // },
+    addProduct: (state, action: PayloadAction<Product>) => {
+      if (state.userInfo && state.userInfo.products) {
+        state.userInfo.products = {
+          ...state.userInfo.products,
+          ...action.payload,
+        };
+      }
+    },
   },
   extraReducers: (builder) => {
     // login user
@@ -46,13 +47,10 @@ const userSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(
-        userLogin.fulfilled,
-        (state, action: PayloadAction<User>) => {
-          state.loading = false;
-          state.userInfo = action.payload as UserInfo;
-        },
-      )
+      .addCase(userLogin.fulfilled, (state, action: PayloadAction<User>) => {
+        state.loading = false;
+        state.userInfo = action.payload as UserInfo;
+      })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload as string;

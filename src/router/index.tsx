@@ -99,7 +99,7 @@ const App = () => {
       console.log({ me });
       if (me) dispatch(setCredentials(me));
       console.log(setCredentials(me));
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.log(error.message);
     }
   };

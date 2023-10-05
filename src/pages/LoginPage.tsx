@@ -20,7 +20,9 @@ const initialState: SignIn = {
 function LoginPage() {
   const [value, setValue] = useState(initialState);
   const navigate = useNavigate();
-  const { userInfo, loading } = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user);
+
+  // userInfo, loading 
   const dispatch = useAppDispatch();
   console.log('render');
 
@@ -44,12 +46,6 @@ function LoginPage() {
     }
   }
 
-  useEffect(() => {
-    if (userInfo) {
-      console.log("redirection")
-      // navigate('/home-page');
-    }
-  }, [navigate, userInfo]);
 
   return (
     <>
@@ -92,7 +88,7 @@ function LoginPage() {
               <Button
                 className="h-12 text-center hover:scale-110 active:scale-90 transition flex items-center justify-center"
                 type="submit"
-                disabled={loading}
+                disabled={user.loading}
               >
                 Loguearse
               </Button>

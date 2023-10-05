@@ -20,7 +20,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
 
 function Header() {
-  const { userToken } = useAppSelector((state) => state.user.userInfo,);
+  const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
   console.log({ userToken });
 
   const b = useAppSelector((state) => state.user);
@@ -31,7 +31,7 @@ function Header() {
   const location = useLocation();
   console.log(location);
 
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenu = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
@@ -41,7 +41,7 @@ function Header() {
   };
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    navigate('/');
   };
 
   return (
