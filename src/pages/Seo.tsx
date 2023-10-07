@@ -1,6 +1,6 @@
 import { FormEvent } from 'react';
 import useSeoData from '@/hooks/useSeoData';
-import { ISeo, Headings } from '@/models/seo';
+import { ISeo, Headings, SeoHeading } from '@/models/seo';
 import axios from 'axios';
 import { Button, TextField, Box } from '@mui/material';
 import { SnackbarUtilities } from '@/utilities';
@@ -40,10 +40,8 @@ const Seo = () => {
         url: 'https://canssens-seo-extraction-v1.p.rapidapi.com/seo/api/',
         headers: {
           'content-type': 'application/x-www-form-urlencoded',
-          'X-RapidAPI-Key':
-            '7a852f3f31msh2d432bde9686feep1e9e9cjsn71666313ac78',
-          'X-RapidAPI-Host':
-            'canssens-seo-extraction-v1.p.rapidapi.com',
+          'X-RapidAPI-Key': '7a852f3f31msh2d432bde9686feep1e9e9cjsn71666313ac78',
+          'X-RapidAPI-Host': 'canssens-seo-extraction-v1.p.rapidapi.com',
         },
         data: encodedParams,
       };
@@ -51,21 +49,19 @@ const Seo = () => {
       try {
         const response = await axios.request(options);
 
-        let headings: Headings[] = [];
+        // let headings: Headings[] = [];
+        let headings: any = [];
+
         for (let i = 0; i <= 6; i++) {
           if (
             response.data[`h${i}`] !== undefined &&
-            response.data[`h${i}`].length === 1
+            response.data[`h${i}`].length
           ) {
-            headings.push({
-              [`h${i}`]: `${response.data[`h${i}`]}`,
-              h1: '',
-              h2: '',
-              h3: '',
-            });
+            headings.push({ [`h${i}`]: response.data[`h${i}`] });
           }
         }
 
+        console.log({ headings });
         setHeadings(headings);
         setTitle(response.data.title);
         setDescription(response.data.description);
@@ -84,12 +80,7 @@ const Seo = () => {
         <h2>Seo</h2>
         <p>Bienvenido a Seo</p>
 
-        <Box
-          component="form"
-          noValidate
-          sx={{ mt: 1 }}
-          onSubmit={handleSubmit}
-        >
+        <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
           <TextField
             margin="normal"
             required
@@ -117,13 +108,11 @@ const Seo = () => {
         {headings?.length > 0 && (
           <div className="mx-8">
             <>
-              <h2 className="text-2xl font-bold  mt-10 mb-5">
-                Headings
-              </h2>
+              <h2 className="text-2xl font-bold  mt-10 mb-5">Headings</h2>
               <List
                 sx={{
                   width: '100%',
-                  maxWidth: 360,
+                  maxWidth: 700,
                   position: 'relative',
                   overflow: 'auto',
                   maxHeight: 700,
@@ -132,24 +121,52 @@ const Seo = () => {
                 }}
                 subheader={<li />}
               >
-                {headings.map((heading) => (
-                  <>
-                    <li key={`section-${Object.keys(heading)[0]}`}>
-                      <ul>
-                        <ListSubheader sx={{ bgcolor: '#bfbff1' }}>
-                          {Object.keys(heading)[0]}
-                        </ListSubheader>
-                        <ListItem
-                          key={`item-${Object.keys(heading)[0]}-list`}
-                        >
-                          <ListItemText
-                            primary={Object.values(heading)[0]}
-                          />
-                        </ListItem>
-                      </ul>
-                    </li>
-                  </>
-                ))}
+                {headings.map((heading) => {
+                  const singleKey = Object.keys(heading)[0] as keyof SeoHeading;
+
+                  console.log(heading[singleKey]);
+
+                  return (
+                    <>
+                      <li key={`section-${Object.keys(heading)[0]}`}>
+                        <ul>
+                          <ListSubheader sx={{ bgcolor: '#bfbff1' }}>
+                            {Object.keys(heading)[0]}
+                          </ListSubheader>
+
+                          <ListItem
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              padding: 0, 
+                              margin: 0,
+                            }}
+                            key={`item-${Object.keys(heading)[0]}-list`}
+                          >
+                            {heading[singleKey].map((e) => {
+                              console.log({ e });
+                              return (
+                                <ListItemText
+                                  sx={{
+                                    borderTop: 1,
+                                    borderColor: 'grey.500',
+                                    width: '100%',
+                                    paddingTop: 2,
+                                    paddingBottom: 2,
+                                    paddingLeft: 2,
+                                    paddingRight: 2,
+                                    margin: 0,
+                                  }}
+                                  primary={e}
+                                />
+                              );
+                            })}
+                          </ListItem>
+                        </ul>
+                      </li>
+                    </>
+                  );
+                })}
               </List>
             </>
           </div>
@@ -159,15 +176,14 @@ const Seo = () => {
           {title?.length > 0 && (
             <div>
               <>
-                <h2 className="text-2xl font-bold  mt-10 mb-5">
-                  Title
-                </h2>
+                <h2 className="text-2xl font-bold  mt-10 mb-5">Title</h2>
 
                 <List
                   key={title}
                   sx={{
                     width: '100%',
-                    maxWidth: 360,
+                    padding:2,
+                    maxWidth: 700,
                     position: 'relative',
                     overflow: 'auto',
                     maxHeight: 700,
@@ -185,14 +201,13 @@ const Seo = () => {
           {description?.length > 0 && (
             <div>
               <>
-                <h2 className="text-2xl font-bold  mt-10 mb-5">
-                  Description
-                </h2>
+                <h2 className="text-2xl font-bold  mt-10 mb-5">Description</h2>
 
                 <List
                   sx={{
                     width: '100%',
-                    maxWidth: 360,
+                    padding: 2,
+                    maxWidth: 700,
                     position: 'relative',
                     overflow: 'auto',
                     maxHeight: 700,
@@ -210,9 +225,7 @@ const Seo = () => {
           {countLinks?.length > 0 && (
             <div>
               <>
-                <h2 className="text-2xl font-bold  mt-10 mb-5">
-                  Links totales
-                </h2>
+                <h2 className="text-2xl font-bold  mt-10 mb-5">Links totales</h2>
                 <List
                   sx={{
                     width: '100%',
