@@ -25,6 +25,7 @@ const Seo = () => {
     handleChange,
   } = useSeoData();
 
+  console.log({countLinks})
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -48,6 +49,7 @@ const Seo = () => {
 
       try {
         const response = await axios.request(options);
+        console.log({response})
 
         // let headings: Headings[] = [];
         let headings: any = [];
@@ -60,8 +62,6 @@ const Seo = () => {
             headings.push({ [`h${i}`]: response.data[`h${i}`] });
           }
         }
-
-        console.log({ headings });
         setHeadings(headings);
         setTitle(response.data.title);
         setDescription(response.data.description);
@@ -105,7 +105,7 @@ const Seo = () => {
         </Box>
       </div>
       <div className="flex">
-        {headings?.length > 0 && (
+        {headings?.length && (
           <div className="mx-8">
             <>
               <h2 className="text-2xl font-bold  mt-10 mb-5">Headings</h2>
@@ -123,14 +123,13 @@ const Seo = () => {
               >
                 {headings.map((heading) => {
                   const singleKey = Object.keys(heading)[0] as keyof SeoHeading;
-
-                  console.log(heading[singleKey]);
-
                   return (
                     <>
                       <li key={`section-${Object.keys(heading)[0]}`}>
                         <ul>
-                          <ListSubheader sx={{ bgcolor: '#bfbff1' }}>
+                          <ListSubheader
+                            sx={{ bgcolor: '#bfbff1', color: 'black' }}
+                          >
                             {Object.keys(heading)[0]}
                           </ListSubheader>
 
@@ -138,7 +137,7 @@ const Seo = () => {
                             sx={{
                               display: 'flex',
                               flexDirection: 'column',
-                              padding: 0, 
+                              padding: 0,
                               margin: 0,
                             }}
                             key={`item-${Object.keys(heading)[0]}-list`}
@@ -173,7 +172,7 @@ const Seo = () => {
         )}
 
         <div>
-          {title?.length > 0 && (
+          {title?.length && (
             <div>
               <>
                 <h2 className="text-2xl font-bold  mt-10 mb-5">Title</h2>
@@ -182,13 +181,14 @@ const Seo = () => {
                   key={title}
                   sx={{
                     width: '100%',
-                    padding:2,
+                    padding: 2,
                     maxWidth: 700,
                     position: 'relative',
                     overflow: 'auto',
                     maxHeight: 700,
                     '& ul': { padding: 0 },
                     bgcolor: '#cbdaf3',
+                    borderRadius: 1,
                   }}
                   subheader={<li />}
                 >
@@ -198,7 +198,7 @@ const Seo = () => {
             </div>
           )}
 
-          {description?.length > 0 && (
+          {description?.length && (
             <div>
               <>
                 <h2 className="text-2xl font-bold  mt-10 mb-5">Description</h2>
@@ -213,6 +213,7 @@ const Seo = () => {
                     maxHeight: 700,
                     '& ul': { padding: 0 },
                     bgcolor: '#cbdaf3',
+                    borderRadius: 1,
                   }}
                   subheader={<li />}
                 >
@@ -222,7 +223,7 @@ const Seo = () => {
             </div>
           )}
 
-          {countLinks?.length > 0 && (
+          {countLinks>0 && (
             <div>
               <>
                 <h2 className="text-2xl font-bold  mt-10 mb-5">Links totales</h2>
