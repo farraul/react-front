@@ -10,6 +10,8 @@ import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
+import { validateUrl } from '@/utilities/validateUrl';
+import { getSeo } from '@/api/rapdApi';
 
 const Seo = () => {
   const {
@@ -25,40 +27,18 @@ const Seo = () => {
     handleChange,
   } = useSeoData();
 
-  console.log({countLinks})
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    console.log('submit');
     e.preventDefault();
 
-    const regex =
-      /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
-
-    if (regex.test(url)) {
-      const encodedParams = new URLSearchParams();
-      encodedParams.set('url', url);
-
-      const options = {
-        method: 'POST',
-        url: 'https://canssens-seo-extraction-v1.p.rapidapi.com/seo/api/',
-        headers: {
-          'content-type': 'application/x-www-form-urlencoded',
-          'X-RapidAPI-Key': '7a852f3f31msh2d432bde9686feep1e9e9cjsn71666313ac78',
-          'X-RapidAPI-Host': 'canssens-seo-extraction-v1.p.rapidapi.com',
-        },
-        data: encodedParams,
-      };
-
+    if (validateUrl(url)) {
       try {
-        const response = await axios.request(options);
-        console.log({response})
+        const response = await getSeo(url);
 
-        // let headings: Headings[] = [];
         let headings: any = [];
 
         for (let i = 0; i <= 6; i++) {
-          if (
-            response.data[`h${i}`] !== undefined &&
-            response.data[`h${i}`].length
-          ) {
+          if (response.data[`h${i}`]?.length) {
             headings.push({ [`h${i}`]: response.data[`h${i}`] });
           }
         }
@@ -105,7 +85,7 @@ const Seo = () => {
         </Box>
       </div>
       <div className="flex">
-        {headings?.length && (
+        {headings?.length ? (
           <div className="mx-8">
             <>
               <h2 className="text-2xl font-bold  mt-10 mb-5">Headings</h2>
@@ -169,10 +149,10 @@ const Seo = () => {
               </List>
             </>
           </div>
-        )}
+        ): null}
 
         <div>
-          {title?.length && (
+          {title ? (
             <div>
               <>
                 <h2 className="text-2xl font-bold  mt-10 mb-5">Title</h2>
@@ -196,9 +176,9 @@ const Seo = () => {
                 </List>
               </>
             </div>
-          )}
+          ) : null}
 
-          {description?.length && (
+          {description ? (
             <div>
               <>
                 <h2 className="text-2xl font-bold  mt-10 mb-5">Description</h2>
@@ -221,9 +201,9 @@ const Seo = () => {
                 </List>
               </>
             </div>
-          )}
+          ) : null}
 
-          {countLinks>0 && (
+          {countLinks ? (
             <div>
               <>
                 <h2 className="text-2xl font-bold  mt-10 mb-5">Links totales</h2>
@@ -243,7 +223,7 @@ const Seo = () => {
                 </List>
               </>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </section>

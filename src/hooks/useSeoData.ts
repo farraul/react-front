@@ -6,7 +6,7 @@ const useSeoData = () => {
   const [headings, setHeadings] = useState<Headings[]>([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [countLinks, setCountLinks] = useState(0);
+  const [countLinks, setCountLinks] = useState();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const urlSeoValue = e.target.value as urlSeo;
