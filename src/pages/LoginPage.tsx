@@ -1,11 +1,6 @@
 import { CssBaseline, Container } from '@mui/material';
-import React, {
-  useEffect,
-  useState,
-  FormEvent,
-  ChangeEvent,
-} from 'react';
-import { useNavigate, Link, redirect } from 'react-router-dom';
+import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
+import { useNavigate, Link, redirect, useSearchParams } from 'react-router-dom';
 import { userLogin } from '@/app/features/user/userActions';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import { SignIn } from '@/models/auth';
@@ -18,11 +13,13 @@ const initialState: SignIn = {
 };
 
 function LoginPage() {
+  const [searchParams] = useSearchParams();
+
   const [value, setValue] = useState(initialState);
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.user);
 
-  // userInfo, loading 
+  // userInfo, loading
   const dispatch = useAppDispatch();
   console.log('render');
 
@@ -43,9 +40,12 @@ function LoginPage() {
 
     if (value) {
       await dispatch(userLogin(value));
+      const redirect = searchParams.get('redirect');
+      if (redirect) {
+        window.location.href = redirect;
+      }
     }
   }
-
 
   return (
     <>
