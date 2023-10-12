@@ -10,12 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { Button } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {
-  logout,
-  setCredentials,
-} from '@/app/features/user/userSlices';
-import { useGetDetailsQuery } from '@/services/userServices';
-import { Spinner } from '@/components';
+import { logout } from '@/app/features/user/userSlices';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
 
@@ -24,7 +19,7 @@ function Header() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+  console.log({ location });
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenu = (event: any) => {
@@ -54,11 +49,7 @@ function Header() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1 }}
-            >
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Test
             </Typography>
             {userToken ? (
@@ -88,21 +79,15 @@ function Header() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={() => navigate('/')}>
-                    Home
-                  </MenuItem>
+                  <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
                   <MenuItem onClick={() => navigate('/profile')}>
                     Profile
                   </MenuItem>
                   <MenuItem onClick={() => navigate('/dashboard')}>
                     Table
                   </MenuItem>
-                  <MenuItem onClick={() => navigate('/wpo')}>
-                    Wpo
-                  </MenuItem>
-                  <MenuItem onClick={() => navigate('/seo')}>
-                    Seo
-                  </MenuItem>
+                  <MenuItem onClick={() => navigate('/wpo')}>Wpo</MenuItem>
+                  <MenuItem onClick={() => navigate('/seo')}>Seo</MenuItem>
                   <MenuItem onClick={() => navigate('/call-api')}>
                     Call Api
                   </MenuItem>
@@ -110,10 +95,7 @@ function Header() {
                 </Menu>
               </div>
             ) : (
-              <Button
-                variant="contained"
-                onClick={() => navigate('/login')}
-              >
+              <Button variant="contained" onClick={() => navigate('/login')}>
                 Login
               </Button>
             )}

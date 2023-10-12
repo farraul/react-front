@@ -25,11 +25,8 @@ function Layout() {
       location.pathname === RoutesNotAuth.Register
     ) {
       setIsntAuth(false);
-      // console.log(isntAuth);
     } else {
       setIsntAuth(true);
-      // console.log(location.pathname);
-      // console.log({ isntAuth });
     }
   }, [location.pathname]);
 

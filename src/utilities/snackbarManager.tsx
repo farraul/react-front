@@ -8,6 +8,8 @@ export function SnackbarUtilitiesConfigurator() {
 
 export const SnackbarUtilities = {
   toast(msg: string, variant: VariantType = 'default') {
+    console.log('Toast message:', msg);
+    console.log('Variant:', variant);
     useSnackbarRef.enqueueSnackbar(msg, { variant });
   },
   error(msg: string) {

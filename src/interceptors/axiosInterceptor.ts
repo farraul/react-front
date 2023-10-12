@@ -6,11 +6,13 @@ import { getValidationError } from '@/utilities/getValidation';
 export const axiosInterceptor = () => {
   axios.interceptors.response.use(
     (response: AxiosResponse) => {
-      SnackbarUtilities.success(
-        response.data.message,
-        // getValidationSucces(response.config.url as unknown as string),
-      );
+      console.log({ response });
+
+      if (response.data.message) {
+        SnackbarUtilities.success(response.data.message);
+      }
       return response;
+      // getValidationSucces(response.config.url as unknown as string),
     },
 
     (error: AxiosError) => {
