@@ -60,7 +60,6 @@ const Datatable = () => {
   );
 
   const DeleteRenderer = (props: any) => {
-    console.log(props);
     const id = props.value;
     return (
       <div className="flex gap-4 justify-start items-center">

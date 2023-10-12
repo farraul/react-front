@@ -22,10 +22,10 @@ export const userLogin = createAsyncThunk(
         config,
       );
 
-      Cookies.set('userToken', btoa(info.data.userToken), { expires: 360000 });
-      Cookies.set('userId', info.data._id, { expires: 360000 });
+      Cookies.set('userToken', btoa(info.data.data.userToken), { expires: 360000 });
+      Cookies.set('userId', info.data.data._id, { expires: 360000 });
 
-      return info.data;
+      return info.data.data;
     } catch (error: unknown) {
       return rejectWithValue(error); // paramos la peticion para que redux lo sepa
     }

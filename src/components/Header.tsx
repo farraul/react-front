@@ -21,11 +21,6 @@ import React from 'react';
 
 function Header() {
   const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
-  console.log({ userToken });
-
-  const b = useAppSelector((state) => state.user);
-  console.log({ b });
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();

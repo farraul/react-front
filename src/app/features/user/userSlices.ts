@@ -5,10 +5,9 @@ import { User, UserInfo } from '@/models/user/user';
 import { Product } from '@/models/product';
 import Cookies from 'js-cookie';
 
-const userToken = atob(Cookies.get('userToken') || '' );
-
-console.log({ userToken });
+const userToken = atob(Cookies.get('userToken') || '');
 const userInfoDefault = { _id: '', firstName: '', email: '' };
+const userTokenDefault = "";
 
 const initialState: User = {
   loading: false,
@@ -25,7 +24,7 @@ const userSlice = createSlice({
     logout: (state) => {
       Cookies.remove('userToken');
       state.loading = false;
-      state.userInfo= { ...userInfoDefault, userToken };
+      state.userInfo = { ...userInfoDefault, userToken:userTokenDefault };
       state.error = null;
     },
     setCredentials: (state, action: PayloadAction<UserInfo>) => {

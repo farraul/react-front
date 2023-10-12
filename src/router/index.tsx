@@ -86,21 +86,17 @@ const App = () => {
   const routing = useRoutes(routes(userToken));
 
   const fetchMe = async (userToken: string) => {
-    console.log('tryyyy');
     try {
       let me = await (await getMe(userToken)).data;
       me['userToken'] = userToken;
 
-      console.log({ me });
       if (me) dispatch(setCredentials(me));
-      console.log(setCredentials(me));
     } catch (error: any) {
       console.log(error.message);
     }
   };
 
   useEffect(() => {
-    console.log('innnnnn');
     if (userToken) {
       fetchMe(userToken);
     }
