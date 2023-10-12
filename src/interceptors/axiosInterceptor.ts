@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from 'axios';
-import axios from '@/api/axios';
+import { instance as axios } from '@/api/axios';
 import { SnackbarUtilities } from '@/utilities';
 import {
   getValidationError,
@@ -9,16 +9,16 @@ import {
 export const axiosInterceptor = () => {
   axios.interceptors.response.use(
     (response: AxiosResponse) => {
+      console.log({ response });
       SnackbarUtilities.success(
-        getValidationSucces(response.config.url as unknown as string),
+        response.data.message
+        // getValidationSucces(response.config.url as unknown as string),
       );
       return response;
     },
 
     (error: AxiosError) => {
-      SnackbarUtilities.error(
-        getValidationError(error.message as string),
-      );
+      SnackbarUtilities.error(getValidationError(error.message as string));
       return Promise.reject(error);
     },
   );

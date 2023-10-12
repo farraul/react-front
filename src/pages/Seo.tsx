@@ -11,7 +11,7 @@ import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 import { validateUrl } from '@/utilities/validateUrl';
-import { getSeo } from '@/api/rapdApi';
+import { getSeo } from '@/api/rapi/seo';
 
 const Seo = () => {
   const {

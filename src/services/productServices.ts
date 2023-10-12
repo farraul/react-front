@@ -1,5 +1,5 @@
 import { Product } from '@/models/product';
-import axios from '../api/axios';
+import {instance as axios} from '../api/axios';
 import { AxiosResponse } from 'axios';
 
 export const getProductsRequest = async (

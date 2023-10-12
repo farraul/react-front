@@ -7,4 +7,3 @@ export { default as Layout } from './Layout';
 export { default as Modal } from './Modal';
 export { default as ProtectedRoutes } from './ProtectedRoutes';
 export { default as Spinner } from './Spinner';
-export * from './index';

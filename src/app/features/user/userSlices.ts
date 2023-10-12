@@ -49,7 +49,7 @@ const userSlice = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, action: PayloadAction<User>) => {
         state.loading = false;
-        state.userInfo = action.payload as UserInfo;
+        state.userInfo = action.payload as unknown as UserInfo;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;

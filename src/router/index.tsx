@@ -5,7 +5,7 @@ import React, { LazyExoticComponent, lazy, useEffect } from 'react';
 import { setCredentials } from '@/app/features/user/userSlices';
 import { useGetDetailsQuery } from '@/services';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
-import { getMe } from '@/api/axios';
+import { getMe } from '@/api/user';
 
 const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
 const ErrorPage = lazy(() => import('@/pages/ErrorPage'));
@@ -18,20 +18,18 @@ const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const Seo = lazy(() => import('@/pages/Seo'));
 
 const routes = (userToken: string) => {
-  const pathSession = (
-    Componente: LazyExoticComponent<() => JSX.Element>,
-  ) => {
-    return userToken ? <Componente /> : <Navigate to={`/?redirect=${window.location.href}`} />;
+  const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
+    return userToken ? (
+      <Componente />
+    ) : (
+      <Navigate to={`/?redirect=${window.location.href}`} />
+    );
   };
 
   const notPathSession = (
     Componente: LazyExoticComponent<() => JSX.Element>,
   ) => {
-    return userToken ? (
-      <Navigate to={'/home-page'} />
-    ) : (
-      <Componente />
-    );
+    return userToken ? <Navigate to={'/home-page'} /> : <Componente />;
   };
 
   return [
@@ -84,10 +82,7 @@ const routes = (userToken: string) => {
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const { userToken } = useAppSelector(
-    (state) => state.user.userInfo,
-  );
-  console.log({ userToken });
+  const { userToken } = useAppSelector((state) => state.user.userInfo);
   const routing = useRoutes(routes(userToken));
 
   const fetchMe = async (userToken: string) => {
