@@ -31,10 +31,10 @@ export const Path = (userToken: string) => {
     {
       path: '/',
       element: <Layout />,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPage />, //check
       children: [
         {
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage />, //check
           children: [
             {
               index: true,
@@ -67,6 +67,10 @@ export const Path = (userToken: string) => {
             {
               path: '/call-api',
               element: pathSession(CallApi),
+            },
+            {
+              path: '*',
+              element: <ErrorPage />,
             },
           ],
         },

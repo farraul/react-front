@@ -10,11 +10,7 @@ import {
   getProductsRequest,
   updateProductRequest,
 } from '@/services';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Product } from '@/models/product';
 import { ColDef, ValueFormatterParams } from 'ag-grid-community';
 import { useAppSelector } from '@/hooks/useApp';
@@ -25,7 +21,6 @@ const Datatable = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { userInfo } = useAppSelector((state) => state.user);
   const id = Cookies.get('userId');
-
 
   const { data: dataProducts, isLoading } = useQuery({
     queryKey: ['products'],
@@ -50,14 +45,8 @@ const Datatable = () => {
     setIsOpen(!isOpen);
   };
 
-  const containerStyle = useMemo(
-    () => ({ width: '100%', height: '100%' }),
-    [],
-  );
-  const gridStyle = useMemo(
-    () => ({ height: '100%', width: '100%' }),
-    [],
-  );
+  const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
+  const gridStyle = useMemo(() => ({ height: '100%', width: '100%' }), []);
 
   const DeleteRenderer = (props: any) => {
     const id = props.value;

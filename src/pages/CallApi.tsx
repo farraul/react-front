@@ -6,8 +6,8 @@ const CallApi = () => {
   const [ricky, setRicky] = useState([]);
 
   const getRicky = async () => {
-    return fetch('https://rickandmortyapi.com/api/character').then(
-      (res) => res.json(),
+    return fetch('https://rickandmortyapi.com/api/character').then((res) =>
+      res.json(),
     );
   };
 
@@ -35,8 +35,8 @@ const CallApi = () => {
     <section className="p-16">
       <div className="w-2/3">
         <h1 className="text-3xl">
-          Página para ver funcionamiento de una llamada con: useQuery
-          de @tanstack/react-query{' '}
+          Página para ver funcionamiento de una llamada con: useQuery de
+          @tanstack/react-query{' '}
         </h1>
         <div className="mt-10">
           {/* {!isLoading && ricky.map(el => (

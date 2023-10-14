@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 
 type AttributeProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,

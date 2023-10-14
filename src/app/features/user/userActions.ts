@@ -22,7 +22,9 @@ export const userLogin = createAsyncThunk(
         config,
       );
 
-      Cookies.set('userToken', btoa(info.data.data.userToken), { expires: 360000 });
+      Cookies.set('userToken', btoa(info.data.data.userToken), {
+        expires: 360000,
+      });
       Cookies.set('userId', info.data.data._id, { expires: 360000 });
 
       return info.data.data;

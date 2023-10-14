@@ -10,7 +10,7 @@ const App = () => {
   const dispatch = useAppDispatch();
   const { userToken } = useAppSelector((state) => state.user.userInfo);
   const routing = useRoutes(Path(userToken));
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fetchMe = async (userToken: string) => {
     setLoading(true);

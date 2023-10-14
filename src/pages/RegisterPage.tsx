@@ -1,9 +1,4 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { CssBaseline, Container } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
 import { userRegister } from '@/app/features/user/userActions';
@@ -20,9 +15,7 @@ const initialState: SignUp = {
 function RegisterPage() {
   const [value, setValue] = useState(initialState);
   const navigate = useNavigate();
-  const { loading, userInfo, success } = useAppSelector(
-    (state) => state.user,
-  );
+  const { loading, userInfo, success } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   type InputChangeEvent<T> = ChangeEvent<HTMLInputElement> & {
