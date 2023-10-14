@@ -1,8 +1,7 @@
+//File deprecate
+
 import { Token, UserInfo } from '@/models/user/user';
-import {
-  createApi,
-  fetchBaseQuery,
-} from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({
   // redux: para apis

@@ -2,7 +2,7 @@ export type productCategory = 'pc' | 'phone' | 'console' | 'tv' | '';
 export type productBrand = 'apple' | 'microsoft' | 'sony' | '';
 
 export interface Product {
-  _id: any;
+  readonly _id: string;
   userId: string;
   title: string;
   category: productCategory;

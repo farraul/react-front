@@ -1,16 +1,13 @@
 import { Product, ProductCreate } from '@/models/product';
-import {instance as axios} from '../api/axios';
-import { AxiosResponse } from 'axios';
+import { instance as axios } from '../api/axios';
 
-export const getProductsRequest = async (
-  id: string,
-): Promise<Product[]> => {
+export const getProductsRequest = async (id: string): Promise<Product[]> => {
   const response = await axios.get(`/api/user/products/${id}`);
   return response.data;
 };
 
 export const createProductRequest = async (product: ProductCreate) => {
-  const response = await axios.post('/api/user/products', product);
+  await axios.post('/api/user/products', product);
 };
 
 export const updateProductRequest = async (product: Product) =>
