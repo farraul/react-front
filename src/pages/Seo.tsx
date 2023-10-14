@@ -1,8 +1,15 @@
-import { FormEvent } from 'react';
+import { FormEvent, useEffect } from 'react';
 import useSeoData from '@/hooks/useSeoData';
-import { ISeo, Headings, SeoHeading } from '@/models/seo';
-import axios from 'axios';
-import { Button, TextField, Box } from '@mui/material';
+import { SeoHeading } from '@/models/seo';
+import {
+  Button,
+  TextField,
+  Box,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from '@mui/material';
 import { SnackbarUtilities } from '@/utilities';
 
 import ListItem from '@mui/material/ListItem';
@@ -12,10 +19,13 @@ import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 import { validateUrl } from '@/utilities/validateUrl';
 import { getSeo } from '@/api/rapi/seo';
+import { getUrlsSeo } from '@/api/user';
+import { useAppSelector } from '@/hooks/useApp';
 
 const Seo = () => {
   const {
     url,
+    setUrl,
     headings,
     setHeadings,
     title,
@@ -25,10 +35,27 @@ const Seo = () => {
     countLinks,
     setCountLinks,
     handleChange,
+    urlsRecent,
+    setUrlsRecent,
   } = useSeoData();
 
+  const { userToken, _id } = useAppSelector((state) => state.user.userInfo);
+
+  const urlsSeo = async () => {
+    const urls = await (await getUrlsSeo(userToken, _id)).data;
+    const urlsSolo = urls.map((obj: { url: string }) => obj.url);
+    setUrlsRecent(urlsSolo);
+  };
+
+  useEffect(() => {
+    _id && urlsSeo();
+  }, [_id]);
+
+  useEffect(() => {
+    console.log({ urlsRecent });
+  }, [urlsRecent]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    console.log('submit');
     e.preventDefault();
 
     if (validateUrl(url)) {
@@ -61,6 +88,25 @@ const Seo = () => {
         <p>Bienvenido a Seo</p>
 
         <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              Selecciona URL recientes
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={url}
+              label="Url recientes"
+              onChange={(event) => setUrl(event.target.value)}
+            >
+              {urlsRecent.map((url, index) => (
+                <MenuItem key={index} value={url}>
+                  {url}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
           <TextField
             margin="normal"
             required
@@ -149,7 +195,7 @@ const Seo = () => {
               </List>
             </>
           </div>
-        ): null}
+        ) : null}
 
         <div>
           {title ? (

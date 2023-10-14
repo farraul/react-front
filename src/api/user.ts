@@ -9,3 +9,14 @@ export const getMe = async (userToken: string) => {
     },
   });
 };
+
+export const getUrlsSeo = async (userToken: string, _id: string) => {
+  return await instance({
+    method: 'POST',
+    url: '/api/user/seo',
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { _id },
+  });
+};
