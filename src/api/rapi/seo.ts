@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getSeo = async (url: string) => {
+export const getAnalyseUrlSeo = async (url: string) => {
   const encodedParams = new URLSearchParams();
   encodedParams.set('url', url);
 

@@ -1,4 +1,4 @@
-import { Product } from '@/models/product';
+import { Product, ProductCreate } from '@/models/product';
 import {instance as axios} from '../api/axios';
 import { AxiosResponse } from 'axios';
 
@@ -9,7 +9,7 @@ export const getProductsRequest = async (
   return response.data;
 };
 
-export const createProductRequest = async (product: Product) => {
+export const createProductRequest = async (product: ProductCreate) => {
   const response = await axios.post('/api/user/products', product);
 };
 

@@ -10,11 +10,8 @@ export type Headings = {
   [K in keyof SeoHeading]: string[];
 };
 
-export interface ISeo extends SeoHeading {
-  description: string;
-  keywords: string;
-  links: string | string[];
-  og_description: string;
-  title: string;
+export interface Seo {
+  _id: string;
+  user: string;
   url: urlSeo;
 }

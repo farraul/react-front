@@ -1,6 +1,6 @@
 import { FormEvent, useEffect } from 'react';
 import useSeoData from '@/hooks/useSeoData';
-import { SeoHeading } from '@/models/seo';
+import { SeoHeading, Seo as SeoInterface } from '@/models/seo';
 import {
   Button,
   TextField,
@@ -18,7 +18,7 @@ import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 import { validateUrl } from '@/utilities/validateUrl';
-import { getSeo } from '@/api/rapi/seo';
+import { getAnalyseUrlSeo } from '@/api/rapi/seo';
 import { getUrlsSeo } from '@/api/user';
 import { useAppSelector } from '@/hooks/useApp';
 
@@ -26,6 +26,8 @@ const Seo = () => {
   const {
     url,
     setUrl,
+    urlsRecent,
+    setUrlsRecent,
     headings,
     setHeadings,
     title,
@@ -35,32 +37,28 @@ const Seo = () => {
     countLinks,
     setCountLinks,
     handleChange,
-    urlsRecent,
-    setUrlsRecent,
   } = useSeoData();
 
   const { userToken, _id } = useAppSelector((state) => state.user.userInfo);
 
   const urlsSeo = async () => {
     const urls = await (await getUrlsSeo(userToken, _id)).data;
-    const urlsSolo = urls.map((obj: { url: string }) => obj.url);
-    setUrlsRecent(urlsSolo);
+    const onlyUrl = urls.map((seo: SeoInterface) => seo.url);
+    setUrlsRecent(onlyUrl);
   };
 
   useEffect(() => {
-    _id && urlsSeo();
-  }, [_id]);
+    urlsSeo();
+  }, []);
 
-  useEffect(() => {
-    console.log({ urlsRecent });
-  }, [urlsRecent]);
+  useEffect(() => {}, [urlsRecent]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (validateUrl(url)) {
       try {
-        const response = await getSeo(url);
+        const response = await getAnalyseUrlSeo(url);
 
         let headings: any = [];
 
@@ -73,6 +71,12 @@ const Seo = () => {
         setTitle(response.data.title);
         setDescription(response.data.description);
         setCountLinks(response.data.links.length);
+
+        if (urlsRecent.includes(url)) {
+          console.log(' esta');
+        } else {
+          console.log('no esta');
+        }
       } catch (error) {
         console.error(error);
       }
@@ -169,7 +173,6 @@ const Seo = () => {
                             key={`item-${Object.keys(heading)[0]}-list`}
                           >
                             {heading[singleKey].map((e) => {
-                              console.log({ e });
                               return (
                                 <ListItemText
                                   sx={{

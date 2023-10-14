@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Product } from '@/models/product';
+import { Product, ProductCreate } from '@/models/product';
 import Input from './Input';
 import { IoMdAdd } from 'react-icons/io';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -8,13 +8,7 @@ import { InputChangeEvent } from '@/models/form';
 import { useAppSelector } from '@/hooks/useApp';
 import { VscLoading } from 'react-icons/vsc';
 
-const product: Product = {
-  title: '',
-  brand: '',
-  category: '',
-  price: '',
-  description: '',
-};
+const product: ProductCreate = {};
 
 const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
   const [values, setValues] = useState(product);
@@ -40,7 +34,7 @@ const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
       await addProductMutation.mutateAsync({
         ...values,
         price: `$${values.price}`,
-        _id: userInfo?._id as string,
+        userId: userInfo?._id as string,
       });
       handleIsOpen();
     }

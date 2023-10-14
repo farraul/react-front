@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useRoutes, Navigate } from 'react-router-dom';
 import { Layout, ProtectedRoutes } from '@/components';
-import React, { LazyExoticComponent, lazy, useEffect } from 'react';
+import React, { LazyExoticComponent, lazy, useEffect, useState } from 'react';
 import { setCredentials } from '@/app/features/user/userSlices';
 import { useGetDetailsQuery } from '@/services';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
@@ -84,25 +84,29 @@ const App = () => {
   const dispatch = useAppDispatch();
   const { userToken } = useAppSelector((state) => state.user.userInfo);
   const routing = useRoutes(routes(userToken));
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchMe = async (userToken: string) => {
+    setLoading(true);
     try {
       let me = await (await getMe(userToken)).data;
       me['userToken'] = userToken;
-
+      setLoading(false);
       if (me) dispatch(setCredentials(me));
     } catch (error: any) {
+      setLoading(false);
       console.log(error.message);
     }
   };
 
   useEffect(() => {
     if (userToken) {
+      console.log({ userToken });
       fetchMe(userToken);
     }
   }, [userToken, dispatch]);
 
-  return <>{routing}</>;
+  return <>{loading ? <p>cargando</p> : routing}</>;
 };
 
 export default App;

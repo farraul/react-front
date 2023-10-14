@@ -2,12 +2,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userRegister, userLogin } from './userActions';
 import { User, UserInfo } from '@/models/user/user';
-import { Product } from '@/models/product';
 import Cookies from 'js-cookie';
 
 const userToken = atob(Cookies.get('userToken') || '');
 const userInfoDefault = { _id: '', firstName: '', email: '' };
-const userTokenDefault = "";
+const userTokenDefault = '';
 
 const initialState: User = {
   loading: false,
@@ -24,19 +23,11 @@ const userSlice = createSlice({
     logout: (state) => {
       Cookies.remove('userToken');
       state.loading = false;
-      state.userInfo = { ...userInfoDefault, userToken:userTokenDefault };
+      state.userInfo = { ...userInfoDefault, userToken: userTokenDefault };
       state.error = null;
     },
     setCredentials: (state, action: PayloadAction<UserInfo>) => {
       state.userInfo = action.payload;
-    },
-    addProduct: (state, action: PayloadAction<Product>) => {
-      if (state.userInfo && state.userInfo.products) {
-        state.userInfo.products = {
-          ...state.userInfo.products,
-          ...action.payload,
-        };
-      }
     },
   },
   extraReducers: (builder) => {
