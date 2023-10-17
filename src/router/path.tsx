@@ -14,16 +14,10 @@ const Seo = lazy(() => import('@/pages/Seo'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
-    return userToken ? (
-      <Componente />
-    ) : (
-      <Navigate to={`/?redirect=${window.location.href}`} />
-    );
+    return userToken ? <Componente /> : <Navigate to={`/?redirect=${window.location.href}`} />;
   };
 
-  const notPathSession = (
-    Componente: LazyExoticComponent<() => JSX.Element>,
-  ) => {
+  const notPathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
     return userToken ? <Navigate to={'/home-page'} /> : <Componente />;
   };
 

@@ -10,14 +10,7 @@ type InputGeneric = AttributeProps & { isFocused?: boolean };
 
 const Input = forwardRef(
   (
-    {
-      type = 'text',
-      className = '',
-      name,
-      value,
-      isFocused = false,
-      ...props
-    }: InputGeneric,
+    { type = 'text', className = '', name, value, isFocused = false, ...props }: InputGeneric,
     ref,
   ) => {
     const localRef = useRef<HTMLInputElement>(null);

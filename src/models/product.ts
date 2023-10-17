@@ -15,8 +15,5 @@ export interface Product {
 }
 
 export type ProductCreate = Partial<
-  Pick<
-    Product,
-    'title' | 'userId' | 'brand' | 'category' | 'price' | 'description'
-  >
+  Pick<Product, 'title' | 'userId' | 'brand' | 'category' | 'price' | 'description'>
 >;

@@ -4,7 +4,6 @@ import { CacheProvider } from '@emotion/react'; // es para no colisionar materia
 import createCache from '@emotion/cache';
 import { SnackbarUtilitiesConfigurator } from '../utilities';
 import Header from './Header';
-import HeaderNotAuth from './HeaderNotAuth';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { RoutesNotAuth } from '@/models/auth';
@@ -20,10 +19,7 @@ function Layout() {
   const location = useLocation();
 
   useEffect(() => {
-    if (
-      location.pathname === RoutesNotAuth.Login ||
-      location.pathname === RoutesNotAuth.Register
-    ) {
+    if (location.pathname === RoutesNotAuth.Login || location.pathname === RoutesNotAuth.Register) {
       setIsntAuth(false);
     } else {
       setIsntAuth(true);

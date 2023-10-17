@@ -19,7 +19,6 @@ function Header() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log({ location });
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenu = (event: any) => {
@@ -71,17 +70,11 @@ function Header() {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
-                  <MenuItem onClick={() => navigate('/profile')}>
-                    Profile
-                  </MenuItem>
-                  <MenuItem onClick={() => navigate('/dashboard')}>
-                    Table
-                  </MenuItem>
+                  <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
+                  <MenuItem onClick={() => navigate('/dashboard')}>Table</MenuItem>
                   <MenuItem onClick={() => navigate('/wpo')}>Wpo</MenuItem>
                   <MenuItem onClick={() => navigate('/seo')}>Seo</MenuItem>
-                  <MenuItem onClick={() => navigate('/call-api')}>
-                    Call Api
-                  </MenuItem>
+                  <MenuItem onClick={() => navigate('/call-api')}>Call Api</MenuItem>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
               </div>

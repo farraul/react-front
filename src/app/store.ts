@@ -11,8 +11,7 @@ export const store = configureStore({
   // desde el slice permitir que use el ExtraReducer y actualizar los estados cuando termine de ejectuarse la peticion (el fetch)
   // por defecto de redux, permite ser intermediario entre store y peticiones externas
 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(userApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

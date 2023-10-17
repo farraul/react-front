@@ -11,10 +11,9 @@ export const createProductRequest = async (product: ProductCreate) => {
 };
 
 export const updateProductRequest = async (product: Product) =>
-  axios.put(`/api/product/${product._id}`, product);
+  axios.put(`/api/user/product/${product.userId}`, product);
 
 export const deleteProductRequest = async (id: string) =>
   await axios.delete(`/api/user/products/${id}`);
 
-export const getProductRequest = async (id: string) =>
-  axios.get(`/api/product/${id}`);
+export const getProductRequest = async (id: string) => axios.get(`/api/product/${id}`);

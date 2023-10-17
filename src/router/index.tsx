@@ -7,8 +7,10 @@ import { getMe } from '@/api/user';
 import { Path } from './path';
 
 const App = () => {
+  console.log('appp');
   const dispatch = useAppDispatch();
   const { userToken } = useAppSelector((state) => state.user.userInfo);
+  console.log({ userToken });
   const routing = useRoutes(Path(userToken));
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -26,11 +28,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (userToken) {
-      console.log({ userToken });
-      fetchMe(userToken);
-    }
-  }, [userToken, dispatch]);
+    fetchMe(userToken);
+  }, []);
 
   return <>{loading ? <p>cargando</p> : routing}</>;
 };

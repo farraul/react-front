@@ -1,15 +1,7 @@
 import { FormEvent, useEffect } from 'react';
 import useSeoData from '@/hooks/useSeoData';
 import { SeoHeading, Seo as SeoInterface } from '@/models/seo';
-import {
-  Button,
-  TextField,
-  Box,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-} from '@mui/material';
+import { Button, TextField, Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { SnackbarUtilities } from '@/utilities';
 
 import ListItem from '@mui/material/ListItem';
@@ -18,7 +10,7 @@ import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 import { validateUrl } from '@/utilities/validateUrl';
-import { getAnalyseUrlSeo } from '@/api/rapi/seo';
+import { getAnalyseUrlSeo } from '@/services/analizeUrlService';
 import { getUrlsSeo } from '@/api/user';
 import { useAppSelector } from '@/hooks/useApp';
 
@@ -51,7 +43,6 @@ const Seo = () => {
     urlsSeo();
   }, []);
 
-  useEffect(() => {}, [urlsRecent]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -93,9 +84,7 @@ const Seo = () => {
 
         <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
-              Selecciona URL recientes
-            </InputLabel>
+            <InputLabel id="demo-simple-select-label">Selecciona URL recientes</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -124,15 +113,23 @@ const Seo = () => {
             value={url}
           />
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Analizar
           </Button>
+          {title && (
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Download PDF
+            </Button>
+          )}
         </Box>
+      </div>
+      <div id="pdf" className="flex">
+        rytytr
       </div>
       <div className="flex">
         {headings?.length ? (
@@ -157,9 +154,7 @@ const Seo = () => {
                     <>
                       <li key={`section-${Object.keys(heading)[0]}`}>
                         <ul>
-                          <ListSubheader
-                            sx={{ bgcolor: '#bfbff1', color: 'black' }}
-                          >
+                          <ListSubheader sx={{ bgcolor: '#bfbff1', color: 'black' }}>
                             {Object.keys(heading)[0]}
                           </ListSubheader>
 

@@ -16,11 +16,7 @@ export const userLogin = createAsyncThunk(
   userServicesConfig.UserLogin, // es una referencia, es un nombre para la acción el nombre da igual, como si pongo patata
   async ({ email, password }: SignIn, { rejectWithValue }) => {
     try {
-      const info = await axios.post(
-        '/api/user/login',
-        { email, password },
-        config,
-      );
+      const info = await axios.post('/api/user/login', { email, password }, config);
 
       Cookies.set('userToken', btoa(info.data.data.userToken), {
         expires: 360000,
@@ -38,11 +34,7 @@ export const userRegister = createAsyncThunk(
   userServicesConfig.UserRegister,
   async ({ firstName, email, password }: SignUp, { rejectWithValue }) => {
     try {
-      await axios.post(
-        '/api/user/register',
-        { firstName, email, password },
-        config,
-      );
+      await axios.post('/api/user/register', { firstName, email, password }, config);
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

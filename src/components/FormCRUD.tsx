@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { Product, ProductCreate } from '@/models/product';
 import Input from './Input';
 import { IoMdAdd } from 'react-icons/io';
@@ -7,20 +7,27 @@ import { createProductRequest } from '@/services';
 import { InputChangeEvent } from '@/models/form';
 import { useAppSelector } from '@/hooks/useApp';
 import { VscLoading } from 'react-icons/vsc';
+import { AnyGridOptions } from 'ag-grid-community';
 
-const product: ProductCreate = {};
+const FormCRUD = ({
+  handleIsOpen,
+  action,
+  product,
+}: {
+  handleIsOpen: () => void;
+  action: any;
+  product?: any;
+}) => {
+  const [values, setValues] = useState(product || {});
+  console.log({ values });
 
-const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
-  const [values, setValues] = useState(product);
-  const queryClient = useQueryClient();
+  useEffect(() => {
+    if (product) {
+      setValues(product);
+    }
+  }, [product]);
+
   const { userInfo } = useAppSelector((state) => state.user);
-
-  const addProductMutation = useMutation({
-    mutationFn: createProductRequest,
-    onSuccess: () => {
-      queryClient.invalidateQueries(['products']);
-    },
-  });
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;
@@ -31,9 +38,9 @@ const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
     e.preventDefault();
 
     if (values) {
-      await addProductMutation.mutateAsync({
+      await action.mutateAsync({
         ...values,
-        price: `$${values.price}`,
+        price: `$${values?.price}`,
         userId: userInfo?._id as string,
       });
       handleIsOpen();
@@ -54,8 +61,8 @@ const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
             name="title"
             id="title"
             value={values.title}
+            placeholder={`${values.title ? values.title : 'Name'}`}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Type product name"
             onChange={handleChange}
             required
           />
@@ -70,7 +77,8 @@ const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
           <select
             id="brand"
             name="brand"
-            defaultValue={values.brand}
+            value={values.brand}
+            placeholder={`${values.brand ? values.brand : 'Type brand'}`}
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
           >
@@ -92,10 +100,9 @@ const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
             name="price"
             id="price"
             value={values.price}
+            placeholder={`${values.price ? values.price : 'Price'}`}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="2999"
             onChange={handleChange}
-            required
           />
         </div>
         <div>
@@ -108,7 +115,8 @@ const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
           <select
             id="category"
             name="category"
-            defaultValue={values.category}
+            value={values.category}
+            placeholder={`${values.category ? values.category : 'Category'}`}
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
           >
@@ -131,17 +139,17 @@ const FormCRUD = ({ handleIsOpen }: { handleIsOpen: () => void }) => {
             name="description"
             value={values.description as string}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Write product description here"
+            placeholder={`${values.description ? values.description : 'Description'}`}
             onChange={handleChange}
           ></textarea>
         </div>
       </div>
       <button
         type="submit"
-        disabled={addProductMutation.isLoading}
+        disabled={action.isLoading}
         className="flex gap-4 items-center justify-center text-white bg-gray-700 hover:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2"
       >
-        {addProductMutation.isLoading ? (
+        {action.isLoading ? (
           <>
             <VscLoading className="h-5 w-5 animate-spin transition" />
             <h2>Saving...</h2>

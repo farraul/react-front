@@ -3,12 +3,10 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const CallApi = () => {
-  const [ricky, setRicky] = useState([]);
+  const [ricky, setRicky] = useState<any[]>([]);
 
   const getRicky = async () => {
-    return fetch('https://rickandmortyapi.com/api/character').then((res) =>
-      res.json(),
-    );
+    return fetch('https://rickandmortyapi.com/api/character').then((res) => res.json());
   };
 
   const {
@@ -35,13 +33,10 @@ const CallApi = () => {
     <section className="p-16">
       <div className="w-2/3">
         <h1 className="text-3xl">
-          Página para ver funcionamiento de una llamada con: useQuery de
-          @tanstack/react-query{' '}
+          Página para ver funcionamiento de una llamada con: useQuery de @tanstack/react-query{' '}
         </h1>
         <div className="mt-10">
-          {/* {!isLoading && ricky.map(el => (
-                        <p>{el.name}</p>
-                    ))} */}
+          {!isLoading && ricky.map((element, index) => <p key={index}>{element.name}</p>)}
         </div>
       </div>
     </section>
