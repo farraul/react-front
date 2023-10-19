@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
 import { useAppSelector } from '@/hooks/useApp';
 import Card from '@mui/material/Card';
 import { blueGrey } from '@mui/material/colors';
@@ -8,13 +7,7 @@ import { blueGrey } from '@mui/material/colors';
 const ProfilePage = () => {
   const { firstName, email } = useAppSelector((state) => state.user.userInfo);
   console.log(firstName);
-
-  const b= blueGrey[700];
-
-  useEffect(() => {
-    console.log(firstName);
-  }, [firstName]);
-
+  
   function stringAvatar(name: string) {
     return {
       sx: {

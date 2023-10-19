@@ -5,9 +5,12 @@ import { setCredentials } from '@/app/features/user/userSlices';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import { getMe } from '@/api/user';
 import { Path } from './path';
+import { Spinner } from '@/components';
+
+
 
 const App = () => {
-  console.log('appp');
+  console.log('App');
   const dispatch = useAppDispatch();
   const { userToken } = useAppSelector((state) => state.user.userInfo);
   console.log({ userToken });
@@ -28,10 +31,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchMe(userToken);
-  }, []);
+    if (userToken) {
+      console.log({ userToken });
+      fetchMe(userToken);
+    }
+  }, [userToken, dispatch]);
 
-  return <>{loading ? <p>cargando</p> : routing}</>;
+  return <>{loading ? <Spinner /> : routing}</>;
 };
 
 export default App;

@@ -19,7 +19,6 @@ const FormCRUD = ({
   product?: any;
 }) => {
   const [values, setValues] = useState(product || {});
-  console.log({ values });
 
   useEffect(() => {
     if (product) {
@@ -40,7 +39,7 @@ const FormCRUD = ({
     if (values) {
       await action.mutateAsync({
         ...values,
-        price: `$${values?.price}`,
+        price: `${values?.price}`,
         userId: userInfo?._id as string,
       });
       handleIsOpen();

@@ -5,12 +5,13 @@ import React, { LazyExoticComponent, lazy } from 'react';
 const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
 const ErrorPage = lazy(() => import('@/pages/ErrorPage'));
 const CallApi = lazy(() => import('@/pages/CallApi'));
-const HomeWpo = lazy(() => import('@/pages/HomeWpo'));
+const Clients = lazy(() => import('@/pages/Clients'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const Seo = lazy(() => import('@/pages/Seo'));
+const Images = lazy(() => import('@/pages/Images'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
@@ -51,8 +52,8 @@ export const Path = (userToken: string) => {
               element: pathSession(DashboardPage),
             },
             {
-              path: '/wpo',
-              element: pathSession(HomeWpo),
+              path: '/clients',
+              element: pathSession(Clients),
             },
             {
               path: '/seo',
@@ -61,6 +62,10 @@ export const Path = (userToken: string) => {
             {
               path: '/call-api',
               element: pathSession(CallApi),
+            },
+            {
+              path: '/images',
+              element: pathSession(Images),
             },
             {
               path: '*',

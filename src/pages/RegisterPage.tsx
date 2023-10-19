@@ -66,7 +66,7 @@ function RegisterPage() {
                 className="bg-gray-400 w-full h-8 px-2"
                 required
                 isFocused
-                placeholder="jesus@gmail.com"
+                placeholder="Nombre"
                 type="firstName"
                 name="firstName"
                 onChange={handleChange}
@@ -76,7 +76,7 @@ function RegisterPage() {
                 className="bg-gray-400 w-full h-8 px-2"
                 required
                 isFocused
-                placeholder="jesus@gmail.com"
+                placeholder="Email"
                 type="email"
                 name="email"
                 onChange={handleChange}
@@ -101,10 +101,10 @@ function RegisterPage() {
               <p className="text-sm font-light text-black dark:text-black flex gap-4">
                 ¿Ya estas registrado?
                 <Link
-                  to="/login"
+                  to="/"
                   className="hover:scale-110 transition font-medium text-primary-600 hover:underline"
                 >
-                  Logueate acá
+                  Loguearme
                 </Link>
               </p>
             </form>

@@ -11,7 +11,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 import { validateUrl } from '@/utilities/validateUrl';
 import { getAnalyseUrlSeo } from '@/services/analizeUrlService';
-import { getUrlsSeo } from '@/api/user';
+import { createUrlsSeo, getUrlsSeo } from '@/api/user';
 import { useAppSelector } from '@/hooks/useApp';
 
 const Seo = () => {
@@ -33,21 +33,26 @@ const Seo = () => {
 
   const { userToken, _id } = useAppSelector((state) => state.user.userInfo);
 
-  const urlsSeo = async () => {
-    const urls = await (await getUrlsSeo(userToken, _id)).data;
+  const urlsSeo = async (_id: string) => {
+    console.log({ _id });
+    const urls = await (await getUrlsSeo(_id)).data;
     const onlyUrl = urls.map((seo: SeoInterface) => seo.url);
     setUrlsRecent(onlyUrl);
   };
 
   useEffect(() => {
-    urlsSeo();
+    urlsSeo(_id);
   }, []);
-
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (validateUrl(url)) {
+      if (!urlsRecent.includes(url)) {
+        const newArray = [...urlsRecent, url];
+        setUrlsRecent(newArray);
+      }
+
       try {
         const response = await getAnalyseUrlSeo(url);
 
@@ -63,10 +68,8 @@ const Seo = () => {
         setDescription(response.data.description);
         setCountLinks(response.data.links.length);
 
-        if (urlsRecent.includes(url)) {
-          console.log(' esta');
-        } else {
-          console.log('no esta');
+        if (!urlsRecent.includes(url)) {
+          createUrlsSeo(_id, url);
         }
       } catch (error) {
         console.error(error);
@@ -116,21 +119,9 @@ const Seo = () => {
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Analizar
           </Button>
-          {title && (
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Download PDF
-            </Button>
-          )}
         </Box>
       </div>
-      <div id="pdf" className="flex">
-        rytytr
-      </div>
+
       <div className="flex">
         {headings?.length ? (
           <div className="mx-8">

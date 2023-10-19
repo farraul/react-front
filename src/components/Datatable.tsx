@@ -30,9 +30,9 @@ const Datatable = () => {
     queryFn: () => {
       return getProductsRequest(id as any);
     },
-    cacheTime: 10000,
+    cacheTime: 100000,
     refetchOnWindowFocus: false,
-    staleTime: 10000,
+    staleTime: 100000,
   });
 
   const queryClient = useQueryClient();

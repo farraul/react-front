@@ -66,7 +66,7 @@ function LoginPage() {
                 className="bg-gray-400 w-full h-8 px-2"
                 required
                 isFocused
-                placeholder="jesus@gmail.com"
+                placeholder="Email"
                 type="email"
                 name="email"
                 onChange={handleChange}
@@ -94,7 +94,7 @@ function LoginPage() {
                   to="/register"
                   className="hover:scale-110 transition font-medium text-primary-600 hover:underline"
                 >
-                  Registrate acá
+                  Registrate
                 </Link>
               </p>
             </form>

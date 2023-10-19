@@ -40,7 +40,7 @@ function Header() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Test
+              Raul
             </Typography>
             {userToken ? (
               <div>
@@ -72,9 +72,10 @@ function Header() {
                   <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
                   <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
                   <MenuItem onClick={() => navigate('/dashboard')}>Table</MenuItem>
-                  <MenuItem onClick={() => navigate('/wpo')}>Wpo</MenuItem>
+                  <MenuItem onClick={() => navigate('/clients')}>Clientes</MenuItem>
                   <MenuItem onClick={() => navigate('/seo')}>Seo</MenuItem>
                   <MenuItem onClick={() => navigate('/call-api')}>Call Api</MenuItem>
+                  <MenuItem onClick={() => navigate('/images')}>Imagenes</MenuItem>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
               </div>
