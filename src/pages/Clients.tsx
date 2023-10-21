@@ -24,151 +24,37 @@ import { randomId } from '@mui/x-data-grid-generator';
 import { getClientsRequest } from '@/services/clientService';
 import { useQuery } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
-
-interface EditToolbarProps {
-  setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
-  setRowModesModel: (newModel: (oldModel: GridRowModesModel) => GridRowModesModel) => void;
-}
-
-function EditToolbar(props: EditToolbarProps) {
-  const { setRows, setRowModesModel } = props;
-
-  const handleClick = () => {
-    const id = randomId();
-    setRows((oldRows) => [...oldRows, { id, name: '', email: '', url: '', isNew: true }]);
-    setRowModesModel((oldModel) => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
-    }));
-  };
-
-  return (
-    <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
-        Add recordd
-      </Button>
-    </GridToolbarContainer>
-  );
-}
-
-
+import { TableMui } from '@/components/tableMui';
 
 export default function Clients() {
   const id = Cookies.get('userId');
-const { data: dataClients= [], isLoading } = useQuery({
-  queryKey: ['products'],
-  queryFn: () => {
-    return getClientsRequest(id as any);
-  },
-  cacheTime: 100000,
-  refetchOnWindowFocus: false,
-  staleTime: 100000,
-});
-console.log({dataClients})
+  const { data: dataClients = [], isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: () => {
+      return getClientsRequest(id as any);
+    },
+    cacheTime: 100000,
+    refetchOnWindowFocus: false,
+    staleTime: 100000,
+  });
+  console.log({ dataClients });
 
-const dataClientsFormat:  GridValidRowModel[] = dataClients?.map((client)=> ({
-  id:client._id,
-  name:client.name,
-  email:client.email,
-  url: client.url,
-}));
-console.log(dataClientsFormat)
+  const dataClientsFormat: GridValidRowModel[] = dataClients?.map((client) => ({
+    id: client._id,
+    name: client.name,
+    email: client.email,
+    url: client.url,
+  }));
+  console.log(dataClientsFormat);
 
   const [rows, setRows] = React.useState(dataClientsFormat);
-  console.log({rows})
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
-
-
-  const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
-    if (params.reason === GridRowEditStopReasons.rowFocusOut) {
-      event.defaultMuiPrevented = true;
-    }
-  };
-
-  const handleEditClick = (id: GridRowId) => () => {
-    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
-  };
-
-  const handleDeleteClick = (id: GridRowId) => () => {
-    setRows(rows.filter((row) => row.id !== id));
-  };
-
-  const handleSaveClick = (id: GridRowId) => () => {
-    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
-  };
-
-  const handleCancelClick = (id: GridRowId) => () => {
-    setRowModesModel({
-      ...rowModesModel,
-      [id]: { mode: GridRowModes.View, ignoreModifications: true },
-    });
-
-    const editedRow = rows.find((row) => row.id === id);
-    if (editedRow!.isNew) {
-      setRows(rows.filter((row) => row.id !== id));
-    }
-  };
-
-  const processRowUpdate = (newRow: GridRowModel) => {
-    const updatedRow = { ...newRow, isNew: false };
-    setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
-    return updatedRow;
-  };
-
-  const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
-    setRowModesModel(newRowModesModel);
-  };
+  console.log({ rows });
 
   const columns: GridColDef[] = [
     { field: 'name', headerName: 'Name', width: 180, editable: true },
     { field: 'email', headerName: 'Email', width: 180, editable: true },
     { field: 'url', headerName: 'Url', width: 180, editable: true },
-    {
-      field: 'actions',
-      type: 'actions',
-      headerName: 'Actions',
-      width: 100,
-      cellClassName: 'actions',
-      getActions: ({ id }) => {
-        const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
-
-        if (isInEditMode) {
-          return [
-            <GridActionsCellItem
-              icon={<SaveIcon />}
-              label="Save"
-              sx={{
-                color: 'primary.main',
-              }}
-              onClick={handleSaveClick(id)}
-            />,
-            <GridActionsCellItem
-              icon={<CancelIcon />}
-              label="Cancel"
-              className="textPrimary"
-              onClick={handleCancelClick(id)}
-              color="inherit"
-            />,
-          ];
-        }
-
-        return [
-          <GridActionsCellItem
-            icon={<EditIcon />}
-            label="Edit"
-            className="textPrimary"
-            onClick={handleEditClick(id)}
-            color="inherit"
-          />,
-          <GridActionsCellItem
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={handleDeleteClick(id)}
-            color="inherit"
-          />,
-        ];
-      },
-    },
   ];
 
   return (
@@ -186,20 +72,14 @@ console.log(dataClientsFormat)
             },
           }}
         >
-          <DataGrid
+          <TableMui
             rows={rows}
             columns={columns}
             editMode="row"
             rowModesModel={rowModesModel}
-            onRowModesModelChange={handleRowModesModelChange}
-            onRowEditStop={handleRowEditStop}
-            processRowUpdate={processRowUpdate}
-            slots={{
-              toolbar: EditToolbar,
-            }}
-            slotProps={{
-              toolbar: { setRows, setRowModesModel },
-            }}
+            setRows={setRows}
+            setRowModesModel={setRowModesModel}
+            initValueEdit={{ id: '', name: '', email: '', url: '' }}
           />
         </Box>
       </div>
