@@ -18,26 +18,12 @@ import {
   GridRowId,
   GridRowModel,
   GridRowEditStopReasons,
+  GridValidRowModel,
 } from '@mui/x-data-grid';
 import { randomId } from '@mui/x-data-grid-generator';
 import { getClientsRequest } from '@/services/clientService';
 import { useQuery } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
-
-const initialRows: GridRowsProp = [
-  // {
-  //   name: randomTraderName(),
-  //   age: 25,
-  //   joinDate: randomCreatedDate(),
-  //   role: randomRole(),
-  // },
-  {
-    id: 223233,
-    name: 'juan',
-    email: 'r@hotmail.com',
-    url: 'hhtps//www.time.es',
-  },
-];
 
 interface EditToolbarProps {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -49,7 +35,7 @@ function EditToolbar(props: EditToolbarProps) {
 
   const handleClick = () => {
     const id = randomId();
-    setRows((oldRows) => [...oldRows, { id, name: '', isNew: true }]);
+    setRows((oldRows) => [...oldRows, { id, name: '', email: '', url: '', isNew: true }]);
     setRowModesModel((oldModel) => ({
       ...oldModel,
       [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
@@ -65,20 +51,33 @@ function EditToolbar(props: EditToolbarProps) {
   );
 }
 
+
+
 export default function Clients() {
-  const [rows, setRows] = React.useState(initialRows);
+  const id = Cookies.get('userId');
+const { data: dataClients= [], isLoading } = useQuery({
+  queryKey: ['products'],
+  queryFn: () => {
+    return getClientsRequest(id as any);
+  },
+  cacheTime: 100000,
+  refetchOnWindowFocus: false,
+  staleTime: 100000,
+});
+console.log({dataClients})
+
+const dataClientsFormat:  GridValidRowModel[] = dataClients?.map((client)=> ({
+  id:client._id,
+  name:client.name,
+  email:client.email,
+  url: client.url,
+}));
+console.log(dataClientsFormat)
+
+  const [rows, setRows] = React.useState(dataClientsFormat);
+  console.log({rows})
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
 
-  const id = Cookies.get('userId');
-  const { data: dataClients, isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn: () => {
-      return getClientsRequest(id as any);
-    },
-    cacheTime: 100000,
-    refetchOnWindowFocus: false,
-    staleTime: 100000,
-  });
 
   const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
     if (params.reason === GridRowEditStopReasons.rowFocusOut) {
@@ -90,12 +89,12 @@ export default function Clients() {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
 
-  const handleSaveClick = (id: GridRowId) => () => {
-    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
-  };
-
   const handleDeleteClick = (id: GridRowId) => () => {
     setRows(rows.filter((row) => row.id !== id));
+  };
+
+  const handleSaveClick = (id: GridRowId) => () => {
+    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
   };
 
   const handleCancelClick = (id: GridRowId) => () => {
@@ -174,7 +173,7 @@ export default function Clients() {
 
   return (
     <div className="w-full flex justify-center py-40">
-      <div className='max-w-4xl	'>
+      <div className="max-w-4xl	">
         <Box
           sx={{
             height: 500,
