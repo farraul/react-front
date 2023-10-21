@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,11 +16,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 function Header() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation('translation', { keyPrefix: 'translation.header' });
+  console.log(i18n.services.resourceStore.data);
+
   const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [languages, setLanguages] = useState(i18n.services.resourceStore.data);
+  //que lo envie a los select, dinamico con un hook 
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenu = (event: any) => {
@@ -35,6 +40,11 @@ function Header() {
     navigate('/');
   };
 
+const handleChangeLanguage=( e:ChangeEvent<HTMLSelectElement>)=>{
+console.log(e.target.value)
+i18n.changeLanguage(e.target.value)
+
+}
   return (
     <>
       {/* {isFetching && <Spinner />} */}
@@ -44,6 +54,13 @@ function Header() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {t('logo')}
             </Typography>
+            <select name="select" onChange={handleChangeLanguage}>
+              <option  defaultValue="es">Es</option>
+              <option value="en">
+                En
+              </option>
+              <option value="fr">Fr</option>
+            </select>
             {userToken ? (
               <div>
                 <IconButton
