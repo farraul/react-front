@@ -13,8 +13,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { logout } from '@/app/features/user/userSlices';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function Header() {
+  const { t } = useTranslation();
   const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ function Header() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Raul
+              {t('logo')}
             </Typography>
             {userToken ? (
               <div>

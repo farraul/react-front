@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useDebugValue, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -20,6 +20,9 @@ import Cookies from 'js-cookie';
 
 const Datatable = () => {
   const [addProduct, setAddProduct] = useState(false);
+
+  useDebugValue(addProduct ? 'Online--------------' : 'Offline------------');
+
   const [updateProduct, setEditProduct] = useState(false);
   const [productUpdate, setProductUpdate] = useState(undefined);
 

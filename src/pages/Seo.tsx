@@ -13,6 +13,7 @@ import { validateUrl } from '@/utilities/validateUrl';
 import { getAnalyseUrlSeo } from '@/services/analizeUrlService';
 import { createUrlsSeo, getUrlsSeo } from '@/api/user';
 import { useAppSelector } from '@/hooks/useApp';
+import { useTranslation } from 'react-i18next';
 
 const Seo = () => {
   const {
@@ -31,7 +32,9 @@ const Seo = () => {
     handleChange,
   } = useSeoData();
 
+
   const { userToken, _id } = useAppSelector((state) => state.user.userInfo);
+  const { t } = useTranslation();
 
   const urlsSeo = async (_id: string) => {
     console.log({ _id });
@@ -87,7 +90,7 @@ const Seo = () => {
 
         <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Selecciona URL recientes</InputLabel>
+            <InputLabel id="demo-simple-select-label">{t('Welcome')}Selecciona URL recientes</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"

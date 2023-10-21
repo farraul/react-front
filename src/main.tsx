@@ -8,6 +8,7 @@ import { store } from './app/store';
 import { axiosInterceptor } from './interceptors';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import './i18n';
 
 axiosInterceptor();
 const queryClient = new QueryClient();
