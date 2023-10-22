@@ -27,7 +27,7 @@ function Header() {
   const [languages, setLanguages] = useState(i18n.services.resourceStore.data);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const handleMenu = (event: any) => {
+  const handleMenu = (event: { currentTarget: React.SetStateAction<HTMLElement | null>; }) => {
     setAnchorEl(event.currentTarget);
   };
 

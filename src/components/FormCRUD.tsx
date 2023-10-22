@@ -4,6 +4,9 @@ import { IoMdAdd } from 'react-icons/io';
 import { InputChangeEvent } from '@/models/form';
 import { useAppSelector } from '@/hooks/useApp';
 import { VscLoading } from 'react-icons/vsc';
+import { Product } from '@/models/product';
+import { UseMutationResult } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
 
 const FormCRUD = ({
   handleIsOpen,
@@ -11,10 +14,17 @@ const FormCRUD = ({
   product,
 }: {
   handleIsOpen: () => void;
-  action: any;
-  product?: any;
+  action: UseMutationResult<
+    void | AxiosResponse<any, any>,
+    unknown,
+    any,
+    // | Product
+    // | Partial<Pick<Product, 'userId' | 'title' | 'brand' | 'category' | 'price' | 'description'>>,
+    unknown
+  >;
+  product?: Product;
 }) => {
-  const [values, setValues] = useState(product || {});
+  const [values, setValues] = useState<Product>();
 
   useEffect(() => {
     if (product) {
@@ -26,7 +36,7 @@ const FormCRUD = ({
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;
-    setValues({ ...values, [e.target.name]: value });
+    if (values) setValues({ ...values, [e.target.name]: value });
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -55,8 +65,8 @@ const FormCRUD = ({
             type="text"
             name="title"
             id="title"
-            value={values.title}
-            placeholder={`${values.title ? values.title : 'Name'}`}
+            value={values && values.title}
+            placeholder={`${values && values.title ? values.title : 'Name'}`}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             onChange={handleChange}
             required
@@ -72,8 +82,8 @@ const FormCRUD = ({
           <select
             id="brand"
             name="brand"
-            value={values.brand}
-            placeholder={`${values.brand ? values.brand : 'Type brand'}`}
+            value={values && values.brand}
+            placeholder={`${values && values.brand ? values.brand : 'Type brand'}`}
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
           >
@@ -94,8 +104,8 @@ const FormCRUD = ({
             type="number"
             name="price"
             id="price"
-            value={values.price}
-            placeholder={`${values.price ? values.price : 'Price'}`}
+            value={values && values.price}
+            placeholder={`${values && values.price ? values.price : 'Price'}`}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             onChange={handleChange}
           />
@@ -110,8 +120,8 @@ const FormCRUD = ({
           <select
             id="category"
             name="category"
-            value={values.category}
-            placeholder={`${values.category ? values.category : 'Category'}`}
+            value={values && values.category}
+            placeholder={`${values && values.category ? values.category : 'Category'}`}
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
           >
@@ -132,9 +142,9 @@ const FormCRUD = ({
           <textarea
             id="description"
             name="description"
-            value={values.description as string}
+            value={values && (values.description as string)}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder={`${values.description ? values.description : 'Description'}`}
+            placeholder={`${values && values.description ? values.description : 'Description'}`}
             onChange={handleChange}
           ></textarea>
         </div>

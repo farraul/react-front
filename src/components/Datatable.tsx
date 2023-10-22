@@ -21,14 +21,14 @@ const Datatable = () => {
   const [addProduct, setAddProduct] = useState(false);
 
   const [updateProduct, setEditProduct] = useState(false);
-  const [productUpdate, setProductUpdate] = useState(undefined);
+  const [productUpdate, setProductUpdate] = useState<Product>();
 
   const id = Cookies.get('userId');
 
   const { data: dataProducts, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => {
-      return getProductsRequest(id as any);
+      if (id) return getProductsRequest(id);
     },
     cacheTime: 100000,
     refetchOnWindowFocus: false,
@@ -175,7 +175,7 @@ const Datatable = () => {
         <FormCRUD
           handleIsOpen={handleEditProduct}
           action={updateProductMutation}
-          product={productUpdate}
+          product={productUpdate as Product}
         />
       </Modal>
       <div style={containerStyle} className="mt-2">
