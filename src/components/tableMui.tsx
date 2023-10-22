@@ -51,8 +51,6 @@ export const TableMui = ({
   setRowModesModel,
   initValueEdit,
 }: PropsTable) => {
-
-
   function EditToolbar(props: EditToolbarProps) {
     const { setRows, setRowModesModel } = props;
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent} from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -39,11 +39,10 @@ function Header() {
     navigate('/');
   };
 
-const handleChangeLanguage=( e:ChangeEvent<HTMLSelectElement>)=>{
-console.log(e.target.value)
-i18n.changeLanguage(e.target.value)
-
-}
+  const handleChangeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    i18n.changeLanguage(e.target.value);
+  };
   return (
     <>
       {/* {isFetching && <Spinner />} */}
@@ -54,10 +53,8 @@ i18n.changeLanguage(e.target.value)
               {t('logo')}
             </Typography>
             <select name="select" onChange={handleChangeLanguage}>
-              <option  defaultValue="es">Es</option>
-              <option value="en">
-                En
-              </option>
+              <option defaultValue="es">Es</option>
+              <option value="en">En</option>
               <option value="fr">Fr</option>
             </select>
             {userToken ? (

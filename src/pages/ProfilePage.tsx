@@ -7,7 +7,7 @@ import { blueGrey } from '@mui/material/colors';
 const ProfilePage = () => {
   const { firstName, email } = useAppSelector((state) => state.user.userInfo);
   console.log(firstName);
-  
+
   function stringAvatar(name: string) {
     return {
       sx: {
@@ -23,9 +23,9 @@ const ProfilePage = () => {
         <div className="w-1/2">
           {firstName && (
             <>
-              <Card className="p-10 max-w-md " style={{backgroundColor: '#f0f0f0'}}>
+              <Card className="p-10 max-w-md " style={{ backgroundColor: '#f0f0f0' }}>
                 <Avatar {...stringAvatar(firstName)} />
-                <div className='py-8'>
+                <div className="py-8">
                   <p>
                     <b>Name: </b> {firstName}
                   </p>

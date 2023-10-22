@@ -34,7 +34,7 @@ function Images() {
 
   return (
     <>
-      <div className='flex flex-col items-center'>
+      <div className="flex flex-col items-center">
         <div className="p-36 pb-20 font-bold text-5xl text-center">Images</div>
         <input
           className="col-3 w-96 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark text-center"

@@ -11,8 +11,7 @@ const fetchRequest = async (img: string) => {
     }
 
     const data = await response.json();
-   return data.results;
-
+    return data.results;
   } catch (error) {
     console.error('Error en la solicitud:', error);
   }

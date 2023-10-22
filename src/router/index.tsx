@@ -7,8 +7,6 @@ import { getMe } from '@/api/user';
 import { Path } from './path';
 import { Spinner } from '@/components';
 
-
-
 const App = () => {
   console.log('App');
   const dispatch = useAppDispatch();

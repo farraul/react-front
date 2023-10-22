@@ -1,4 +1,14 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
- echo "Este es el pre-commit"
+echo "Se esta formateando con Prettier"
+npm run format
+
+echo "Se esta formateando con Eslint"
+npm run lintFix || {
+echo 'EsLint check failed! 🤖❌'
+false;
+}
+
+# If everything passes, commit the changes
+echo '✅✅✅✅ All checks pass

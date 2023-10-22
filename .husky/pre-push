@@ -1,8 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo "Se esta formateando con Eslint"
-npm run lintFix
-
-echo "Se esta formateando con Prettier"
-npm run format
+echo "Pre-push"
