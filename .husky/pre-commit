@@ -11,4 +11,4 @@ false;
 }
 
 # If everything passes, commit the changes
-echo '✅✅✅✅ All checks pass
+echo '✅✅✅✅ All checks pass'
