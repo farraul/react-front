@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useDebugValue, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -13,15 +13,12 @@ import {
 } from '@/services';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Product } from '@/models/product';
-import { ColDef, ValueFormatterParams } from 'ag-grid-community';
-import { useAppSelector } from '@/hooks/useApp';
+import { ColDef } from 'ag-grid-community';
 import { VscLoading } from 'react-icons/vsc';
 import Cookies from 'js-cookie';
 
 const Datatable = () => {
   const [addProduct, setAddProduct] = useState(false);
-
-  useDebugValue(addProduct ? 'Online--------------' : 'Offline------------');
 
   const [updateProduct, setEditProduct] = useState(false);
   const [productUpdate, setProductUpdate] = useState(undefined);

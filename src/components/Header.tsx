@@ -25,7 +25,6 @@ function Header() {
   const location = useLocation();
 
   const [languages, setLanguages] = useState(i18n.services.resourceStore.data);
-  //que lo envie a los select, dinamico con un hook 
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenu = (event: any) => {
