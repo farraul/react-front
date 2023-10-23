@@ -14,17 +14,19 @@ import { logout } from '@/app/features/user/userSlices';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Select } from './Select';
 
 function Header() {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'translation.header' });
   console.log(i18n.services.resourceStore.data);
+  console.log(i18n);
 
   const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [languages, setLanguages] = useState(i18n.services.resourceStore.data);
+  const [languages, setLanguages] = useState();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenu = (event: { currentTarget: React.SetStateAction<HTMLElement | null> }) => {
@@ -43,6 +45,12 @@ function Header() {
     console.log(e.target.value);
     i18n.changeLanguage(e.target.value);
   };
+
+  const languageValues = {
+    es: 'Es',
+    en: 'En',
+  };
+
   return (
     <>
       {/* {isFetching && <Spinner />} */}
@@ -52,11 +60,24 @@ function Header() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {t('logo')}
             </Typography>
-            <select name="select" onChange={handleChangeLanguage}>
-              <option defaultValue="es">Es</option>
+            {/* <select name="select" onChange={handleChangeLanguage}>
+              <option defaultValue="es" value="es">
+                Es
+              </option>
               <option value="en">En</option>
               <option value="fr">Fr</option>
-            </select>
+            </select> */}
+
+            <div className="w-15">
+              <Select
+                id="language"
+                name="languaje"
+                values={languages}
+                onChange={handleChangeLanguage}
+                placeholder=""
+                options={languageValues}
+              />
+            </div>
             {userToken ? (
               <div>
                 <IconButton
@@ -84,14 +105,14 @@ function Header() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
-                  <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
-                  <MenuItem onClick={() => navigate('/dashboard')}>Table</MenuItem>
-                  <MenuItem onClick={() => navigate('/clients')}>Clientes</MenuItem>
-                  <MenuItem onClick={() => navigate('/seo')}>Seo</MenuItem>
-                  <MenuItem onClick={() => navigate('/call-api')}>Call Api</MenuItem>
-                  <MenuItem onClick={() => navigate('/images')}>Imagenes</MenuItem>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem onClick={() => navigate('/')}> {t('home')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/profile')}>{t('profile')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/dashboard')}>{t('table')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/clients')}>{t('clients')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/seo')}>{t('seo')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/call-api')}>{t('call-api')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/images')}>{t('images')}</MenuItem>
+                  <MenuItem onClick={handleLogout}>{t('logout')}</MenuItem>
                 </Menu>
               </div>
             ) : null}

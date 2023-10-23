@@ -1,7 +1,16 @@
 {
   "translation": {
     "header": {
-      "logo": "Logotype En"
+      "logo": "Logotype English",
+      "home": "Home",
+      "profile": "Profile",
+      "table": "Table",
+      "dashborad": "Dashborad",
+      "clients": "Clients",
+      "seo": "Seo",
+      "call-api": "Call API",
+      "images": "Image",
+      "logout": "Logout"
     }
   }
 }

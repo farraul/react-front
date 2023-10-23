@@ -7,6 +7,7 @@ import { VscLoading } from 'react-icons/vsc';
 import { Product } from '@/models/product';
 import { UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
+import { Select } from './Select';
 
 const FormCRUD = ({
   handleIsOpen,
@@ -14,17 +15,10 @@ const FormCRUD = ({
   product,
 }: {
   handleIsOpen: () => void;
-  action: UseMutationResult<
-    void | AxiosResponse<any, any>,
-    unknown,
-    any,
-    // | Product
-    // | Partial<Pick<Product, 'userId' | 'title' | 'brand' | 'category' | 'price' | 'description'>>,
-    unknown
-  >;
+  action: UseMutationResult<void | AxiosResponse<any, any>, unknown, any, unknown>;
   product?: Product;
 }) => {
-  const [values, setValues] = useState<Product>();
+  const [values, setValues] = useState<any>();
 
   useEffect(() => {
     if (product) {
@@ -36,13 +30,17 @@ const FormCRUD = ({
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;
-    if (values) setValues({ ...values, [e.target.name]: value });
+    console.log({values})
+    // if (values)
+     setValues({ ...values, [e.target.name]: value });
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    console.log({values})
     e.preventDefault();
 
     if (values) {
+      console.log({values})
       await action.mutateAsync({
         ...values,
         price: `${values?.price}`,
@@ -51,6 +49,13 @@ const FormCRUD = ({
       handleIsOpen();
     }
   }
+
+  const options = {
+    apple: 'Apple',
+    microsoft: 'Microsoft',
+    sony: 'Sony',
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid gap-4 mb-4 sm:grid-cols-2">
@@ -79,19 +84,16 @@ const FormCRUD = ({
           >
             Brand
           </label>
-          <select
+
+          <Select
             id="brand"
             name="brand"
-            value={values && values.brand}
-            placeholder={`${values && values.brand ? values.brand : 'Type brand'}`}
+            values={values && values.brand}
             onChange={handleChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-          >
-            <option value="">Select brand</option>
-            <option value="apple">Apple</option>
-            <option value="microsoft">Microsoft</option>
-            <option value="sony">Sony</option>
-          </select>
+            placeholder={`${values && values.brand ? values.brand : 'Type brand'}`}
+            options={options}
+          />
+
         </div>
         <div>
           <label

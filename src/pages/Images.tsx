@@ -43,15 +43,17 @@ function Images() {
           value={img}
           onChange={handleChange}
         />
-        <div className="col-12 d-flex justify-content-evenly flex-wrap mt-20">
+        <div className=" d-flex flex-wrap justify-content-evenly flex mt-20 w-full">
           {res.map((val) => {
             return (
               <>
-                <img
-                  className="col-3 img-fluid img-thumbnail"
-                  src={val.urls.small}
-                  alt="val.alt_description"
-                />
+                <div className='w-1/5 border-solid border-white border-2	'>
+                  <img
+                    className="col-3 img-fluid img-thumbnail w-full"
+                    src={val.urls.small}
+                    alt="val.alt_description"
+                  />
+                </div>
               </>
             );
           })}
