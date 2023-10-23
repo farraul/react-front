@@ -47,7 +47,7 @@ function Images() {
           {res.map((val) => {
             return (
               <>
-                <div className='w-1/5 border-solid border-white border-2	'>
+                <div className="w-1/5 border-solid border-white border-2	">
                   <img
                     className="col-3 img-fluid img-thumbnail w-full"
                     src={val.urls.small}

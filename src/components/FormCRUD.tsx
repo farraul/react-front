@@ -30,17 +30,17 @@ const FormCRUD = ({
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;
-    console.log({values})
+    console.log({ values });
     // if (values)
-     setValues({ ...values, [e.target.name]: value });
+    setValues({ ...values, [e.target.name]: value });
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    console.log({values})
+    console.log({ values });
     e.preventDefault();
 
     if (values) {
-      console.log({values})
+      console.log({ values });
       await action.mutateAsync({
         ...values,
         price: `${values?.price}`,
@@ -93,7 +93,6 @@ const FormCRUD = ({
             placeholder={`${values && values.brand ? values.brand : 'Type brand'}`}
             options={options}
           />
-
         </div>
         <div>
           <label
