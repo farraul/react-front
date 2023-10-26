@@ -2,8 +2,22 @@ import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
+interface Ricky {
+  created: string;
+  episode: string[];
+  gender: string;
+  id: number;
+  image: string;
+  location: object;
+  name: string;
+  origin: object;
+  species: string;
+  status: string;
+  type: string;
+  url: string;
+}
 const CallApi = () => {
-  const [ricky, setRicky] = useState<any[]>([]);
+  const [ricky, setRicky] = useState<Ricky[]>([]);
 
   const getRicky = async () => {
     return fetch('https://rickandmortyapi.com/api/character').then((res) => res.json());
@@ -25,6 +39,7 @@ const CallApi = () => {
 
   useEffect(() => {
     if (rickystate) {
+      console.log(rickystate.results);
       setRicky(rickystate.results);
     }
   }, [rickystate]);

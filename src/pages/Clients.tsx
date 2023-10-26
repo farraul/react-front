@@ -1,26 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import CancelIcon from '@mui/icons-material/Close';
-import {
-  GridRowsProp,
-  GridRowModesModel,
-  GridRowModes,
-  DataGrid,
-  GridColDef,
-  GridToolbarContainer,
-  GridActionsCellItem,
-  GridEventListener,
-  GridRowId,
-  GridRowModel,
-  GridRowEditStopReasons,
-  GridValidRowModel,
-} from '@mui/x-data-grid';
-import { randomId } from '@mui/x-data-grid-generator';
+import { GridRowModesModel, GridColDef, GridValidRowModel } from '@mui/x-data-grid';
 import { getClientsRequest } from '@/services/clientService';
 import { useQuery } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
@@ -31,7 +11,7 @@ export default function Clients() {
   const { data: dataClients = [], isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => {
-      return getClientsRequest(id as any);
+      if(id)return getClientsRequest(id);
     },
     cacheTime: 100000,
     refetchOnWindowFocus: false,
@@ -45,7 +25,6 @@ export default function Clients() {
     email: client.email,
     url: client.url,
   }));
-  console.log(dataClientsFormat);
 
   const [rows, setRows] = React.useState(dataClientsFormat);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});

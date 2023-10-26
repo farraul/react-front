@@ -22,10 +22,6 @@ import {
   GridEditMode,
 } from '@mui/x-data-grid';
 import { randomId } from '@mui/x-data-grid-generator';
-import { getClientsRequest } from '@/services/clientService';
-import { useQuery } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
-import { useDebugValue } from 'react';
 
 type EditToolbarProps = {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;

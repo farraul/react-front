@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import { getMe } from '@/api/user';
 import { Path } from './path';
 import { Spinner } from '@/components';
+import { AxiosError } from 'axios';
+
 
 const App = () => {
   console.log('App');
@@ -22,9 +24,10 @@ const App = () => {
       me['userToken'] = userToken;
       setLoading(false);
       if (me) dispatch(setCredentials(me));
-    } catch (error: any) {
+    } catch (error) {
+      const err= error as AxiosError;
       setLoading(false);
-      console.log(error.message);
+      console.log(err.message);
     }
   };
 

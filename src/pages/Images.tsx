@@ -1,35 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import getImages from '@/services/unsplashImgServices';
+import React, { useState, useEffect, useRef } from 'react';
+import { getImages } from '@/services/getImgGiphyServices';
 import { useDebounce } from 'use-debounce';
+import { IntersectionObserverComponent } from '@/components/IntersectorObserver';
 
 interface ImageData {
-  urls: {
-    small: string;
-  };
+  title: string;
+  id: string;
+  url: string;
 }
+const IntersectionObserverOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 1.0,
+};
 
-function Images() {
-  const [img, setImg] = useState('');
-  const [res, setRes] = useState<ImageData[]>([]);
+const Images = () => {
+  const [nameSearch, setNameSearch] = useState('');
+  const [images, setImages] = useState<ImageData[]>([]);
+  const [page, setPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [intersection, setIntersection] = useState(false);
+  const [a, setA] = useState(false);
 
-  const [debouncedImg] = useDebounce(img, 3000);
+  const [debouncedImg] = useDebounce(nameSearch, 3000);
+
+  const fetchData = async () => {
+    try {
+      if (debouncedImg && !isLoading) {
+        setIsLoading(true);
+        console.log({page})
+        const data = await getImages(debouncedImg, 8, page);
+        setImages((prevData) => [...prevData, ...data]);
+        setA(true);
+        setIntersection(true);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error('Error al obtener datos', error);
+      setIsLoading(false);
+      setIntersection(true);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getImages(debouncedImg);
-        setRes(data);
-      } catch (error) {
-        console.error('Error al obtener datos', error);
-      }
-    };
-
-    fetchData();
+    if (debouncedImg) {
+      fetchData();
+    }
   }, [debouncedImg]);
 
-  const handleChange = (event: any) => {
+  const handleIntersection = async (entries: IntersectionObserverEntry[]) => {
+    const target = entries[0];
+    console.log({a})
+    console.log({page})
+    console.log({target})
+
+    if (target.isIntersecting && debouncedImg && a) {
+      console.log('fectttttt');
+      // setPage((prevPage) => prevPage + 1);
+      await fetchData();
+    }else{
+      setA(true);
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    setImg(inputValue);
+    setNameSearch(inputValue);
   };
 
   return (
@@ -40,27 +76,34 @@ function Images() {
           className="col-3 w-96 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark text-center"
           type="text"
           placeholder="Escribe lo que quieras buscar..."
-          value={img}
+          value={nameSearch}
           onChange={handleChange}
         />
         <div className=" d-flex flex-wrap justify-content-evenly flex mt-20 w-full">
-          {res.map((val) => {
+          {images.map((val, index) => {
             return (
               <>
-                <div className="w-1/5 border-solid border-white border-2	">
+                <div key={index} className="w-2/6 border-solid border-white border-2	">
                   <img
                     className="col-3 img-fluid img-thumbnail w-full"
-                    src={val.urls.small}
+                    src={val.url}
                     alt="val.alt_description"
                   />
                 </div>
               </>
             );
           })}
+          <div id="observer-target" style={{ height: '5px' }}></div>
         </div>
       </div>
+      <IntersectionObserverComponent
+        element="observer-target"
+        onIntersection={handleIntersection}
+        options={IntersectionObserverOptions}
+        shouldObserve={intersection}
+      />
     </>
   );
-}
+};
 
 export default Images;

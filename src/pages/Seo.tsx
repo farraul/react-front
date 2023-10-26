@@ -1,9 +1,8 @@
 import { FormEvent, useEffect } from 'react';
 import useSeoData from '@/hooks/useSeoData';
-import { SeoHeading, Seo as SeoInterface } from '@/models/seo';
+import { Headings, HeadingsSeo, SeoHeading, Seo as SeoInterface } from '@/models/seo';
 import { Button, TextField, Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { SnackbarUtilities } from '@/utilities';
-
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
@@ -32,7 +31,7 @@ const Seo = () => {
     handleChange,
   } = useSeoData();
 
-  const { userToken, _id } = useAppSelector((state) => state.user.userInfo);
+  const { _id } = useAppSelector((state) => state.user.userInfo);
   const { t } = useTranslation();
 
   const urlsSeo = async (_id: string) => {
@@ -58,13 +57,14 @@ const Seo = () => {
       try {
         const response = await getAnalyseUrlSeo(url);
 
-        let headings: any = [];
+        let headings: Headings[] = [];
 
         for (let i = 0; i <= 6; i++) {
           if (response.data[`h${i}`]?.length) {
             headings.push({ [`h${i}`]: response.data[`h${i}`] });
           }
         }
+
         setHeadings(headings);
         setTitle(response.data.title);
         setDescription(response.data.description);

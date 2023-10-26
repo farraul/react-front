@@ -7,7 +7,11 @@ export interface SeoHeading {
 }
 
 export type Headings = {
-  [K in keyof SeoHeading]: string[];
+  [K in keyof HeadingsSeo]: string[];
+};
+
+export type HeadingsSeo = {
+  [key: string]: string[];
 };
 
 export interface Seo {
