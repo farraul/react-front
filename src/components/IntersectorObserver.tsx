@@ -4,23 +4,23 @@ interface IntersectionObserverProps {
   element: string;
   onIntersection: (entries: IntersectionObserverEntry[]) => void;
   options: IntersectionObserverInit;
-  shouldObserve: Boolean;
 }
 
 export const IntersectionObserverComponent: React.FC<IntersectionObserverProps> = ({
   element,
   onIntersection,
   options,
-  shouldObserve,
 }) => {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     const targetElement = document.getElementById(`${element}`);
 
-    if (targetElement && shouldObserve) {
+    if (targetElement) {
+      console.log({ targetElement });
       observerRef.current = new IntersectionObserver(onIntersection, options);
       observerRef.current.observe(targetElement);
+      console.log({ observerRef });
     }
 
     return () => {
@@ -28,7 +28,7 @@ export const IntersectionObserverComponent: React.FC<IntersectionObserverProps> 
         observerRef.current.disconnect();
       }
     };
-  }, [onIntersection, options, shouldObserve]);
+  }, [observerRef, options]);
 
   return null;
 };

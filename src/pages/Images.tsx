@@ -18,48 +18,51 @@ const Images = () => {
   const [nameSearch, setNameSearch] = useState('');
   const [images, setImages] = useState<ImageData[]>([]);
   const [page, setPage] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [intersection, setIntersection] = useState(false);
-  const [a, setA] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); //spiner
 
   const [debouncedImg] = useDebounce(nameSearch, 3000);
 
-  const fetchData = async () => {
+  const fetchSearchData = async () => {
     try {
-      if (debouncedImg && !isLoading) {
-        setIsLoading(true);
-        console.log({ page });
-        const data = await getImages(debouncedImg, 8, page);
-        setImages((prevData) => [...prevData, ...data]);
-        setA(true);
-        setIntersection(true);
-        setIsLoading(false);
-      }
+      setIsLoading(true);
+      const data = await getImages(debouncedImg, 8, page);
+      setImages(data);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error al obtener datos', error);
       setIsLoading(false);
-      setIntersection(true);
+    }
+  };
+
+  const fetchObserverData = async (pagedata) => {
+    try {
+      setIsLoading(true);
+      const data = await getImages(debouncedImg, 8, pagedata);
+      console.log({ page });
+      setImages((prev) => [...prev, ...data]);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error al obtener datos', error);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     if (debouncedImg) {
-      fetchData();
+      const data = async () => {
+        await fetchSearchData();
+      };
+      data();
     }
   }, [debouncedImg]);
 
   const handleIntersection = async (entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
-    console.log({ a });
-    console.log({ page });
-    console.log({ target });
 
-    if (target.isIntersecting && debouncedImg && a) {
-      console.log('fectttttt');
-      // setPage((prevPage) => prevPage + 1);
-      await fetchData();
-    } else {
-      setA(true);
+    if (target.isIntersecting) {
+      setPage(page + 1);
+      await fetchObserverData(page);
+      return;
     }
   };
 
@@ -93,15 +96,16 @@ const Images = () => {
               </>
             );
           })}
-          <div id="observer-target" style={{ height: '5px' }}></div>
         </div>
+        <div id="observer-target" style={{ height: '5px' }}></div>
       </div>
-      <IntersectionObserverComponent
-        element="observer-target"
-        onIntersection={handleIntersection}
-        options={IntersectionObserverOptions}
-        shouldObserve={intersection}
-      />
+      {images.length > 0 && (
+        <IntersectionObserverComponent
+          element="observer-target"
+          onIntersection={handleIntersection}
+          options={IntersectionObserverOptions}
+        />
+      )}
     </>
   );
 };
