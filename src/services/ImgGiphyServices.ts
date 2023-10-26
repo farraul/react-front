@@ -5,7 +5,7 @@ const baseApiGiphy = 'https://api.giphy.com/v1';
 
 const fromAPIResponse = (apiResponse: ApiResponse) => {
   const { data = [] } = apiResponse;
-  console.log({apiResponse})
+  console.log({ apiResponse });
 
   if (Array.isArray(data)) {
     const gifs = data.map((image) => {
