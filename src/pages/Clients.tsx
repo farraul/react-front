@@ -11,7 +11,7 @@ export default function Clients() {
   const { data: dataClients = [], isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => {
-      if(id)return getClientsRequest(id);
+      if (id) return getClientsRequest(id);
     },
     cacheTime: 100000,
     refetchOnWindowFocus: false,

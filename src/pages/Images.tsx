@@ -28,7 +28,7 @@ const Images = () => {
     try {
       if (debouncedImg && !isLoading) {
         setIsLoading(true);
-        console.log({page})
+        console.log({ page });
         const data = await getImages(debouncedImg, 8, page);
         setImages((prevData) => [...prevData, ...data]);
         setA(true);
@@ -50,15 +50,15 @@ const Images = () => {
 
   const handleIntersection = async (entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
-    console.log({a})
-    console.log({page})
-    console.log({target})
+    console.log({ a });
+    console.log({ page });
+    console.log({ target });
 
     if (target.isIntersecting && debouncedImg && a) {
       console.log('fectttttt');
       // setPage((prevPage) => prevPage + 1);
       await fetchData();
-    }else{
+    } else {
       setA(true);
     }
   };

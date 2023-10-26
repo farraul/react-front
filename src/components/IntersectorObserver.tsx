@@ -4,8 +4,7 @@ interface IntersectionObserverProps {
   element: string;
   onIntersection: (entries: IntersectionObserverEntry[]) => void;
   options: IntersectionObserverInit;
-  shouldObserve: Boolean
-
+  shouldObserve: Boolean;
 }
 
 export const IntersectionObserverComponent: React.FC<IntersectionObserverProps> = ({
@@ -13,7 +12,6 @@ export const IntersectionObserverComponent: React.FC<IntersectionObserverProps> 
   onIntersection,
   options,
   shouldObserve,
-
 }) => {
   const observerRef = useRef<IntersectionObserver | null>(null);
 

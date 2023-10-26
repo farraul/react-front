@@ -8,7 +8,6 @@ import { Path } from './path';
 import { Spinner } from '@/components';
 import { AxiosError } from 'axios';
 
-
 const App = () => {
   console.log('App');
   const dispatch = useAppDispatch();
@@ -25,7 +24,7 @@ const App = () => {
       setLoading(false);
       if (me) dispatch(setCredentials(me));
     } catch (error) {
-      const err= error as AxiosError;
+      const err = error as AxiosError;
       setLoading(false);
       console.log(err.message);
     }

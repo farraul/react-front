@@ -13,7 +13,7 @@ const fromAPIResponse = (apiResponse: any) => {
   return [];
 };
 
-export const getImages = async (img: any, limit = 10, page=0) => {
+export const getImages = async (img: any, limit = 10, page = 0) => {
   const ApiURL = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${img}&limit=${limit}&offset=${page}&rating=g&lang=en&bundle=clips_grid_picker`;
 
   return fetch(ApiURL)
