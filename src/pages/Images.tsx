@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getImages } from '@/services/getImgGiphyServices';
+import { getImages } from '@/services/ImgGiphyServices';
 import { useDebounce } from 'use-debounce';
 import { IntersectionObserverComponent } from '@/components/IntersectorObserver';
 
