@@ -1,12 +1,21 @@
-export type productCategory = 'pc' | 'phone' | 'console' | 'tv' | '';
-export type productBrand = 'apple' | 'microsoft' | 'sony' | '';
+export enum SelectProductBrand {
+  Apple = 'apple',
+  microsoft = 'microsoft',
+  Sony = 'sony',
+}
+
+export type ProductCategory = 'pc' | 'phone' | 'console' | 'tv' | '';
+export type ProductBrand =
+  | SelectProductBrand.Apple
+  | SelectProductBrand.microsoft
+  | SelectProductBrand.Sony;
 
 export interface Product {
   readonly _id: string;
   userId: string;
   title: string;
-  category: productCategory;
-  brand: productBrand;
+  category: ProductCategory;
+  brand: ProductBrand;
   price: string;
   description: string;
   createdAt?: string;

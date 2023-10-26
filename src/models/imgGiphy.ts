@@ -1,12 +1,12 @@
 type Analytics = {
-  onload: { [key: string]: any };
-  onclick: { [key: string]: any };
-  onsent: { [key: string]: any };
+  onload: { [key: string]: object };
+  onclick: { [key: string]: object };
+  onsent: { [key: string]: object };
 };
 
 type Images = {
-  original: { [key: string]: any };
-  fixed_width: { [key: string]: any };
+  original: { [key: string]: string };
+  fixed_width: { [key: string]: string };
 };
 
 type DataApiResponse = {

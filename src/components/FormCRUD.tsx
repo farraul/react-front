@@ -4,7 +4,7 @@ import { IoMdAdd } from 'react-icons/io';
 import { InputChangeEvent } from '@/models/form';
 import { useAppSelector } from '@/hooks/useApp';
 import { VscLoading } from 'react-icons/vsc';
-import { Product } from '@/models/product';
+import { Product, SelectProductBrand } from '@/models/product';
 import { UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { Select } from './Select';
@@ -18,7 +18,7 @@ const FormCRUD = ({
   action: UseMutationResult<void | AxiosResponse<any, any>, unknown, any, unknown>;
   product?: Product;
 }) => {
-  const [values, setValues] = useState<any>();
+  const [values, setValues] = useState<Partial<Product>>();
 
   useEffect(() => {
     if (product) {
@@ -70,8 +70,8 @@ const FormCRUD = ({
             type="text"
             name="title"
             id="title"
-            value={values && values.title}
-            placeholder={`${values && values.title ? values.title : 'Name'}`}
+            value={values?.title}
+            placeholder={`${values?.title || 'Name'}`}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             onChange={handleChange}
             required
@@ -88,7 +88,7 @@ const FormCRUD = ({
           <Select
             id="brand"
             name="brand"
-            values={values && values.brand}
+            values={values?.brand as string}
             onChange={handleChange}
             placeholder={`${values && values.brand ? values.brand : 'Type brand'}`}
             options={options}
@@ -105,7 +105,7 @@ const FormCRUD = ({
             type="number"
             name="price"
             id="price"
-            value={values && values.price}
+            value={values?.price}
             placeholder={`${values && values.price ? values.price : 'Price'}`}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             onChange={handleChange}
@@ -121,7 +121,7 @@ const FormCRUD = ({
           <select
             id="category"
             name="category"
-            value={values && values.category}
+            value={values?.category}
             placeholder={`${values && values.category ? values.category : 'Category'}`}
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -143,7 +143,7 @@ const FormCRUD = ({
           <textarea
             id="description"
             name="description"
-            value={values && (values.description as string)}
+            value={values?.description as string}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             placeholder={`${values && values.description ? values.description : 'Description'}`}
             onChange={handleChange}
