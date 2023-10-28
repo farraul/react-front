@@ -6,7 +6,7 @@ interface IntersectionObserverProps {
   options: IntersectionObserverInit;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  fetchObserverData:  Promise<void>;
+  fetchObserverData: Promise<void>;
 }
 
 export const IntersectionObserverComponent: React.FC<IntersectionObserverProps> = ({
@@ -19,7 +19,6 @@ export const IntersectionObserverComponent: React.FC<IntersectionObserverProps> 
 }) => {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  
   const handleIntersection = async (entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
 
@@ -32,8 +31,6 @@ export const IntersectionObserverComponent: React.FC<IntersectionObserverProps> 
       return;
     }
   };
-
-
 
   useEffect(() => {
     const targetElement = document.getElementById(`${element}`);
