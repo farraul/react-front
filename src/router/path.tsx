@@ -11,7 +11,7 @@ const HomePage = lazy(() => import('@/pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const Seo = lazy(() => import('@/pages/Seo'));
-const Images = lazy(() => import('@/pages/Images'));
+const Images = lazy(() => import('@/pages/ImagesPage'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
