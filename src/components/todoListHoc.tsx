@@ -1,10 +1,8 @@
 import { filterItems } from '@/utilities/filterItems';
 import React from 'react';
 
-
-
-const TodoListHoc = ({query, dataSet}) => {
-    const items= filterItems(query, dataSet);
+const TodoListHoc = ({ query, dataSet }) => {
+  const items = filterItems(query, dataSet);
   return (
     <ul>
       <li>

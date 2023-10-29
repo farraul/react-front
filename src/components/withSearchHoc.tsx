@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 const WithSearchHoc = (Component, dataSet) => {
   const [query, setQuery] = useState('');
 
-//logica
-//pasar a minusculas por temas backend
+  //logica
+  //pasar a minusculas por temas backend
 
   const handleChange = (e: any) => {
     setQuery(e.target.value);
