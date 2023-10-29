@@ -26,8 +26,6 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [languages, setLanguages] = useState();
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenu = (event: { currentTarget: React.SetStateAction<HTMLElement | null> }) => {
     setAnchorEl(event.currentTarget);
@@ -72,7 +70,7 @@ function Header() {
               <Select
                 id="language"
                 name="languaje"
-                values={languages}
+                values=''
                 onChange={handleChangeLanguage}
                 placeholder=""
                 options={languageValues}

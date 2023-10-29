@@ -13,6 +13,7 @@ import { getAnalyseUrlSeo } from '@/services/analizeUrlService';
 import { createUrlsSeo, getUrlsSeo } from '@/api/user';
 import { useAppSelector } from '@/hooks/useApp';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
 
 const Seo = () => {
   const {
@@ -34,16 +35,27 @@ const Seo = () => {
   const { _id } = useAppSelector((state) => state.user.userInfo);
   const { t } = useTranslation();
 
-  const urlsSeo = async (_id: string) => {
+  const getUrlSeo = async (_id: string) => {
     console.log({ _id });
     const urls = await (await getUrlsSeo(_id)).data;
-    const onlyUrl = urls.map((seo: SeoInterface) => seo.url);
-    setUrlsRecent(onlyUrl);
+    return urls;
   };
 
+  const {
+    data: dataUrlSeo,
+  } = useQuery({
+    queryKey: ['urlSeo'],
+    queryFn: () => getUrlSeo(_id),
+    cacheTime: 10000,
+    staleTime: 10000,
+  });
+
   useEffect(() => {
-    urlsSeo(_id);
-  }, []);
+    if (dataUrlSeo) {
+      const onlyUrl = dataUrlSeo.map((seo: SeoInterface) => seo.url);
+      setUrlsRecent(onlyUrl);
+    }
+  }, [dataUrlSeo]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

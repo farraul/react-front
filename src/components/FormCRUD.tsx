@@ -31,7 +31,6 @@ const FormCRUD = ({
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;
     console.log({ values });
-    // if (values)
     setValues({ ...values, [e.target.name]: value });
   }
 
