@@ -41,9 +41,7 @@ const Seo = () => {
     return urls;
   };
 
-  const {
-    data: dataUrlSeo,
-  } = useQuery({
+  const { data: dataUrlSeo } = useQuery({
     queryKey: ['urlSeo'],
     queryFn: () => getUrlSeo(_id),
     cacheTime: 10000,

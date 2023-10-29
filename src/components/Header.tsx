@@ -70,7 +70,7 @@ function Header() {
               <Select
                 id="language"
                 name="languaje"
-                values=''
+                values=""
                 onChange={handleChangeLanguage}
                 placeholder=""
                 options={languageValues}
