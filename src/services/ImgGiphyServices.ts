@@ -1,5 +1,5 @@
 import { ApiResponse } from '@/models/imgGiphy';
-import { AddQueryByField } from '@/utilities/arrays';
+import { AddQueryByField } from '@/utilities';
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 const baseApiGiphy = 'https://api.giphy.com/v1';
 

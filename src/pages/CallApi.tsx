@@ -33,13 +33,12 @@ const CallApi = () => {
     queryKey: ['apiMorty'],
     queryFn: getRicky,
     refetchOnWindowFocus: false,
-    cacheTime: 10000, //tiempo almacenamiento en cache
-    staleTime: 10000, //determina cuando tienen que actualizarse
+    cacheTime: 10000,
+    staleTime: 10000,
   });
 
   useEffect(() => {
     if (rickystate) {
-      console.log(rickystate.results);
       setRicky(rickystate.results);
     }
   }, [rickystate]);

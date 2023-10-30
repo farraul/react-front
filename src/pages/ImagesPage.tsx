@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getImages } from '@/services/imgGiphyServices';
+import { getImages } from '@/services/';
 import { useDebounce } from 'use-debounce';
 
 interface ImageData {

@@ -56,13 +56,6 @@ function Header() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {t('logo')}
             </Typography>
-            {/* <select name="select" onChange={handleChangeLanguage}>
-              <option defaultValue="es" value="es">
-                Es
-              </option>
-              <option value="en">En</option>
-              <option value="fr">Fr</option>
-            </select> */}
 
             <div className="w-15">
               <Select

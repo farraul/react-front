@@ -6,12 +6,11 @@ export interface SeoHeading {
   h3: string | string[];
 }
 
-export type Headings = {
-  [K in keyof HeadingsSeo]: string[];
-};
-
 export type HeadingsSeo = {
   [key: string]: string[];
+};
+export type Headings = {
+  [K in keyof HeadingsSeo]: string[];
 };
 
 export interface Seo {

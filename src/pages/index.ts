@@ -6,4 +6,6 @@ export { default as Clients } from './Clients';
 export { default as LoginPage } from './LoginPage';
 export { default as RegisterPage } from './RegisterPage';
 export { default as Seo } from './Seo';
+export { default as ImagesPage } from './ImagesPage';
+
 export * from './index';
