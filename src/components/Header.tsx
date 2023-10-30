@@ -4,11 +4,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Button } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { logout } from '@/app/features/user/userSlices';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
@@ -110,6 +108,7 @@ function Header() {
                   <MenuItem onClick={() => navigate('/seo')}>{t('seo')}</MenuItem>
                   <MenuItem onClick={() => navigate('/call-api')}>{t('call-api')}</MenuItem>
                   <MenuItem onClick={() => navigate('/images')}>{t('images')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/hoc-pattern')}>{t('hoc-pattern')}</MenuItem>
                   <MenuItem onClick={handleLogout}>{t('logout')}</MenuItem>
                 </Menu>
               </div>

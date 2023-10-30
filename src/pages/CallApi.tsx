@@ -32,7 +32,7 @@ const CallApi = () => {
   } = useQuery({
     queryKey: ['apiMorty'],
     queryFn: getRicky,
-    //refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
     cacheTime: 10000, //tiempo almacenamiento en cache
     staleTime: 10000, //determina cuando tienen que actualizarse
   });

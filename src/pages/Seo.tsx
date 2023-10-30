@@ -1,6 +1,6 @@
 import { FormEvent, useEffect } from 'react';
 import useSeoData from '@/hooks/useSeoData';
-import { Headings, HeadingsSeo, SeoHeading, Seo as SeoInterface } from '@/models/seo';
+import { Headings, SeoHeading, Seo as SeoInterface } from '@/models/seo';
 import { Button, TextField, Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { SnackbarUtilities } from '@/utilities';
 import ListItem from '@mui/material/ListItem';

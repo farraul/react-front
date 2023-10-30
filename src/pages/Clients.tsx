@@ -4,7 +4,7 @@ import { GridRowModesModel, GridColDef, GridValidRowModel } from '@mui/x-data-gr
 import { getClientsRequest } from '@/services/clientService';
 import { useQuery } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
-import { TableMui } from '@/components/tableMui';
+import { TableMui } from '@/components/TableMui';
 
 export default function Clients() {
   const id = Cookies.get('userId');

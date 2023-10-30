@@ -48,7 +48,6 @@ function RegisterPage() {
       <img
         src="/assets/background.webp"
         alt="image of products"
-        loading="lazy"
         className="w-full h-screen z-[-1] fixed top-0 left-0"
       />
       <Container component="main" maxWidth="xs">

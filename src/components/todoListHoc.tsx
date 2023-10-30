@@ -1,26 +1,18 @@
 import { filterItems } from '@/utilities/filterItems';
 import React from 'react';
+import TodoItemHoc from './TodoItemHoc';
 
-const TodoListHoc = ({ query, dataSet }) => {
+const TodoListHoc = ({ query, dataSet }: { query: any; dataSet: any }) => {
   const items = filterItems(query, dataSet);
   return (
-    <ul>
-      <li>
-        Primera tarea
-        <button>delete</button>
-        <button>edit</button>
-      </li>
-      <li>
-        Segunda tarea
-        <button>delete</button>
-        <button>edit</button>
-      </li>
-      <li>
-        Tercera tarea
-        <button>delete</button>
-        <button>edit</button>
-      </li>
-    </ul>
+    <div>
+      {items.map((product) =>(
+        <TodoItemHoc
+        title={product.title}
+        completed={product.completed}
+        />
+      ))}
+    </div>
   );
 };
 

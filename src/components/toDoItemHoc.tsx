@@ -1,13 +1,12 @@
 import React from 'react';
 
-const toDoItemHoc = ({ title, complete }) => {
+const TodoItemHoc = ({ title, completed }) => {
   return (
     <div>
-      toDoItemHoc
-      <input type="checkbox" checked={complete} />
+      <input type="checkbox" checked={completed} className='mr-2'/>
       {title}
     </div>
   );
 };
 
-export default toDoItemHoc;
+export default TodoItemHoc;

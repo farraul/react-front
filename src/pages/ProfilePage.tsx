@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { useAppSelector } from '@/hooks/useApp';
 import Card from '@mui/material/Card';
-import { blueGrey } from '@mui/material/colors';
 
 const ProfilePage = () => {
   const { firstName, email } = useAppSelector((state) => state.user.userInfo);

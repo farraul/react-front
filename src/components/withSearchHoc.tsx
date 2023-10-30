@@ -11,7 +11,7 @@ const WithSearchHoc = (Component, dataSet) => {
   };
   return (
     <>
-      <input onChange={handleChange} type="text" />
+      <input onChange={handleChange} type="text" className='border-2 border-black '/>
       <Component query={query} dataSet={dataSet} />
     </>
   );
