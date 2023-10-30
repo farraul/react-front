@@ -6,11 +6,8 @@ const TodoListHoc = ({ query, dataSet }: { query: any; dataSet: any }) => {
   const items = filterItems(query, dataSet);
   return (
     <div>
-      {items.map((product) =>(
-        <TodoItemHoc
-        title={product.title}
-        completed={product.completed}
-        />
+      {items.map((product) => (
+        <TodoItemHoc title={product.title} completed={product.completed} />
       ))}
     </div>
   );

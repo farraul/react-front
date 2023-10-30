@@ -12,7 +12,7 @@ const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const Seo = lazy(() => import('@/pages/Seo'));
 const Images = lazy(() => import('@/pages/ImagesPage'));
-const HocPattern= lazy(() => import('@/pages/HocPattern'))
+const HocPattern = lazy(() => import('@/pages/HocPattern'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {

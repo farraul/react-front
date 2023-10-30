@@ -1,7 +1,7 @@
 import withSearchHoc from './WithSearchHoc';
 import TodoListHoc from './TodoListHoc';
 
-const  TodoHoc = () => {
+const TodoHoc = () => {
   const toDos = [
     { id: 0, title: 'tarea 1', completed: false },
     { id: 1, title: 'tarea 2', completed: true },
@@ -9,7 +9,7 @@ const  TodoHoc = () => {
   ];
 
   const ToDoListWithSearch = withSearchHoc(TodoListHoc, toDos);
-  
+
   // const products = [
   //   { id: 0, title: 'carne' },
   //   { id: 1, title: 'leche' },
