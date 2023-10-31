@@ -9,6 +9,12 @@ import { UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { Select } from './Select';
 
+const options = {
+  apple: SelectProductBrand.Apple,
+  microsoft: SelectProductBrand.Microsoft,
+  sony: SelectProductBrand.Sony
+};
+
 const FormCRUD = ({
   handleIsOpen,
   action,
@@ -26,12 +32,12 @@ const FormCRUD = ({
     }
   }, [product]);
 
-  const { userInfo } = useAppSelector((state) => state.user);
+  const { userInfo } = useAppSelector((state: { user: any; }) => state.user);
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;
-    console.log({ values });
     setValues({ ...values, [e.target.name]: value });
+    console.log({ values });
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -39,7 +45,6 @@ const FormCRUD = ({
     e.preventDefault();
 
     if (values) {
-      console.log({ values });
       await action.mutateAsync({
         ...values,
         price: `${values?.price}`,
@@ -48,12 +53,6 @@ const FormCRUD = ({
       handleIsOpen();
     }
   }
-
-  const options = {
-    apple: 'Apple',
-    microsoft: 'Microsoft',
-    sony: 'Sony',
-  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -162,7 +161,7 @@ const FormCRUD = ({
         ) : (
           <>
             <IoMdAdd className="w-6 h-6" />
-            <h2>Save Product</h2>
+            <h2>Save Products</h2>
           </>
         )}
       </button>

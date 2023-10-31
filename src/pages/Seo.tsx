@@ -9,7 +9,7 @@ import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 import { validateUrl } from '@/utilities/validateUrl';
-import { getAnalyseUrlSeo } from '@/services/analizeUrlService';
+import { getAnalyseUrlSeo } from '@/services';
 import { createUrlsSeo, getUrlsSeo } from '@/api/user';
 import { useAppSelector } from '@/hooks/useApp';
 import { useTranslation } from 'react-i18next';

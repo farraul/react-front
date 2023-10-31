@@ -15,7 +15,7 @@ const Input = forwardRef(
       className = '',
       name,
       value,
-      placeholder = '',
+      placeholder,
       isFocused = false,
       ...props
     }: InputGeneric,

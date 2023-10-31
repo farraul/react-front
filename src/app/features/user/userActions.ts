@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { instance as axios } from '../../../api/axios.js';
@@ -13,7 +12,7 @@ const config = {
 };
 
 export const userLogin = createAsyncThunk(
-  userServicesConfig.UserLogin, // es una referencia, es un nombre para la acción el nombre da igual, como si pongo patata
+  userServicesConfig.UserLogin,
   async ({ email, password }: SignIn, { rejectWithValue }) => {
     try {
       const info = await axios.post('/api/user/login', { email, password }, config);
@@ -25,7 +24,7 @@ export const userLogin = createAsyncThunk(
 
       return info.data.data;
     } catch (error: unknown) {
-      return rejectWithValue(error); // paramos la peticion para que redux lo sepa
+      return rejectWithValue(error);
     }
   },
 );

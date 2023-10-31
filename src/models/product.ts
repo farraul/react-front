@@ -1,13 +1,13 @@
 export enum SelectProductBrand {
   Apple = 'apple',
-  microsoft = 'microsoft',
+  Microsoft = 'microsoft',
   Sony = 'sony',
 }
 
 export type ProductCategory = 'pc' | 'phone' | 'console' | 'tv' | '';
 export type ProductBrand =
   | SelectProductBrand.Apple
-  | SelectProductBrand.microsoft
+  | SelectProductBrand.Microsoft
   | SelectProductBrand.Sony;
 
 export interface Product {

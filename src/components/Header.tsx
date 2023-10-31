@@ -14,15 +14,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from './Select';
 
+const languageValues = {
+  es: 'Es',
+  en: 'En',
+};
+
 function Header() {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'translation.header' });
-  console.log(i18n.services.resourceStore.data);
-  console.log(i18n);
-
   const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenu = (event: { currentTarget: React.SetStateAction<HTMLElement | null> }) => {
@@ -40,11 +41,6 @@ function Header() {
   const handleChangeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
     i18n.changeLanguage(e.target.value);
-  };
-
-  const languageValues = {
-    es: 'Es',
-    en: 'En',
   };
 
   return (

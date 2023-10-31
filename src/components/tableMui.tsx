@@ -22,6 +22,9 @@ import {
   GridEditMode,
 } from '@mui/x-data-grid';
 import { randomId } from '@mui/x-data-grid-generator';
+import { UseMutationResult } from '@tanstack/react-query';
+import { Product } from '@/models/product';
+import { useAppSelector } from '@/hooks/useApp';
 
 type EditToolbarProps = {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -36,6 +39,13 @@ type PropsTable = {
   setRows: React.Dispatch<React.SetStateAction<GridValidRowModel[]>>;
   setRowModesModel: React.Dispatch<React.SetStateAction<GridRowModesModel>>;
   initValueEdit: GridValidRowModel;
+  create: UseMutationResult<
+    void,
+    unknown,
+    // Partial<Pick<Product, 'name' | 'email' | 'url' | 'status' | 'contact' | 'description'>>,
+    any,
+    unknown
+  >;
 };
 
 export const TableMui = ({
@@ -46,7 +56,9 @@ export const TableMui = ({
   setRows,
   setRowModesModel,
   initValueEdit,
+  create,
 }: PropsTable) => {
+  const { userInfo } = useAppSelector((state: { user: any; }) => state.user);
   function EditToolbar(props: EditToolbarProps) {
     const { setRows, setRowModesModel } = props;
 
@@ -98,7 +110,15 @@ export const TableMui = ({
     }
   };
 
-  const processRowUpdate = (newRow: GridRowModel) => {
+  const processRowUpdate = async (newRow: GridRowModel) => {
+    console.log({ newRow });
+    //here fetch
+    const a = await create.mutateAsync({
+      ...newRow,
+      userId: userInfo?._id as string,
+    });
+    console.log({ a });
+
     const updatedRow = { ...newRow, isNew: false };
     setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
     return updatedRow;
@@ -106,6 +126,7 @@ export const TableMui = ({
 
   const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
     setRowModesModel(newRowModesModel);
+    console.log('save', newRowModesModel);
   };
 
   return (

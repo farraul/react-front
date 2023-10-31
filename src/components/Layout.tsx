@@ -18,13 +18,13 @@ function Layout() {
   const [isntAuth, setIsntAuth] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    if (location.pathname === RoutesNotAuth.Login || location.pathname === RoutesNotAuth.Register) {
-      setIsntAuth(false);
-    } else {
-      setIsntAuth(true);
-    }
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (location.pathname === RoutesNotAuth.Login || location.pathname === RoutesNotAuth.Register) {
+  //     setIsntAuth(false);
+  //   } else {
+  //     setIsntAuth(true);
+  //   }
+  // }, [location.pathname]);
 
   return (
     <CacheProvider value={myCache}>

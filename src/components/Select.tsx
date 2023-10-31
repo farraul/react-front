@@ -31,8 +31,6 @@ export const Select = ({
         className ? className : ''
       }`}
     >
-      {/* <option value="">{placeholder}</option> */}
-
       {Object.entries(options).map(([key, value]) => (
         <option value={key}>{value}</option>
       ))}

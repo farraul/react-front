@@ -1,10 +1,11 @@
+import { baseURL } from '@/api/axios';
 import { Token, UserInfo } from '@/models/user/user';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000',
+    baseUrl: baseURL,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as { user: Token }).user.userToken;
       if (token) {
