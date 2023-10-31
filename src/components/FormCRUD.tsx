@@ -12,7 +12,7 @@ import { Select } from './Select';
 const options = {
   apple: SelectProductBrand.Apple,
   microsoft: SelectProductBrand.Microsoft,
-  sony: SelectProductBrand.Sony
+  sony: SelectProductBrand.Sony,
 };
 
 const FormCRUD = ({
@@ -32,7 +32,7 @@ const FormCRUD = ({
     }
   }, [product]);
 
-  const { userInfo } = useAppSelector((state: { user: any; }) => state.user);
+  const { userInfo } = useAppSelector((state: { user: any }) => state.user);
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;

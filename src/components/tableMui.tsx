@@ -58,7 +58,7 @@ export const TableMui = ({
   initValueEdit,
   create,
 }: PropsTable) => {
-  const { userInfo } = useAppSelector((state: { user: any; }) => state.user);
+  const { userInfo } = useAppSelector((state: { user: any }) => state.user);
   function EditToolbar(props: EditToolbarProps) {
     const { setRows, setRowModesModel } = props;
 
