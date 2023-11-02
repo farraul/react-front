@@ -8,7 +8,12 @@ import {
   GridRowId,
   GridActionsCellItem,
 } from '@mui/x-data-grid';
-import { createClientRequest, getClientsRequest, updateClientRequest, deleteClientRequest } from '@/services/clientService';
+import {
+  createClientRequest,
+  getClientsRequest,
+  updateClientRequest,
+  deleteClientRequest,
+} from '@/services/clientService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 import { TableMui } from '@/components/TableMui';
@@ -43,7 +48,6 @@ export default function Clients() {
       queryClient.invalidateQueries(['clients']);
     },
   });
-
 
   const deleteProductMutation = useMutation({
     mutationFn: deleteClientRequest,
