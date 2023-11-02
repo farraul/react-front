@@ -25,6 +25,8 @@ import { randomId } from '@mui/x-data-grid-generator';
 import { UseMutationResult } from '@tanstack/react-query';
 import { Product } from '@/models/product';
 import { useAppSelector } from '@/hooks/useApp';
+import { Client } from '@/models/user/client';
+import { AxiosResponse } from 'axios';
 
 type EditToolbarProps = {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -46,19 +48,22 @@ type PropsTable = {
     any,
     unknown
   >;
+  update: any;
+  remove: UseMutationResult<void, unknown, Client, unknown>;
 };
 
 export const TableMui = ({
   rows,
+  setRows,
+  rowModesModel,
+  setRowModesModel,
   columns,
   editMode,
-  rowModesModel,
-  setRows,
-  setRowModesModel,
   initValueEdit,
   create,
+  update,
+  remove,
 }: PropsTable) => {
-  const { userInfo } = useAppSelector((state: { user: any }) => state.user);
   function EditToolbar(props: EditToolbarProps) {
     const { setRows, setRowModesModel } = props;
 
@@ -67,7 +72,7 @@ export const TableMui = ({
       setRows((oldRows) => [...oldRows, { ...initValueEdit, id, isNew: true }]);
       setRowModesModel((oldModel) => ({
         ...oldModel,
-        [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
+        [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name', isNew: true },
       }));
     };
 
@@ -90,8 +95,11 @@ export const TableMui = ({
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
 
-  const handleDeleteClick = (id: GridRowId) => () => {
+  const handleDeleteClick = async (id: GridRowId) => {
     setRows(rows.filter((row) => row.id !== id));
+   await remove.mutateAsync({
+      ...id,
+    });
   };
 
   const handleSaveClick = (id: GridRowId) => () => {
@@ -111,16 +119,21 @@ export const TableMui = ({
   };
 
   const processRowUpdate = async (newRow: GridRowModel) => {
-    console.log({ newRow });
-    //here fetch
-    const a = await create.mutateAsync({
-      ...newRow,
-      userId: userInfo?._id as string,
-    });
-    console.log({ a });
+    let updatedRow = {};
 
-    const updatedRow = { ...newRow, isNew: false };
-    setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+    if (newRow.isNew) {
+      await create.mutateAsync({
+        ...newRow,
+      });
+      updatedRow = { ...newRow, isNew: false };
+      setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+    } else {
+      await update.mutateAsync({
+        ...newRow,
+      });
+    }
+
+   
     return updatedRow;
   };
 
