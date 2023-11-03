@@ -15,7 +15,6 @@ const Images = lazy(() => import('@/pages/ImagesPage'));
 const HocPattern = lazy(() => import('@/pages/HocPattern'));
 const Times = lazy(() => import('@/pages/Times'));
 
-
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
     return userToken ? <Componente /> : <Navigate to={`/?redirect=${window.location.href}`} />;
