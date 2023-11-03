@@ -1,6 +1,6 @@
 
 
-git commit --amend --no-edit
+git commit --amend --no-edit (después del segundo "git add ." para que se quede con el primer commit)
 
 ### Dependencies
 * Axios
