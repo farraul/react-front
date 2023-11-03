@@ -13,6 +13,8 @@ const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const Seo = lazy(() => import('@/pages/Seo'));
 const Images = lazy(() => import('@/pages/ImagesPage'));
 const HocPattern = lazy(() => import('@/pages/HocPattern'));
+const Times = lazy(() => import('@/pages/Times'));
+
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
@@ -43,6 +45,10 @@ export const Path = (userToken: string) => {
             {
               path: '/home-page',
               element: pathSession(HomePage),
+            },
+            {
+              path: '/times',
+              element: pathSession(Times),
             },
             {
               path: '/profile',
