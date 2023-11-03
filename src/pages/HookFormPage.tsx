@@ -32,7 +32,10 @@ function Times() {
         <br />
         {errors.example && <span>This field is required</span>}
         <br />
-        <input className="text-black" {...register('exampleRequired', { required: 'Este campo es requerido' })} />
+        <input
+          className="text-black"
+          {...register('exampleRequired', { required: 'Este campo es requerido' })}
+        />
         <br />
         {errors.exampleRequired && <span>{errors.exampleRequired.message}</span>}
         <br />
