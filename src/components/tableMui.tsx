@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
@@ -23,10 +22,7 @@ import {
 } from '@mui/x-data-grid';
 import { randomId } from '@mui/x-data-grid-generator';
 import { UseMutationResult } from '@tanstack/react-query';
-import { Product } from '@/models/product';
-import { useAppSelector } from '@/hooks/useApp';
 import { Client } from '@/models/user/client';
-import { AxiosResponse } from 'axios';
 
 type EditToolbarProps = {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -41,15 +37,9 @@ type PropsTable = {
   setRows: React.Dispatch<React.SetStateAction<GridValidRowModel[]>>;
   setRowModesModel: React.Dispatch<React.SetStateAction<GridRowModesModel>>;
   initValueEdit: GridValidRowModel;
-  create: UseMutationResult<
-    void,
-    unknown,
-    // Partial<Pick<Product, 'name' | 'email' | 'url' | 'status' | 'contact' | 'description'>>,
-    any,
-    unknown
-  >;
-  update: any;
-  remove: UseMutationResult<void, unknown, Client, unknown>;
+  create: UseMutationResult<void, unknown, Client, unknown>;
+  update: UseMutationResult<void, unknown, Client, unknown>;
+  remove: UseMutationResult<void, unknown, string, unknown>;
 };
 
 export const TableMui = ({
@@ -97,9 +87,8 @@ export const TableMui = ({
 
   const handleDeleteClick = async (id: GridRowId) => {
     setRows(rows.filter((row) => row.id !== id));
-    await remove.mutateAsync({
-      ...id,
-    });
+    console.log({ id });
+    await remove.mutateAsync(id as string);
   };
 
   const handleSaveClick = (id: GridRowId) => () => {
@@ -123,13 +112,13 @@ export const TableMui = ({
 
     if (newRow.isNew) {
       await create.mutateAsync({
-        ...newRow,
+        ...(newRow as Client),
       });
       updatedRow = { ...newRow, isNew: false };
       setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
     } else {
       await update.mutateAsync({
-        ...newRow,
+        ...(newRow as Client),
       });
     }
 
@@ -186,7 +175,7 @@ export const TableMui = ({
               <GridActionsCellItem
                 icon={<DeleteIcon />}
                 label="Delete"
-                onClick={handleDeleteClick(id)}
+                onClick={() => handleDeleteClick(id)}
                 color="inherit"
               />,
             ];
@@ -207,3 +196,5 @@ export const TableMui = ({
     />
   );
 };
+
+export default TableMui;

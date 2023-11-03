@@ -11,10 +11,10 @@ export const createClientRequest = async (client: Client) => {
 };
 
 export const updateClientRequest = async (product: Client) => {
-  axios.put(`/api/user/clients`, product);
+  await axios.put(`/api/user/clients`, product);
 };
-export const deleteClientRequest = async (id: Client) => {
-  await axios.delete(`/api/user/clients`, id);
+export const deleteClientRequest = async (_id: string) => {
+  await axios.delete(`/api/user/clients`, { data: { _id } });
 };
 
 // export const getPRequest = async (id: string) => axios.get(`/api/product/${id}`);

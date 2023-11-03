@@ -1,5 +1,7 @@
 
 
+git commit --amend --no-edit
+
 ### Dependencies
 * Axios
 * Reduxjs/toolkit

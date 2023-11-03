@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, JSX, FC, Component } from 'react';
 
-const WithSearchHoc = (Component, dataSet) => {
+const WithSearchHoc = ({ Component, dataSet }: { Component: any; dataSet: any }) => {
   const [query, setQuery] = useState('');
-
-  //logica
-  //pasar a minusculas por temas backend
 
   const handleChange = (e: any) => {
     setQuery(e.target.value);

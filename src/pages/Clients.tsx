@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import {
-  GridRowModesModel,
-  GridColDef,
-  GridValidRowModel,
-  GridRowModes,
-  GridRowId,
-  GridActionsCellItem,
-} from '@mui/x-data-grid';
+import { GridRowModesModel, GridColDef, GridValidRowModel } from '@mui/x-data-grid';
 import {
   createClientRequest,
   getClientsRequest,
@@ -16,7 +9,8 @@ import {
 } from '@/services/clientService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
-import { TableMui } from '@/components/TableMui';
+import { TableMui } from '@/components';
+import { columns } from '@/setup/setupProducts';
 
 export default function Clients() {
   const id = Cookies.get('userId');
@@ -34,7 +28,6 @@ export default function Clients() {
   });
 
   const queryClient = useQueryClient();
-
   const addClientMutation = useMutation({
     mutationFn: createClientRequest,
     onSuccess: () => {
@@ -70,20 +63,6 @@ export default function Clients() {
 
     setRows(dataClientsFormat);
   }, [dataClients]);
-
-  const columns: GridColDef[] = [
-    { field: 'name', headerName: 'Name', width: 150, editable: true },
-    { field: 'email', headerName: 'Email', width: 180, editable: true },
-    { field: 'url', headerName: 'Url', width: 200, editable: true },
-    { field: 'status', headerName: 'Status', width: 100, editable: true },
-    { field: 'contact', headerName: 'Contact', width: 100, editable: true },
-    { field: 'tasks', headerName: 'Tasks', width: 100, editable: true },
-    { field: 'description', headerName: 'Description', width: 180, editable: true },
-  ];
-
-  // const handleSaveClick = (id: GridRowId) => () => {
-  //   setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
-  // };
 
   return (
     <div className="w-full flex justify-center py-40">

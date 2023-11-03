@@ -8,3 +8,4 @@ export { default as Modal } from './Modal';
 export { default as ProtectedRoutes } from './ProtectedRoutes';
 export { default as Spinner } from './Spinner';
 export { default as TodoHoc } from './TodoHoc';
+export { default as TableMui } from './tableMui';
