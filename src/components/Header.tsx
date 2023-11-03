@@ -91,7 +91,8 @@ function Header() {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={() => navigate('/')}> {t('home')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/times')}>times</MenuItem>
+                  <MenuItem onClick={() => navigate('/times')}>{t('times')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/hook-form')}>{t('hook-form')}</MenuItem>
                   <MenuItem onClick={() => navigate('/profile')}>{t('profile')}</MenuItem>
                   <MenuItem onClick={() => navigate('/dashboard')}>{t('table')}</MenuItem>
                   <MenuItem onClick={() => navigate('/clients')}>{t('clients')}</MenuItem>

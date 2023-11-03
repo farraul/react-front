@@ -14,6 +14,7 @@ const Seo = lazy(() => import('@/pages/Seo'));
 const Images = lazy(() => import('@/pages/ImagesPage'));
 const HocPattern = lazy(() => import('@/pages/HocPattern'));
 const Times = lazy(() => import('@/pages/Times'));
+const HookFormPage = lazy(() => import('@/pages/HookFormPage'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
@@ -72,6 +73,10 @@ export const Path = (userToken: string) => {
             {
               path: '/images',
               element: pathSession(Images),
+            },
+            {
+              path: '/hook-form',
+              element: pathSession(HookFormPage),
             },
             {
               path: '/hoc-pattern',

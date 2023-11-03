@@ -11,6 +11,8 @@
       "call-api": "Call API",
       "images": "Imágenes",
       "hoc-pattern": "Patrón HOC",
+      "times": "Tiempos",
+      "hook-form": "Hook-form",
       "logout": "Desconectar"
     }
   }
