@@ -1,21 +1,23 @@
-
+##Project
 
 git commit --amend --no-edit (después del segundo "git add ." para que se quede con el primer commit)
 
-### Dependencies
-* Axios
-* Reduxjs/toolkit
-* React-redux
+### Tecnologías
+* Axios - Interceptors
+* Redux toolkit
 * Mui
 * Tanstack/react-query
-* Google-search-results-nodejs
-* ag-grid-react
+* Ag-grid-react
 * React-router-dom
-* Use-debounce
-* js-cookie
-
-### DevDependencies
+* I18next
+* Ag-grid-react
+* Notistack
 * Typescript
 * Eslint
 * Prettier
 * Husky
+* Tailwindcss
+
+* Google-search-results-nodejs
+* Js-cookie
+* Use-debounce
