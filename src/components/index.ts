@@ -1,5 +1,4 @@
 export { default as Button } from './Button';
-export { default as Datatable } from './Datatable';
 export { default as FormCRUD } from './FormCRUD';
 export { default as Header } from './Header';
 export { default as Input } from './Input';

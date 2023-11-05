@@ -9,7 +9,7 @@ const Clients = lazy(() => import('@/pages/Clients'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
-const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
+const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
 const Seo = lazy(() => import('@/pages/SeoPage'));
 const Images = lazy(() => import('@/pages/ImagesPage'));
 const HocPattern = lazy(() => import('@/pages/HocPattern'));
@@ -55,8 +55,8 @@ export const Path = (userToken: string) => {
               element: pathSession(ProfilePage),
             },
             {
-              path: '/dashboard',
-              element: pathSession(DashboardPage),
+              path: '/products',
+              element: pathSession(ProductsPage),
             },
             {
               path: '/clients',

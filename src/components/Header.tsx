@@ -94,7 +94,7 @@ function Header() {
                   <MenuItem onClick={() => navigate('/times')}>{t('times')}</MenuItem>
                   <MenuItem onClick={() => navigate('/hook-form')}>{t('hook-form')}</MenuItem>
                   <MenuItem onClick={() => navigate('/profile')}>{t('profile')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/dashboard')}>{t('table')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/products')}>{t('products')}</MenuItem>
                   <MenuItem onClick={() => navigate('/clients')}>{t('clients')}</MenuItem>
                   <MenuItem onClick={() => navigate('/seo')}>{t('seo')}</MenuItem>
                   <MenuItem onClick={() => navigate('/call-api')}>{t('call-api')}</MenuItem>

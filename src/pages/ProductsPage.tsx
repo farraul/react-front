@@ -167,7 +167,7 @@ function Dashboard() {
         </button>
       </div>
       <Modal show={handleAddProduct} title="Add product" isOpen={addProduct}>
-        <FormCRUD handleIsOpen={handleAddProduct} action={addProductMutation} />
+        <FormCRUD handleIsOpen={handleAddProduct} action={addProductMutation} focus={addProduct} />
       </Modal>
 
       <Modal show={handleEditProduct} title="Edit product" isOpen={updateProduct}>
@@ -175,6 +175,7 @@ function Dashboard() {
           handleIsOpen={handleEditProduct}
           action={updateProductMutation}
           product={productUpdate as Product}
+          focus={addProduct}
         />
       </Modal>
       <div style={containerStyle} className="mt-2">

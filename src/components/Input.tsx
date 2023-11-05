@@ -22,7 +22,6 @@ const Input = forwardRef(
     ref,
   ) => {
     const localRef = useRef<HTMLInputElement>(null);
-
     useImperativeHandle(ref, () => ({
       focus: () => localRef.current?.focus(),
     }));
@@ -31,7 +30,8 @@ const Input = forwardRef(
       if (isFocused) {
         localRef.current?.focus();
       }
-    }, []);
+    });
+
     return (
       <input
         {...props}

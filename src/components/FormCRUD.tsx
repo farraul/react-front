@@ -19,13 +19,14 @@ const FormCRUD = ({
   handleIsOpen,
   action,
   product,
+  focus,
 }: {
   handleIsOpen: () => void;
   action: UseMutationResult<void | AxiosResponse<any, any>, unknown, any, unknown>;
   product?: Product;
+  focus: boolean;
 }) => {
   const [values, setValues] = useState<Partial<Product>>();
-
   useEffect(() => {
     if (product) {
       setValues(product);
@@ -65,6 +66,7 @@ const FormCRUD = ({
             Name
           </label>
           <Input
+            isFocused={focus}
             type="text"
             name="title"
             id="title"
