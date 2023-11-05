@@ -8,7 +8,7 @@ const TodoHoc = () => {
     { id: 2, title: 'tarea 3', completed: true },
   ];
 
-  const ToDoListWithSearch = WithSearchHoc(TodoListHoc, toDos);
+  const ToDoListWithSearch = WithSearchHoc({ Component: TodoListHoc, dataSet: toDos });
 
   // const products = [
   //   { id: 0, title: 'carne' },

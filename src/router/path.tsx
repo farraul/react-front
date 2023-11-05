@@ -29,10 +29,10 @@ export const Path = (userToken: string) => {
     {
       path: '/',
       element: <Layout />,
-      errorElement: <ErrorPage />, //check
+      errorElement: <ErrorPage />,
       children: [
         {
-          errorElement: <ErrorPage />, //check
+          errorElement: <ErrorPage />,
           children: [
             {
               index: true,

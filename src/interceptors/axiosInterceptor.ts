@@ -13,8 +13,6 @@ export const axiosInterceptor = () => {
     },
 
     (error: AxiosError) => {
-      SnackbarUtilities.error('eeroress');
-      SnackbarUtilities.success('yooo');
       SnackbarUtilities.error(getValidationError(error.message as string));
       return Promise.reject(error);
     },
