@@ -22,6 +22,7 @@ const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       Cookies.remove('userToken');
+      Cookies.remove('userId');
       state.loading = false;
       state.userInfo = { ...userInfoDefault, userToken: userTokenDefault };
       state.error = null;

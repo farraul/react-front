@@ -1,5 +1,5 @@
-import { baseURL } from '@/api/axios';
 import { Token, UserInfo } from '@/models/user/user';
+import { baseURL } from '@/utilities/integrateBaseUrl';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({

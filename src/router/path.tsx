@@ -10,10 +10,10 @@ const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
-const Seo = lazy(() => import('@/pages/Seo'));
+const Seo = lazy(() => import('@/pages/SeoPage'));
 const Images = lazy(() => import('@/pages/ImagesPage'));
 const HocPattern = lazy(() => import('@/pages/HocPattern'));
-const Times = lazy(() => import('@/pages/Times'));
+const Times = lazy(() => import('@/pages/TimesPage'));
 const HookFormPage = lazy(() => import('@/pages/HookFormPage'));
 
 export const Path = (userToken: string) => {
