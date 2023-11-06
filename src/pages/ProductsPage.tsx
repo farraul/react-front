@@ -16,9 +16,8 @@ import { ColDef } from 'ag-grid-community';
 import { VscLoading } from 'react-icons/vsc';
 import Cookies from 'js-cookie';
 
-function Dashboard() {
+const ProductPage = () => {
   const [addProduct, setAddProduct] = useState(false);
-
   const [updateProduct, setEditProduct] = useState(false);
   const [productUpdate, setProductUpdate] = useState<Product>();
 
@@ -187,6 +186,6 @@ function Dashboard() {
       </div>
     </section>
   );
-}
+};
 
-export default Dashboard;
+export default ProductPage;

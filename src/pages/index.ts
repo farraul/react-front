@@ -1,5 +1,5 @@
 export { default as CallApi } from './CallApi';
-export { default as DashboardPage } from './ProductsPage';
+export { default as ProductsPage } from './ProductsPage';
 export { default as ErrorPage } from './ErrorPage';
 export { default as HomePage } from './HomePage';
 export { default as Clients } from './Clients';
