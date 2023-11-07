@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
-interface Ricky {
+export interface Ricky {
   created: string;
   episode: string[];
   gender: string;

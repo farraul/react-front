@@ -1,27 +1,36 @@
-//I dont use now this
+import { useEffect, useState } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+export const useFetch = (url: string) => {
+  const [data, setData] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
+  const [controller, setController] = useState<AbortController>();
 
-const useFetch = (
-  url: string,
-  name: string,
-  refetchOnWindowFocus = true,
-  cacheTime: number,
-  staleTime: number,
-) => {
-  const getData = async () => {
-    return fetch(url).then((res) => res.json());
+  useEffect(() => {
+    const abortController = new AbortController();
+    setController(abortController);
+
+    fetch(url, { signal: abortController.signal })
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        if (error.name === 'AbortError') {
+          console.log('Cancelled request');
+        } else {
+          setError(error);
+        }
+      })
+      .finally(() => setLoading(false));
+
+    return () => abortController.abort();
+  }, []);
+
+  const handleCancelRequest = () => {
+    if (controller) {
+      controller.abort();
+      setError('Cancelled Request');
+    }
   };
 
-  const { data, isLoading, isError, error, status } = useQuery({
-    queryKey: [`${name}`],
-    queryFn: getData,
-    refetchOnWindowFocus,
-    cacheTime,
-    staleTime,
-  });
-
-  return { data, isLoading, error, isError, status };
+  return { data, loading, error, handleCancelRequest };
 };
-
-export default useFetch;
