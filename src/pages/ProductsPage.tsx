@@ -174,7 +174,7 @@ const ProductPage = () => {
           handleIsOpen={handleEditProduct}
           action={updateProductMutation}
           product={productUpdate as Product}
-          focus={addProduct}
+          focus={updateProduct}
         />
       </Modal>
       <div style={containerStyle} className="mt-2">

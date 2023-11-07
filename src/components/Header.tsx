@@ -77,6 +77,7 @@ function Header() {
                 </IconButton>
                 <Menu
                   id="menu-appbar"
+                  // className='text-xs'
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: 'top',
@@ -90,8 +91,13 @@ function Header() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={() => navigate('/')}> {t('home')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/times')}>{t('times')}</MenuItem>
+                  <MenuItem style={{ fontSize: 10 }} onClick={() => navigate('/')}>
+                    {' '}
+                    {t('home')}
+                  </MenuItem>
+                  <MenuItem className="text-xs" onClick={() => navigate('/times')}>
+                    {t('times')}
+                  </MenuItem>
                   <MenuItem onClick={() => navigate('/hook-form')}>{t('hook-form')}</MenuItem>
                   <MenuItem onClick={() => navigate('/profile')}>{t('profile')}</MenuItem>
                   <MenuItem onClick={() => navigate('/products')}>{t('products')}</MenuItem>
