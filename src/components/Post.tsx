@@ -1,9 +1,10 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react';
 import AddComment from '@/components/AddComment';
 import CommentList from '@/components/CommentList';
+import ScrollToBottom, { useScrollToBottom, useSticky } from 'react-scroll-to-bottom'
 
 const Post = forwardRef((props, ref) => {
-  const commentsRef = useRef<HTMLDivElement>(null);
+  const commentsRef = useRef<useScrollToBottom>(null);
   const addCommentRef = useRef<HTMLInputElement>(null);
 
   useImperativeHandle(
