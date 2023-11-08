@@ -22,7 +22,7 @@ export const axiosInterceptor = () => {
         const { message } = error.response.data as any;
 
         if (message == 'jwt expired') {
-          console.log('jwt expired')
+          console.log('jwt expired');
           Cookies.remove('userToken');
           Cookies.remove('userId');
           window.location.href = '/';

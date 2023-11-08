@@ -1,39 +1,39 @@
 //way pro to do the Fetch
 
 const getSuspender = (promise: Promise<any>) => {
-    let status = "pending";
-    let response: any;
-  
-    const suspender = promise.then(
-      (res) => {
-        status = "success";
-        response = res;
-      },
-      (err) => {
-        status = "error";
-        response = err;
-      }
-    );
-  
-    const read = () => {
-      switch (status) {
-        case "pending":
-          throw suspender;
-        case "error":
-          throw response;
-        default:
-          return response;
-      }
-    };
-  
-    return { read };
+  let status = 'pending';
+  let response: any;
+
+  const suspender = promise.then(
+    (res) => {
+      status = 'success';
+      response = res;
+    },
+    (err) => {
+      status = 'error';
+      response = err;
+    },
+  );
+
+  const read = () => {
+    switch (status) {
+      case 'pending':
+        throw suspender;
+      case 'error':
+        throw response;
+      default:
+        return response;
+    }
   };
-  
-  export function fetchData(url: RequestInfo | URL) {
-    const promise = fetch(url)
-      .then((response) => response.json())
-      .then((json) => json);
-      console.log({promise})
-  
-    return getSuspender(promise);
-  }
+
+  return { read };
+};
+
+export function fetchData(url: RequestInfo | URL) {
+  const promise = fetch(url)
+    .then((response) => response.json())
+    .then((json) => json);
+  console.log({ promise });
+
+  return getSuspender(promise);
+}
