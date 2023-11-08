@@ -3,20 +3,22 @@
 git commit --amend --no-edit (después del segundo "git add ." para que se quede con el primer commit)
 
 ### Tecnologías
-* Axios - Interceptors
+* Typescript
 * Redux toolkit
-* Mui
-* Tanstack/react-query
-* Ag-grid-react
 * React-router-dom
 * I18next
-* Ag-grid-react
-* Notistack
-* Typescript
+* Axios - Interceptors
+* Tanstack/react-query
+
 * Eslint
 * Prettier
 * Husky
+
+* Mui
+* Notistack
+* Ag-grid-react
 * Tailwindcss
+* React-useanimations
 
 * Google-search-results-nodejs
 * Js-cookie

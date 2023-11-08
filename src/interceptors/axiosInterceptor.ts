@@ -19,16 +19,15 @@ export const axiosInterceptor = () => {
 
     (error: AxiosError) => {
       if (error?.response?.data) {
-        const data = error?.response?.data as any;
-        const message = data.message;
-        console.log({ message });
+        const { message } = error.response.data as any;
+
         if (message == 'jwt expired') {
+          console.log('jwt expired')
           Cookies.remove('userToken');
           Cookies.remove('userId');
           window.location.href = '/';
         }
       }
-
       SnackbarUtilities.error(getValidationError(error.message as string));
       return Promise.reject(error);
     },

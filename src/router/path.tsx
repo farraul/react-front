@@ -4,7 +4,9 @@ import React, { LazyExoticComponent, lazy } from 'react';
 
 const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
 const ErrorPage = lazy(() => import('@/pages/ErrorPage'));
-const CallApi = lazy(() => import('@/pages/CallApi'));
+const CallApiTanStack = lazy(() => import('@/pages/CallApiTanStack'));
+const CallApiUseFetch = lazy(() => import('@/pages/CallApiUseFetch'));
+const CallApiFetchPro = lazy(() => import('@/pages/CallApiFecthPro'));
 const Clients = lazy(() => import('@/pages/Clients'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const HomePage = lazy(() => import('@/pages/HomePage'));
@@ -67,12 +69,24 @@ export const Path = (userToken: string) => {
               element: pathSession(Seo),
             },
             {
-              path: '/call-api',
-              element: pathSession(CallApi),
-            },
-            {
               path: '/images',
               element: pathSession(Images),
+            },
+            {
+              path: '/call-api-tanstack',
+              element: pathSession(CallApiTanStack),
+            },
+            {
+              path: '/call-api-tanstack',
+              element: pathSession(CallApiTanStack),
+            },
+            {
+              path: '/call-api-fetch-pro',
+              element: pathSession(CallApiFetchPro),
+            },
+            {
+              path: '/call-api-usefetch',
+              element: pathSession(CallApiUseFetch),
             },
             {
               path: '/hook-form',

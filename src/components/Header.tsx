@@ -13,6 +13,16 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from './Select';
+import {
+  Collapse,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  MenuList,
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
 const languageValues = {
   es: 'Es',
@@ -20,12 +30,23 @@ const languageValues = {
 };
 
 function Header() {
-  const { t, i18n } = useTranslation('translation', { keyPrefix: 'translation.header' });
-  const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation('translation', { keyPrefix: 'translation.header' });
+  const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
+  const [openCallApi, setOpenCallApi] = React.useState(false);
+  const [openTable, setOpenTable] = React.useState(false);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleTables = () => {
+    setOpenTable(!openTable);
+  };
+
+  const handleCallApi = () => {
+    setOpenCallApi(!openCallApi);
+  };
+
   const handleMenu = (event: { currentTarget: React.SetStateAction<HTMLElement | null> }) => {
     setAnchorEl(event.currentTarget);
   };
@@ -77,7 +98,6 @@ function Header() {
                 </IconButton>
                 <Menu
                   id="menu-appbar"
-                  // className='text-xs'
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: 'top',
@@ -91,19 +111,61 @@ function Header() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem style={{ fontSize: 10 }} onClick={() => navigate('/')}>
-                    {' '}
+                  {/*revisar como añadir a todo dont size*/}
+                  <MenuItem style={{ fontSize: 14 }} onClick={() => navigate('/')}>
                     {t('home')}
                   </MenuItem>
-                  <MenuItem className="text-xs" onClick={() => navigate('/times')}>
+                  <MenuItem
+                    className="flex-none rounded-lg bg-slate-100 text-red-200"
+                    onClick={() => navigate('/times')}
+                  >
                     {t('times')}
                   </MenuItem>
                   <MenuItem onClick={() => navigate('/hook-form')}>{t('hook-form')}</MenuItem>
                   <MenuItem onClick={() => navigate('/profile')}>{t('profile')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/products')}>{t('products')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/clients')}>{t('clients')}</MenuItem>
                   <MenuItem onClick={() => navigate('/seo')}>{t('seo')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/call-api')}>{t('call-api')}</MenuItem>
+
+                  <ListItemButton onClick={handleTables}>
+                    <ListItemText primary="Tables" />
+                    {openTable ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse in={openTable} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      <ListItemButton
+                        sx={{ pl: 4, flexDirection: 'column', alignItems: 'flex-start' }}
+                      >
+                        <ListItemText primary="AgGridReact" onClick={() => navigate('/products')} />
+                        <ListItemText primary="Mui" onClick={() => navigate('/clients')} />
+                      </ListItemButton>
+                    </List>
+                  </Collapse>
+
+                  <ListItemButton onClick={handleCallApi}>
+                    <ListItemText primary="Calls Api" />
+                    {openCallApi ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse in={openCallApi} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      <ListItemButton
+                        sx={{ pl: 4, flexDirection: 'column', alignItems: 'flex-start' }}
+                      >
+                        <ListItemText
+                          primary="TanStack"
+                          onClick={() => navigate('/call-api-tanstack')}
+                        />
+                        <ListItemText
+                          primary="useFecth"
+                          onClick={() => navigate('/call-api-usefetch')}
+                        />
+
+                        <ListItemText
+                          primary="FecthPro"
+                          onClick={() => navigate('/call-api-fetch-pro')}
+                        />
+                      </ListItemButton>
+                    </List>
+                  </Collapse>
+
                   <MenuItem onClick={() => navigate('/images')}>{t('images')}</MenuItem>
                   <MenuItem onClick={() => navigate('/hoc-pattern')}>{t('hoc-pattern')}</MenuItem>
                   <MenuItem onClick={handleLogout}>{t('logout')}</MenuItem>

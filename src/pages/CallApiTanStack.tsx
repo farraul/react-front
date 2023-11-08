@@ -16,7 +16,7 @@ export interface Ricky {
   type: string;
   url: string;
 }
-const CallApi = () => {
+const CallApiTanStack = () => {
   const [ricky, setRicky] = useState<Ricky[]>([]);
 
   const getRicky = async () => {
@@ -57,4 +57,4 @@ const CallApi = () => {
   );
 };
 
-export default CallApi;
+export default CallApiTanStack;
