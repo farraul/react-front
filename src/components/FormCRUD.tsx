@@ -26,14 +26,14 @@ const FormCRUD = ({
   product?: Product;
   focus: boolean;
 }) => {
+  const { userInfo } = useAppSelector((state: { user: any }) => state.user);
   const [values, setValues] = useState<Partial<Product>>();
+
   useEffect(() => {
     if (product) {
       setValues(product);
     }
   }, [product]);
-
-  const { userInfo } = useAppSelector((state: { user: any }) => state.user);
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;

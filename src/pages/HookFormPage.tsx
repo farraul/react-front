@@ -8,7 +8,7 @@ type Inputs = {
   phone: number;
 };
 
-function Times() {
+function HookFormPage() {
   const {
     register,
     handleSubmit,
@@ -53,4 +53,4 @@ function Times() {
   );
 }
 
-export default Times;
+export default HookFormPage;

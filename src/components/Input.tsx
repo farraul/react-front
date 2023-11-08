@@ -8,6 +8,7 @@ type AttributeProps = React.DetailedHTMLProps<
 
 type InputGeneric = AttributeProps & { isFocused?: boolean };
 
+//revisar este bloque
 const Input = forwardRef(
   (
     {
@@ -22,6 +23,7 @@ const Input = forwardRef(
     ref,
   ) => {
     const localRef = useRef<HTMLInputElement>(null);
+
     useImperativeHandle(ref, () => ({
       focus: () => localRef.current?.focus(),
     }));

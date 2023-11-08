@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -13,14 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from './Select';
-import {
-  Collapse,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  MenuList,
-} from '@mui/material';
+import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 
@@ -29,14 +22,15 @@ const languageValues = {
   en: 'En',
 };
 
+let fontSizeMenu = { fontSize: 20 };
+
 function Header() {
   const dispatch = useAppDispatch();
+  const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'translation.header' });
-  const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
   const [openCallApi, setOpenCallApi] = React.useState(false);
   const [openTable, setOpenTable] = React.useState(false);
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleTables = () => {
@@ -68,7 +62,7 @@ function Header() {
     <>
       {/* {isFetching && <Spinner />} */}
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" sx={{ px: 5 }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {t('logo')}
@@ -94,8 +88,9 @@ function Header() {
                   onClick={handleMenu}
                   color="inherit"
                 >
-                  <AccountCircle />
+                  <MenuIcon className="ml-5" />
                 </IconButton>
+                {/*Menú lateral*/}
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
@@ -111,37 +106,54 @@ function Header() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  {/*revisar como añadir a todo dont size*/}
-                  <MenuItem style={{ fontSize: 14 }} onClick={() => navigate('/')}>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/')}>
                     {t('home')}
                   </MenuItem>
-                  <MenuItem
-                    className="flex-none rounded-lg bg-slate-100 text-red-200"
-                    onClick={() => navigate('/times')}
-                  >
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/times')}>
                     {t('times')}
                   </MenuItem>
-                  <MenuItem onClick={() => navigate('/hook-form')}>{t('hook-form')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/profile')}>{t('profile')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/seo')}>{t('seo')}</MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hook-form')}>
+                    {t('hook-form')}
+                  </MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/profile')}>
+                    {t('profile')}
+                  </MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/seo')}>
+                    {t('seo')}
+                  </MenuItem>
 
-                  <ListItemButton onClick={handleTables}>
-                    <ListItemText primary="Tables" />
+                  <ListItemButton sx={fontSizeMenu} onClick={handleTables}>
+                    <ListItemText sx={fontSizeMenu} primary="Tables" disableTypography={true} />
                     {openTable ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
                   <Collapse in={openTable} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       <ListItemButton
-                        sx={{ pl: 4, flexDirection: 'column', alignItems: 'flex-start' }}
+                        sx={{
+                          pl: 4,
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                          fontSize: 9,
+                        }}
                       >
-                        <ListItemText primary="AgGridReact" onClick={() => navigate('/products')} />
-                        <ListItemText primary="Mui" onClick={() => navigate('/clients')} />
+                        <ListItemText
+                          sx={fontSizeMenu}
+                          disableTypography={true}
+                          primary="AgGridReact"
+                          onClick={() => navigate('/products')}
+                        />
+                        <ListItemText
+                          sx={fontSizeMenu}
+                          disableTypography={true}
+                          primary="Mui"
+                          onClick={() => navigate('/clients')}
+                        />
                       </ListItemButton>
                     </List>
                   </Collapse>
 
                   <ListItemButton onClick={handleCallApi}>
-                    <ListItemText primary="Calls Api" />
+                    <ListItemText primary="Calls Api" sx={fontSizeMenu} disableTypography={true} />
                     {openCallApi ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
                   <Collapse in={openCallApi} timeout="auto" unmountOnExit>
@@ -150,15 +162,21 @@ function Header() {
                         sx={{ pl: 4, flexDirection: 'column', alignItems: 'flex-start' }}
                       >
                         <ListItemText
+                          sx={fontSizeMenu}
+                          disableTypography={true}
                           primary="TanStack"
                           onClick={() => navigate('/call-api-tanstack')}
                         />
                         <ListItemText
+                          sx={fontSizeMenu}
+                          disableTypography={true}
                           primary="useFecth"
                           onClick={() => navigate('/call-api-usefetch')}
                         />
 
                         <ListItemText
+                          sx={fontSizeMenu}
+                          disableTypography={true}
                           primary="FecthPro"
                           onClick={() => navigate('/call-api-fetch-pro')}
                         />
@@ -166,9 +184,18 @@ function Header() {
                     </List>
                   </Collapse>
 
-                  <MenuItem onClick={() => navigate('/images')}>{t('images')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/hoc-pattern')}>{t('hoc-pattern')}</MenuItem>
-                  <MenuItem onClick={handleLogout}>{t('logout')}</MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/images')}>
+                    {t('images')}
+                  </MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hoc-pattern')}>
+                    {t('hoc-pattern')}
+                  </MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hook-imperative-handle')}>
+                    useImperativeHandle
+                  </MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={handleLogout}>
+                    {t('logout')}
+                  </MenuItem>
                 </Menu>
               </div>
             ) : null}

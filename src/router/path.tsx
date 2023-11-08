@@ -17,6 +17,7 @@ const Images = lazy(() => import('@/pages/ImagesPage'));
 const HocPattern = lazy(() => import('@/pages/HocPattern'));
 const Times = lazy(() => import('@/pages/TimesPage'));
 const HookFormPage = lazy(() => import('@/pages/HookFormPage'));
+const HookImperativeHandle = lazy(() => import('@/pages/HookImperativeHandle'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
@@ -96,6 +97,11 @@ export const Path = (userToken: string) => {
               path: '/hoc-pattern',
               element: pathSession(HocPattern),
             },
+            {
+              path: '/hook-imperative-handle',
+              element: pathSession(HookImperativeHandle),
+            },
+
             {
               path: '*',
               element: <ErrorPage />,

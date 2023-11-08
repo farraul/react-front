@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-function Times() {
+function TimesPage() {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   return (
     <section className="h-[calc(100vh-64px)] p-16 bg-gray-600 text-white">
@@ -31,4 +31,4 @@ function Times() {
   );
 }
 
-export default Times;
+export default TimesPage;

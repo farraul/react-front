@@ -1,8 +1,4 @@
-## Project
-
-git commit --amend --no-edit (después del segundo "git add ." para que se quede con el primer commit)
-
-### Tecnologías
+### Technologies
 * Typescript
 * Redux toolkit
 * React-router-dom
@@ -19,7 +15,25 @@ git commit --amend --no-edit (después del segundo "git add ." para que se quede
 * Ag-grid-react
 * Tailwindcss
 * React-useanimations
+* React-icons
 
-* Google-search-results-nodejs
+* React-hook-form
+
+* Date-fns
+* Date-fns-tz
+* React-datepicker
+
 * Js-cookie
 * Use-debounce
+
+### Commandos
+#### How to upload changes
+git add.
+git commit -m "..." 
+Is executed Eslint & Prettier
+> git add . 
+git commit --amend --no-edit  
+git push
+
+## Requirements
+The project needs the file .env with the variables for correct operation

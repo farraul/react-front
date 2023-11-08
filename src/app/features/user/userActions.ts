@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
-import { instance as axios } from '../../../api/axios.js';
+import { instance as axios } from '@/api/axios.js';
 import { userServicesConfig } from '@/services';
 import { SignIn, SignUp } from '@/models/auth.js';
 import Cookies from 'js-cookie';
