@@ -29,11 +29,17 @@
 ### Commandos
 #### How to upload changes
 git add.
-git commit -m "..." 
+
+git commit -m "..."
+
 Is executed Eslint & Prettier
-> git add . 
-git commit --amend --no-edit  
+
+git add .
+
+git commit --amend --no-edit
+
 git push
+
 
 ## Requirements
 The project needs the file .env with the variables for correct operation
