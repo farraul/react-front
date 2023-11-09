@@ -22,6 +22,7 @@
 * Date-fns
 * Date-fns-tz
 * React-datepicker
+* React-window
 
 * Js-cookie
 * Use-debounce

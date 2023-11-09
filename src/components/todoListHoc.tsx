@@ -9,7 +9,6 @@ type dataSet = {
 };
 
 const TodoListHoc = ({ query, dataSet }: { query: string; dataSet: dataSet[] }) => {
-  console.log({ dataSet });
   const items = filterItems(query, dataSet);
   return (
     <div>

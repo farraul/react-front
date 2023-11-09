@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { MutableRefObject, useRef } from 'react';
 import Post from '@/components/Post';
 import React from 'react';
 
