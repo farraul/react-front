@@ -4,7 +4,7 @@ import CommentList from '@/components/CommentList';
 import ScrollToBottom, { useScrollToBottom, useSticky } from 'react-scroll-to-bottom';
 
 const Post = forwardRef((props, ref) => {
-   //revisarrr
+  //revisarrr
   const commentsRef = useRef<any>(null);
   const addCommentRef = useRef<HTMLInputElement>(null);
 

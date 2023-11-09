@@ -2,7 +2,6 @@ import { Divider, MenuItem } from '@mui/material';
 import React from 'react';
 
 export const TitleMenu = ({ text }: { text: string }) => {
-
   return (
     <>
       <div className="bg-slate-300">
