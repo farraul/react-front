@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { logout } from '@/app/features/user/userSlices';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
@@ -16,13 +16,14 @@ import { Select } from './Select';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import { TitleMenu } from './TitleMenu';
 
 const languageValues = {
   es: 'Es',
   en: 'En',
 };
 
-let fontSizeMenu = { fontSize: 20 };
+let fontSizeMenu = { fontSize: 17 };
 
 function Header() {
   const dispatch = useAppDispatch();
@@ -64,7 +65,7 @@ function Header() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ px: 5 }}>
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="a" sx={{ flexGrow: 1 }} href="/">
               {t('logo')}
             </Typography>
 
@@ -109,48 +110,17 @@ function Header() {
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/')}>
                     {t('home')}
                   </MenuItem>
-                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/times')}>
-                    {t('times')}
-                  </MenuItem>
-                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hook-form')}>
-                    {t('hook-form')}
-                  </MenuItem>
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/profile')}>
                     {t('profile')}
                   </MenuItem>
+                  <TitleMenu text="Herramientas creadas" />
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/seo')}>
                     {t('seo')}
                   </MenuItem>
-
-                  <ListItemButton sx={fontSizeMenu} onClick={handleTables}>
-                    <ListItemText sx={fontSizeMenu} primary="Tables" disableTypography={true} />
-                    {openTable ? <ExpandLess /> : <ExpandMore />}
-                  </ListItemButton>
-                  <Collapse in={openTable} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                      <ListItemButton
-                        sx={{
-                          pl: 4,
-                          flexDirection: 'column',
-                          alignItems: 'flex-start',
-                          fontSize: 9,
-                        }}
-                      >
-                        <ListItemText
-                          sx={fontSizeMenu}
-                          disableTypography={true}
-                          primary="AgGridReact"
-                          onClick={() => navigate('/products')}
-                        />
-                        <ListItemText
-                          sx={fontSizeMenu}
-                          disableTypography={true}
-                          primary="Mui"
-                          onClick={() => navigate('/clients')}
-                        />
-                      </ListItemButton>
-                    </List>
-                  </Collapse>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/images')}>
+                    {t('images')}
+                  </MenuItem>
+                  <TitleMenu text="Ejemplos" />
 
                   <ListItemButton onClick={handleCallApi}>
                     <ListItemText primary="Calls Api" sx={fontSizeMenu} disableTypography={true} />
@@ -183,17 +153,55 @@ function Header() {
                       </ListItemButton>
                     </List>
                   </Collapse>
-
-                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/images')}>
-                    {t('images')}
-                  </MenuItem>
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hoc-pattern')}>
                     {t('hoc-pattern')}
                   </MenuItem>
+
+                  <TitleMenu text="Hooks React" />
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hook-imperative-handle')}>
                     useImperativeHandle
                   </MenuItem>
-                  <MenuItem sx={fontSizeMenu} onClick={handleLogout}>
+                  <TitleMenu text="Librerías externas" />
+                  <ListItemButton sx={fontSizeMenu} onClick={handleTables}>
+                    <ListItemText sx={fontSizeMenu} primary="Tables" disableTypography={true} />
+                    {openTable ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse in={openTable} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      <ListItemButton
+                        sx={{
+                          pl: 4,
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                          fontSize: 9,
+                        }}
+                      >
+                        <ListItemText
+                          sx={fontSizeMenu}
+                          disableTypography={true}
+                          primary="AgGridReact"
+                          onClick={() => navigate('/products')}
+                        />
+                        <ListItemText
+                          sx={fontSizeMenu}
+                          disableTypography={true}
+                          primary="Mui"
+                          onClick={() => navigate('/clients')}
+                        />
+                      </ListItemButton>
+                    </List>
+                  </Collapse>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/times')}>
+                    Date-fns & react-datepicker
+                  </MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hook-form')}>
+                    {t('hook-form')}
+                  </MenuItem>
+                  <MenuItem
+                    className="bg-slate-300"
+                    sx={{ fontSizeMenu, bgcolor: '#ff9292' }}
+                    onClick={handleLogout}
+                  >
                     {t('logout')}
                   </MenuItem>
                 </Menu>

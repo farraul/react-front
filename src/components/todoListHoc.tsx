@@ -2,7 +2,14 @@ import { filterItems } from '@/utilities/filterItems';
 import React from 'react';
 import TodoItemHoc from './TodoItemHoc';
 
-const TodoListHoc = ({ query, dataSet }: { query: any; dataSet: any }) => {
+type dataSet = {
+  id: number;
+  title: string;
+  completed: boolean;
+};
+
+const TodoListHoc = ({ query, dataSet }: { query: string; dataSet: dataSet[] }) => {
+  console.log({dataSet})
   const items = filterItems(query, dataSet);
   return (
     <div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
 const CommentList = forwardRef(function CommentList(props, ref) {
@@ -8,7 +9,7 @@ const CommentList = forwardRef(function CommentList(props, ref) {
     () => {
       return {
         scrollToBottom() {
-          const node = divRef.current;
+          const node: any = divRef.current;
           node.scrollTop = node.scrollHeight;
         },
       };
