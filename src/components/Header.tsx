@@ -197,6 +197,9 @@ function Header() {
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hook-form')}>
                     {t('hook-form')}
                   </MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/react-windows')}>
+                    React Windows
+                  </MenuItem>
                   <MenuItem
                     className="bg-slate-300"
                     sx={{ fontSizeMenu, bgcolor: '#ff9292' }}

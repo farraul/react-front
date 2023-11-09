@@ -18,6 +18,7 @@ const HocPattern = lazy(() => import('@/pages/HocPattern'));
 const Times = lazy(() => import('@/pages/TimesPage'));
 const HookFormPage = lazy(() => import('@/pages/HookFormPage'));
 const HookImperativeHandle = lazy(() => import('@/pages/HookImperativeHandle'));
+const ReactWindowPage = lazy(() => import('@/pages/ReactWindow'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
@@ -100,6 +101,10 @@ export const Path = (userToken: string) => {
             {
               path: '/hook-imperative-handle',
               element: pathSession(HookImperativeHandle),
+            },
+            {
+              path: '/react-windows',
+              element: pathSession(ReactWindowPage),
             },
 
             {
