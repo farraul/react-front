@@ -1,11 +1,11 @@
+import { BASE_URL } from '@/constants';
 import { Token, UserInfo } from '@/models/user/user';
-import { baseURL } from '@/utilities/integrateBaseUrl';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: baseURL,
+    baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as { user: Token }).user.userToken;
       if (token) {

@@ -4,21 +4,21 @@ import React, { LazyExoticComponent, lazy } from 'react';
 
 const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
 const ErrorPage = lazy(() => import('@/pages/ErrorPage'));
-const CallApiTanStack = lazy(() => import('@/pages/CallApiTanStack'));
-const CallApiUseFetch = lazy(() => import('@/pages/CallApiUseFetch'));
-const CallApiFetchPro = lazy(() => import('@/pages/CallApiFecthPro'));
-const Clients = lazy(() => import('@/pages/Clients'));
+const CallApiTanStack = lazy(() => import('@/pages/CallApiTanStackPage'));
+const CallApiUseFetch = lazy(() => import('@/pages/CallApiUseFetchPage'));
+const CallApiFetchPro = lazy(() => import('@/pages/CallApiFecthPro.tsxPage'));
+const Clients = lazy(() => import('@/pages/ClientsPage'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
 const Seo = lazy(() => import('@/pages/SeoPage'));
 const Images = lazy(() => import('@/pages/ImagesPage'));
-const HocPattern = lazy(() => import('@/pages/HocPattern'));
+const HocPattern = lazy(() => import('@/pages/Hoc/PageHocPattern'));
 const Times = lazy(() => import('@/pages/TimesPage'));
 const HookFormPage = lazy(() => import('@/pages/HookFormPage'));
-const HookImperativeHandle = lazy(() => import('@/pages/HookImperativeHandle'));
-const ReactWindowPage = lazy(() => import('@/pages/ReactWindow'));
+const HookImperativeHandle = lazy(() => import('@/pages/HookImperativeHandlePage'));
+const ReactWindowPage = lazy(() => import('@/pages/ReactWindowPage'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {

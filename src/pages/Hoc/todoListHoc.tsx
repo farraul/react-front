@@ -1,6 +1,6 @@
 import { filterItems } from '@/utilities/filterItems';
 import React from 'react';
-import TodoItemHoc from './TodoItemHoc';
+import TodoItemHoc from './toDoItemHoc';
 
 type dataSet = {
   id: number;

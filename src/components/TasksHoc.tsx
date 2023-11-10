@@ -1,5 +1,5 @@
-import WithSearchHoc from './WithSearchHoc';
-import TodoListHoc from './TodoListHoc';
+import WithSearchHoc from '../pages/Hoc/withSearchHoc';
+import TodoListHoc from '../pages/Hoc/todoListHoc';
 
 const TasksHoc = () => {
   const tasks = [

@@ -2,8 +2,8 @@ import { SnackbarProvider } from 'notistack';
 import { Outlet } from 'react-router-dom'; //para mostrar children
 import { CacheProvider } from '@emotion/react'; // es para no colisionar material ui y tailwind
 import createCache from '@emotion/cache';
-import { SnackbarUtilitiesConfigurator } from '../utilities';
-import Header from './Header';
+import { SnackbarUtilitiesConfigurator } from '../../utilities';
+import { Header } from './Header';
 import React from 'react';
 
 const myCache = createCache({

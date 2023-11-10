@@ -1,5 +1,5 @@
-import WithSearchHoc from './WithSearchHoc';
-import TodoListHoc from './TodoListHoc';
+import WithSearchHoc from './withSearchHoc';
+import TodoListHoc from './todoListHoc';
 
 const ServicesHoc = () => {
   const Services = [

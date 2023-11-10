@@ -12,11 +12,11 @@ import { logout } from '@/app/features/user/userSlices';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Select } from './Select';
+import { Select } from '../../Ui/Select';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { TitleMenu } from './TitleMenu';
+import { TitleMenu } from '../../TitleMenu';
 
 const languageValues = {
   es: 'Es',
