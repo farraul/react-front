@@ -1,5 +1,5 @@
 import { Product, ProductCreate } from '@/models/product';
-import { instance as axios } from '../api/axios';
+import axios from 'axios';
 
 export const getProductsRequest = async (id: string): Promise<Product[]> => {
   const response = await axios.get(`/api/user/products/${id}`);

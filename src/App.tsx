@@ -10,9 +10,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import './lang';
 import { SnackbarProvider } from 'notistack';
+import axios from 'axios';
 
 axiosInterceptor();
 const queryClient = new QueryClient();
+
+console.log(import.meta.env.VITE_PUBLIC_API_URL);
+axios.defaults.baseURL = import.meta.env.VITE_PUBLIC_API_URL;
+console.log({ axios });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

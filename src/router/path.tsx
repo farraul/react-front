@@ -106,7 +106,6 @@ export const Path = (userToken: string) => {
               path: '/react-windows',
               element: pathSession(ReactWindowPage),
             },
-
             {
               path: '*',
               element: <ErrorPage />,

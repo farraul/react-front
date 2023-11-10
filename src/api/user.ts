@@ -1,7 +1,7 @@
-import { instance } from './axios';
+import axios from 'axios';
 
 export const getMe = async (userToken: string) => {
-  return await instance({
+  return await axios({
     method: 'GET',
     url: 'api/user/profile',
     headers: {
@@ -11,14 +11,14 @@ export const getMe = async (userToken: string) => {
 };
 
 export const getUrlsSeo = async (id: string) => {
-  return await instance({
+  return await axios({
     method: 'GET',
     url: `/api/user/seo/${id}`,
   });
 };
 
 export const createUrlsSeo = async (id: string, urlSeo: string) => {
-  return await instance({
+  return await axios({
     method: 'POST',
     url: `api/user/seo/`,
     data: { id, urlSeo },

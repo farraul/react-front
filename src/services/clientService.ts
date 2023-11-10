@@ -1,5 +1,5 @@
-import { instance as axios } from '../api/axios';
 import { Client } from '@/models/user/client';
+import axios from 'axios';
 
 export const getClientsRequest = async (id: string): Promise<Client[]> => {
   const response = await axios.get(`/api/user/clients/${id}`);

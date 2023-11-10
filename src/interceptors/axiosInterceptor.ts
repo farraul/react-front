@@ -1,5 +1,4 @@
-import { AxiosError, AxiosResponse } from 'axios';
-import { instance as axios } from '@/api/axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { SnackbarUtilities } from '@/utilities';
 import { getValidationError } from '@/utilities/getValidation';
 import Cookies from 'js-cookie';
