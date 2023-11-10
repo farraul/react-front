@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoItemHoc = ({ title, completed }: { title: string; completed: boolean }) => {
+const ToDoItem = ({ title, completed }: { title: string; completed: boolean }) => {
   return (
     <div>
       <input type="checkbox" defaultChecked={completed} className="mr-2" />
@@ -9,4 +9,4 @@ const TodoItemHoc = ({ title, completed }: { title: string; completed: boolean }
   );
 };
 
-export default TodoItemHoc;
+export default ToDoItem;

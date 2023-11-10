@@ -1,6 +1,6 @@
 import { filterItems } from '@/utilities/filterItems';
 import React from 'react';
-import TodoItemHoc from './toDoItemHoc';
+import ToDoItem from './ToDoItem';
 
 type dataSet = {
   id: number;
@@ -8,15 +8,15 @@ type dataSet = {
   completed: boolean;
 };
 
-const TodoListHoc = ({ query, dataSet }: { query: string; dataSet: dataSet[] }) => {
+const TodoList = ({ query, dataSet }: { query: string; dataSet: dataSet[] }) => {
   const items = filterItems(query, dataSet);
   return (
     <div>
       {items.map((product) => (
-        <TodoItemHoc title={product.title} completed={product.completed} />
+        <ToDoItem title={product.title} completed={product.completed} />
       ))}
     </div>
   );
 };
 
-export default TodoListHoc;
+export default TodoList;

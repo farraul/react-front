@@ -1,5 +1,6 @@
-import { ServicesHoc, TasksHoc } from '@/components';
-import React, { useEffect } from 'react';
+import React from 'react';
+import Services from './Services';
+import Tasks from './Tasks';
 const HocPattern = () => {
   return (
     <>
@@ -7,10 +8,10 @@ const HocPattern = () => {
         <h1 className="text-center">En esta sección estamos el patrón de diseño HOC</h1>
         <div className="flex justify-evenly	mt-20">
           <div className="w-50">
-            <ServicesHoc />
+            <Services />
           </div>
           <div className="w-50">
-            <TasksHoc />
+            <Tasks />
           </div>
         </div>
       </div>

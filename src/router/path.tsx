@@ -14,10 +14,12 @@ const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
 const Seo = lazy(() => import('@/pages/SeoPage'));
 const Images = lazy(() => import('@/pages/ImagesPage'));
-const HocPattern = lazy(() => import('@/pages/Hoc/PageHocPattern'));
+const HocPattern = lazy(() => import('@/pages/TasksHoc/HocPatternPage'));
 const Times = lazy(() => import('@/pages/TimesPage'));
 const HookFormPage = lazy(() => import('@/pages/HookFormPage'));
-const HookImperativeHandle = lazy(() => import('@/pages/HookImperativeHandlePage'));
+const HookImperativeHandle = lazy(
+  () => import('@/pages/HookImperativeHandlePage/HookImperativeHandlePage'),
+);
 const ReactWindowPage = lazy(() => import('@/pages/ReactWindowPage'));
 
 export const Path = (userToken: string) => {

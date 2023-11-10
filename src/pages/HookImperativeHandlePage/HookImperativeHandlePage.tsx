@@ -1,5 +1,5 @@
 import { MutableRefObject, useRef } from 'react';
-import Post from '@/components/Post';
+import Post from '@/pages/HookImperativeHandlePage/Post';
 import React from 'react';
 
 const HookImperativeHandle = () => {

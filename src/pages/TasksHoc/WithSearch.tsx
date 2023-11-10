@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const WithSearchHoc = ({ Component, dataSet }: { Component: any; dataSet: any }) => {
+const WithSearch = ({ Component, dataSet }: { Component: any; dataSet: any }) => {
   const [query, setQuery] = useState('');
 
   const handleChange = (e: any) => {
@@ -14,4 +14,4 @@ const WithSearchHoc = ({ Component, dataSet }: { Component: any; dataSet: any })
   );
 };
 
-export default WithSearchHoc;
+export default WithSearch;

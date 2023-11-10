@@ -1,7 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react';
-import AddComment from '@/components/AddComment';
-import CommentList from '@/components/CommentList';
-import ScrollToBottom, { useScrollToBottom, useSticky } from 'react-scroll-to-bottom';
+import AddComment from '@/pages/HookImperativeHandlePage/AddComment';
+import CommentList from '@/pages/HookImperativeHandlePage/CommentList';
 
 const Post = forwardRef((props, ref) => {
   //revisar
