@@ -165,11 +165,11 @@ const ProductPage = () => {
           Add product
         </button>
       </div>
-      <Modal show={handleAddProduct} title="Add product" isOpen={addProduct}>
+      <Modal close={handleAddProduct} title="Add product" isOpen={addProduct}>
         <FormCRUD handleIsOpen={handleAddProduct} action={addProductMutation} focus={addProduct} />
       </Modal>
 
-      <Modal show={handleEditProduct} title="Edit product" isOpen={updateProduct}>
+      <Modal close={handleEditProduct} title="Edit product" isOpen={updateProduct}>
         <FormCRUD
           handleIsOpen={handleEditProduct}
           action={updateProductMutation}

@@ -33,6 +33,7 @@ function Header() {
   const [openCallApi, setOpenCallApi] = React.useState(false);
   const [openTable, setOpenTable] = React.useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [language, setLanguage] = useState('');
 
   const handleTables = () => {
     setOpenTable(!openTable);
@@ -55,7 +56,7 @@ function Header() {
   };
 
   const handleChangeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
+    setLanguage(e.target.value)
     i18n.changeLanguage(e.target.value);
   };
 
@@ -73,7 +74,7 @@ function Header() {
               <Select
                 id="language"
                 name="languaje"
-                values=""
+                values={language}
                 onChange={handleChangeLanguage}
                 placeholder=""
                 options={languageValues}
