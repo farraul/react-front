@@ -56,7 +56,7 @@ function Header() {
   };
 
   const handleChangeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(e.target.value)
+    setLanguage(e.target.value);
     i18n.changeLanguage(e.target.value);
   };
 
