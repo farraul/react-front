@@ -34,7 +34,7 @@ const ProfilePage = () => {
                 <Avatar {...stringAvatar(firstName)} />
                 <div className="py-8">
                   <p>
-                    <b>Name: </b> {firstName}
+                    <b>Namee: </b> {firstName}
                   </p>
                   <p>
                     {' '}
