@@ -1,7 +1,9 @@
+import { URL_GIPHY_API } from '@/constants';
 import { ApiResponse } from '@/models/imgGiphy';
 import { AddQueryByField } from '@/utilities';
+
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
-const baseApiGiphy = 'https://api.giphy.com/v1';
+const baseApiGiphy = URL_GIPHY_API;
 
 const fromAPIResponse = (apiResponse: ApiResponse) => {
   const { data = [] } = apiResponse;

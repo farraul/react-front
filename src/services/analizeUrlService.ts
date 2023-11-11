@@ -1,3 +1,4 @@
+import { URL_RAPID_API } from '@/constants';
 import axios from 'axios';
 
 export const getAnalyseUrlSeo = async (url: string) => {
@@ -6,7 +7,7 @@ export const getAnalyseUrlSeo = async (url: string) => {
 
   const options = {
     method: 'POST',
-    url: 'https://canssens-seo-extraction-v1.p.rapidapi.com/seo/api/',
+    url: URL_RAPID_API,
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
       'X-RapidAPI-Key': import.meta.env.VITE_APP_API_KEY_RAPIDAPI,

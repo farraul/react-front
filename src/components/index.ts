@@ -3,7 +3,6 @@ export { default as FormCRUD } from './Ui/FormCRUD';
 export { default as Input } from './Ui/Input';
 export { default as Layout } from './Layout';
 export { default as Modal } from './Ui/Modal';
-export { default as ProtectedRoutes } from './ProtectedRoutes';
 export { default as Spinner } from './Ui/Spinner';
 export { default as Tasks } from '../pages/TasksHoc/Tasks';
 export { default as Services } from '../pages/TasksHoc/Services';

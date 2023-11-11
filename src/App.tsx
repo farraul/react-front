@@ -16,7 +16,7 @@ axiosInterceptor();
 const queryClient = new QueryClient();
 
 console.log(import.meta.env.VITE_PUBLIC_API_URL);
-axios.defaults.baseURL = import.meta.env.VITE_PUBLIC_API_URL;
+axios.defaults.baseURL = `${import.meta.env.VITE_PUBLIC_API_URL}/api`;
 console.log({ axios });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
