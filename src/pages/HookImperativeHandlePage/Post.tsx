@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react';
-import AddComment from '@/pages/HookImperativeHandlePage/AddComment';
-import CommentList from '@/pages/HookImperativeHandlePage/CommentList';
+import AddComment from 'src/pages/HookImperativeHandlePage/AddComment';
+import CommentList from 'src/pages/HookImperativeHandlePage/CommentList';
 
 const Post = forwardRef((props, ref) => {
   //revisar

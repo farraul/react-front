@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { CssBaseline, Container } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
-import { userRegister } from '@/app/features/user/userActions';
-import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
-import { SignUp } from '@/models/auth';
-import { Button, Input } from '@/components';
+import { userRegister } from 'src/app/features/user/userActions';
+import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
+import { SignUp } from 'src/models/auth';
+import { Button, Input } from 'src/components';
 
 const initialState: SignUp = {
   firstName: '',

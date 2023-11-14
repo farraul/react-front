@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getImages } from '@/services/';
+import { getImages } from 'src/services/';
 import { useDebounce } from 'use-debounce';
 
 interface ImageData {
@@ -24,7 +24,7 @@ const ImagesPage = () => {
 
   useEffect(() => {
     if (images.length) {
-      const targetElement = document.getElementById(`observer-target`);
+      const targetElement = document.getElementById('observer-target');
 
       if (targetElement) {
         console.log({ targetElement });

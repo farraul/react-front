@@ -8,8 +8,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '@/app/features/user/userSlices';
-import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
+import { logout } from 'src/app/features/user/userSlices';
+import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from '../../Ui/Select';
@@ -23,7 +23,7 @@ const languageValues = {
   en: 'En',
 };
 
-let fontSizeMenu = { fontSize: 17 };
+const fontSizeMenu = { fontSize: 17 };
 
 function Header() {
   const dispatch = useAppDispatch();

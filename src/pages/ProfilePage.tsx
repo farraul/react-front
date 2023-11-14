@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
-import { useAppSelector } from '@/hooks/useApp';
+import { useAppSelector } from 'src/hooks/useApp';
 import Card from '@mui/material/Card';
 import UseAnimations from 'react-useanimations';
 import github from 'react-useanimations/lib/github';

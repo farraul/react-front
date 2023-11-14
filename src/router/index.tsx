@@ -1,11 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useRoutes } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { setCredentials } from '@/app/features/user/userSlices';
-import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
-import { getMe } from '@/api/user';
+import { setCredentials } from 'src/app/features/user/userSlices';
+import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
+import { getMe } from 'src/api/user';
 import { Path } from './path';
-import { Spinner } from '@/components';
+import { Spinner } from 'src/components';
 import { AxiosError } from 'axios';
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
   const fetchMe = async (userToken: string) => {
     setLoading(true);
     try {
-      let me = await (await getMe(userToken)).data;
+      const me = await (await getMe(userToken)).data;
       me['userToken'] = userToken;
       setLoading(false);
       if (me) dispatch(setCredentials(me));

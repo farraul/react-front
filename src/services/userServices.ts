@@ -1,5 +1,5 @@
-import { BASE_URL } from '@/constants';
-import { Token, UserInfo } from '@/models/user/user';
+import { BASE_URL } from 'src/constants/API';
+import { Token, UserInfo } from 'src/models/user/user';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({
@@ -17,7 +17,7 @@ export const userApi = createApi({
   endpoints: (build) => ({
     getDetails: build.query<UserInfo, string>({
       query: () => ({
-        url: 'api/user/profile',
+        url: '/user/profile',
         method: 'GET',
       }),
     }),

@@ -1,4 +1,4 @@
-import { Divider, MenuItem } from '@mui/material';
+import { Divider } from '@mui/material';
 import React from 'react';
 
 export const TitleMenu = ({ text }: { text: string }) => {

@@ -20,7 +20,7 @@ export const getUrlsSeo = async (id: string) => {
 export const createUrlsSeo = async (id: string, urlSeo: string) => {
   return await axios({
     method: 'POST',
-    url: `/user/seo/`,
+    url: '/user/seo/',
     data: { id, urlSeo },
   });
 };

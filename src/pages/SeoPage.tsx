@@ -1,17 +1,17 @@
 import { FormEvent, useEffect } from 'react';
-import useSeoData from '@/hooks/useSeoData';
-import { Headings, SeoHeading, Seo as SeoInterface } from '@/models/seo';
+import useSeoData from 'src/hooks/useSeoData';
+import { Headings, SeoHeading, Seo as SeoInterface } from 'src/models/seo';
 import { Button, TextField, Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
-import { SnackbarUtilities } from '@/utilities';
+import { SnackbarUtilities } from 'src/utilities';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
-import { validateUrl } from '@/utilities/validateUrl';
-import { getAnalyseUrlSeo } from '@/services';
-import { createUrlsSeo, getUrlsSeo } from '@/api/user';
-import { useAppSelector } from '@/hooks/useApp';
+import { validateUrl } from 'src/utilities/validateUrl';
+import { getAnalyseUrlSeo } from 'src/services';
+import { createUrlsSeo, getUrlsSeo } from 'src/api/user';
+import { useAppSelector } from 'src/hooks/useApp';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 
@@ -67,7 +67,7 @@ const Seo = () => {
       try {
         const response = await getAnalyseUrlSeo(url);
 
-        let headings: Headings[] = [];
+        const headings: Headings[] = [];
 
         for (let i = 0; i <= 6; i++) {
           if (response.data[`h${i}`]?.length) {

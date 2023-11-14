@@ -1,4 +1,4 @@
-import { filterItems } from '@/utilities/filterItems';
+import { filterItems } from 'src/utilities/filterItems';
 import React from 'react';
 import ToDoItem from './ToDoItem';
 

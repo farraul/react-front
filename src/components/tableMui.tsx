@@ -22,7 +22,7 @@ import {
 } from '@mui/x-data-grid';
 import { randomId } from '@mui/x-data-grid-generator';
 import { UseMutationResult } from '@tanstack/react-query';
-import { Client } from '@/models/user/client';
+import { Client } from 'src/models/user/client';
 
 type EditToolbarProps = {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;

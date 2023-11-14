@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import { GridRowModesModel, GridColDef, GridValidRowModel } from '@mui/x-data-grid';
+import { GridRowModesModel, GridValidRowModel } from '@mui/x-data-grid';
 import {
   createClientRequest,
   getClientsRequest,
   updateClientRequest,
   deleteClientRequest,
-} from '@/services/clientServices';
+} from 'src/services/clientServices';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
-import { TableMui } from '@/components';
-import { columns } from '@/setup/setupProducts';
+import { TableMui } from 'src/components';
+import { columns } from 'src/setup/setupProducts';
 
 export default function Clients() {
   const id = Cookies.get('userId');

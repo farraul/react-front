@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { FormCRUD, Modal } from '@/components';
+import { FormCRUD, Modal } from 'src/components';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -9,9 +9,9 @@ import {
   deleteProductRequest,
   getProductsRequest,
   updateProductRequest,
-} from '@/services';
+} from 'src/services';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Product } from '@/models/product';
+import { Product } from 'src/models/product';
 import { ColDef } from 'ag-grid-community';
 import { VscLoading } from 'react-icons/vsc';
 import Cookies from 'js-cookie';

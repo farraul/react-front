@@ -8,6 +8,14 @@
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended"
   ],
+  "plugins": [
+    "unused-imports"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parserOptions": { "ecmaVersion": 2020, "sourceType": "module" },
   "globals": { "console": "readonly", "cy": true },
   "env": { "node": true },
@@ -16,7 +24,12 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
     "@typescript-eslint/no-explicit-any": ["error"],
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+			"warn",
+			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+		],
     "quotes": ["error", "single"],
     "prettier/prettier": "error",
     "import/extensions": "off",
@@ -27,7 +40,7 @@
       "error",
       {
         "endOfLine": "auto"
-      },
-    ],
+      }
+    ]
   }
 }

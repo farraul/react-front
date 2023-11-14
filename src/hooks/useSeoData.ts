@@ -1,4 +1,4 @@
-import { Headings, urlSeo } from '@/models/seo';
+import { Headings, urlSeo } from 'src/models/seo';
 import { ChangeEvent, useState } from 'react';
 
 const useSeoData = () => {

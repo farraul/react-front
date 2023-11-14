@@ -1,26 +1,26 @@
 import { Navigate } from 'react-router-dom';
-import { Layout } from '@/components';
+import { Layout } from 'src/components';
 import React, { LazyExoticComponent, lazy } from 'react';
 
-const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
-const ErrorPage = lazy(() => import('@/pages/ErrorPage'));
-const CallApiTanStack = lazy(() => import('@/pages/CallApiTanStackPage'));
-const CallApiUseFetch = lazy(() => import('@/pages/CallApiUseFetchPage'));
-const CallApiFetchPro = lazy(() => import('@/pages/CallApiFecthPro.tsxPage'));
-const Clients = lazy(() => import('@/pages/ClientsPage'));
-const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
-const HomePage = lazy(() => import('@/pages/HomePage'));
-const LoginPage = lazy(() => import('@/pages/LoginPage'));
-const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
-const Seo = lazy(() => import('@/pages/SeoPage'));
-const Images = lazy(() => import('@/pages/ImagesPage'));
-const HocPattern = lazy(() => import('@/pages/TasksHoc/HocPatternPage'));
-const Times = lazy(() => import('@/pages/TimesPage'));
-const HookFormPage = lazy(() => import('@/pages/HookFormPage'));
+const ProfilePage = lazy(() => import('src/pages/ProfilePage'));
+const ErrorPage = lazy(() => import('src/pages/ErrorPage'));
+const CallApiTanStack = lazy(() => import('src/pages/CallApiTanStackPage'));
+const CallApiUseFetch = lazy(() => import('src/pages/CallApiUseFetchPage'));
+const CallApiFetchPro = lazy(() => import('src/pages/CallApiFecthPro.tsxPage'));
+const Clients = lazy(() => import('src/pages/ClientsPage'));
+const RegisterPage = lazy(() => import('src/pages/RegisterPage'));
+const HomePage = lazy(() => import('src/pages/HomePage'));
+const LoginPage = lazy(() => import('src/pages/LoginPage'));
+const ProductsPage = lazy(() => import('src/pages/ProductsPage'));
+const Seo = lazy(() => import('src/pages/SeoPage'));
+const Images = lazy(() => import('src/pages/ImagesPage'));
+const HocPattern = lazy(() => import('src/pages/TasksHoc/HocPatternPage'));
+const Times = lazy(() => import('src/pages/TimesPage'));
+const HookFormPage = lazy(() => import('src/pages/HookFormPage'));
 const HookImperativeHandle = lazy(
-  () => import('@/pages/HookImperativeHandlePage/HookImperativeHandlePage'),
+  () => import('src/pages/HookImperativeHandlePage/HookImperativeHandlePage'),
 );
-const ReactWindowPage = lazy(() => import('@/pages/ReactWindowPage'));
+const ReactWindowPage = lazy(() => import('src/pages/ReactWindowPage'));
 
 export const Path = (userToken: string) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {

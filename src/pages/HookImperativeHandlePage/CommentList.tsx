@@ -17,7 +17,7 @@ const CommentList = forwardRef(function CommentList(props, ref) {
     [],
   );
 
-  let comments = [];
+  const comments = [];
   for (let i = 0; i < 50; i++) {
     comments.push(<p key={i}>Comentario #{i}</p>);
   }

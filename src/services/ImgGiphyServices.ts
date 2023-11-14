@@ -1,6 +1,6 @@
-import { URL_GIPHY_API } from '@/constants';
-import { ApiResponse } from '@/models/imgGiphy';
-import { AddQueryByField } from '@/utilities';
+import { URL_GIPHY_API } from 'src/constants/API';
+import { ApiResponse } from 'src/models/imgGiphy';
+import { AddQueryByField } from 'src/utilities';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 const baseApiGiphy = URL_GIPHY_API;

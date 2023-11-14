@@ -1,12 +1,7 @@
-export { default as Button } from './Ui/Button';
-export { default as FormCRUD } from './Ui/FormCRUD';
-export { default as Input } from './Ui/Input';
+export { default as TableMui } from './TableMui';
 export { default as Layout } from './Layout';
+export { default as FormCRUD } from './Ui/FormCRUD';
+export { default as Button } from './Ui/Button';
+export { default as Input } from './Ui/Input';
 export { default as Modal } from './Ui/Modal';
 export { default as Spinner } from './Ui/Spinner';
-export { default as Tasks } from '../pages/TasksHoc/Tasks';
-export { default as Services } from '../pages/TasksHoc/Services';
-export { default as TableMui } from './TableMui';
-export { default as AddComment } from '../pages/HookImperativeHandlePage/AddComment';
-export { default as CommentList } from '../pages/HookImperativeHandlePage/CommentList';
-export { default as Post } from '../pages/HookImperativeHandlePage/Post';

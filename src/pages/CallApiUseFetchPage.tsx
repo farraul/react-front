@@ -1,4 +1,4 @@
-import { useFetch } from '@/hooks/useFetch';
+import { useFetch } from 'src/hooks/useFetch';
 import React from 'react';
 
 const CallApiUseFetch = () => {
@@ -16,7 +16,7 @@ const CallApiUseFetch = () => {
             {error && <li>Error: {error}</li>}
             {loading && <li>Loading...</li>}
 
-            {data?.results.map((item: { name: String }, index: React.Key) => (
+            {data?.results.map((item: { name: string }, index: React.Key) => (
               <li key={index}>{item.name}</li>
             ))}
           </ul>

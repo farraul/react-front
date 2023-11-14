@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { userServicesConfig } from '@/services';
-import { SignIn, SignUp } from '@/models/auth.js';
+import { userServicesConfig } from 'src/services';
+import { SignIn, SignUp } from 'src/models/auth.js';
 import Cookies from 'js-cookie';
 
 const config = {
@@ -14,7 +14,7 @@ export const userLogin = createAsyncThunk(
   userServicesConfig.UserLogin,
   async ({ email, password }: SignIn, { rejectWithValue }) => {
     try {
-      const info = await axios.post('/api/user/login', { email, password }, config);
+      const info = await axios.post('/user/login', { email, password }, config);
 
       Cookies.set('userToken', btoa(info.data.data.userToken), {
         expires: 360000,

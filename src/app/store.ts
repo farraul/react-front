@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { userApi } from '@/services/userServices';
+import { userApi } from 'src/services/userServices';
 import userReducer from './features/user/userSlices'; // cambiamos nombre
 
 export const store = configureStore({

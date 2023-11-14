@@ -1,4 +1,4 @@
-import { fetchData } from '@/utilities/fetchDataPro';
+import { fetchData } from 'src/utilities/fetchDataPro';
 import React, { Suspense } from 'react';
 
 const apiData = fetchData('https://rickandmortyapi.com/api/character');

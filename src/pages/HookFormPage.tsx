@@ -1,7 +1,6 @@
-import { error } from 'console';
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { object, string, number, date, InferType } from 'yup';
+import { object, string, number } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 type Inputs = {
@@ -10,7 +9,7 @@ type Inputs = {
   phone: number;
 };
 
-let userSchema = object({
+const userSchema = object({
   example: string(),
   exampleRequired: string().required(),
   phone: number().required().integer(),

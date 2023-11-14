@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { SnackbarUtilities } from '@/utilities';
-import { getValidationError } from '@/utilities/getValidation';
+import { SnackbarUtilities } from 'src/utilities';
+import { getValidationError } from 'src/utilities/getValidation';
 import Cookies from 'js-cookie';
-// import { logout } from '@/app/features/user/userSlices';
-// import { useAppDispatch } from '@/hooks/useApp';
+// import { logout } from 'src/app/features/user/userSlices';
+// import { useAppDispatch } from 'src/hooks/useApp';
 
 // const dispatch = useAppDispatch();
 

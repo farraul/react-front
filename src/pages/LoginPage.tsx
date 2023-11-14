@@ -1,10 +1,10 @@
 import { CssBaseline, Container } from '@mui/material';
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { userLogin } from '@/app/features/user/userActions';
-import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
-import { SignIn } from '@/models/auth';
-import { Button, Input } from '@/components';
+import { userLogin } from 'src/app/features/user/userActions';
+import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
+import { SignIn } from 'src/models/auth';
+import { Button, Input } from 'src/components';
 
 const initialState: SignIn = {
   email: '',

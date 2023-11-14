@@ -1,4 +1,4 @@
-import { URL_RAPID_API } from '@/constants';
+import { URL_RAPID_API } from 'src/constants/API';
 import axios from 'axios';
 
 export const getAnalyseUrlSeo = async (url: string) => {

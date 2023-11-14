@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userRegister, userLogin } from './userActions';
-import { User, UserInfo } from '@/models/user/user';
 import Cookies from 'js-cookie';
+import { User, UserInfo } from 'src/models/user/user';
 
 const userToken = atob(Cookies.get('userToken') || '');
 const userInfoDefault = { _id: '', firstName: '', email: '' };

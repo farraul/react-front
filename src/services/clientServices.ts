@@ -1,20 +1,20 @@
-import { Client } from '@/models/user/client';
+import { Client } from 'src/models/user/client';
 import axios from 'axios';
 
 export const getClientsRequest = async (id: string): Promise<Client[]> => {
-  const response = await axios.get(`/api/user/clients/${id}`);
+  const response = await axios.get(`/user/clients/${id}`);
   return response.data;
 };
 
 export const createClientRequest = async (client: Client) => {
-  await axios.post('/api/user/clients', client);
+  await axios.post('/user/clients', client);
 };
 
 export const updateClientRequest = async (product: Client) => {
-  await axios.put(`/api/user/clients`, product);
+  await axios.put('/user/clients', product);
 };
 export const deleteClientRequest = async (_id: string) => {
-  await axios.delete(`/api/user/clients`, { data: { _id } });
+  await axios.delete('/user/clients', { data: { _id } });
 };
 
 // export const getPRequest = async (id: string) => axios.get(`/api/product/${id}`);

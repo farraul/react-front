@@ -1,5 +1,5 @@
-import { regexUrl } from './regex';
+import { Regex } from 'src/constants/Regex';
 
 export const validateUrl = (url: string) => {
-  return regexUrl.test(url);
+  return Regex.URL.test(url);
 };
