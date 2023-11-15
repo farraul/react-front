@@ -12,7 +12,6 @@ const Router = () => {
   console.log('App');
   const dispatch = useAppDispatch();
   const { userToken } = useAppSelector((state) => state.user.userInfo);
-  console.log({ userToken });
   const routing = useRoutes(Path(userToken));
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -20,19 +19,17 @@ const Router = () => {
     setLoading(true);
     try {
       const me = await (await getMe(userToken)).data;
-      me['userToken'] = userToken;
-      setLoading(false);
-      if (me) dispatch(setCredentials(me));
+      if (me) dispatch(setCredentials({ ...me, userToken }));
     } catch (error) {
       const err = error as AxiosError;
-      setLoading(false);
       console.log(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     if (userToken) {
-      console.log({ userToken });
       fetchMe(userToken);
     }
   }, [userToken, dispatch]);

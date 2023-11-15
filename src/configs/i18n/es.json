@@ -1,19 +1,22 @@
 {
   "translation": {
     "header": {
-      "logo": "Logotipo Español",
-      "home": "Home",
-      "profile": "Perfil",
-      "table": "Tabla",
-      "products": "Productos",
-      "clients": "Clientes",
-      "seo": "Seo",
       "call-api": "Call API",
-      "images": "Imágenes",
+      "clients": "Clientes",
       "hoc-pattern": "Patrón HOC",
-      "times": "Tiempo / Fechas",
+      "home": "Home",
       "hook-form": "Hook-form",
-      "logout": "Desconectar"
+      "images": "Imágenes",
+      "logo": "Logotipo Español",
+      "logout": "Desconectar",
+      "products": "Productos",
+      "profile": "Perfil",
+      "seo": "Seo",
+      "table": "Tabla",
+      "times": "Tiempo / Fechas"
+    },
+    "home": {
+      "home-page": "Página de inicio"
     }
   }
 }
