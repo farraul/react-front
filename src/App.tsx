@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { SnackbarProvider } from 'notistack';
 import axios from 'axios';
-import { withAppProviders } from './withAppProviders';
+import withAppProviders from './withAppProviders';
 
 axiosInterceptor();
 const queryClient = new QueryClient();
