@@ -3,6 +3,7 @@ import Post from 'src/pages/HookImperativeHandlePage/Post';
 import React from 'react';
 
 const HookImperativeHandle = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const postRef = useRef<any>(null);
 
   function handleClick() {

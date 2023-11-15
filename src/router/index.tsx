@@ -8,7 +8,7 @@ import { Path } from './path';
 import { Spinner } from 'src/components';
 import { AxiosError } from 'axios';
 
-const App = () => {
+const Router = () => {
   console.log('App');
   const dispatch = useAppDispatch();
   const { userToken } = useAppSelector((state) => state.user.userInfo);
@@ -40,4 +40,4 @@ const App = () => {
   return <>{loading ? <Spinner /> : routing}</>;
 };
 
-export default App;
+export default Router;

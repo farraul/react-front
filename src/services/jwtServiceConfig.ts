@@ -1,6 +1,6 @@
-enum UserServicesConfig {
+enum jwtServiceConfig {
   UserLogin = 'user/login',
   UserRegister = 'user/register',
 }
 
-export default UserServicesConfig;
+export default jwtServiceConfig;

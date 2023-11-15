@@ -6,11 +6,11 @@ import {
   getClientsRequest,
   updateClientRequest,
   deleteClientRequest,
-} from 'src/services/clientServices';
+} from 'src/services/clientService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 import { TableMui } from 'src/components';
-import { columns } from 'src/setup/setupProducts';
+import { columns } from 'src/configs/productsConfig';
 
 export default function Clients() {
   const id = Cookies.get('userId');
