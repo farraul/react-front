@@ -22,13 +22,13 @@ const HookImperativeHandle = lazy(
 );
 const ReactWindowPage = lazy(() => import('src/pages/ReactWindowPage'));
 
-export const Path = (userToken: string) => {
+export const Path = (isLogged: boolean) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
-    return userToken ? <Componente /> : <Navigate to={`/?redirect=${window.location.href}`} />;
+    return isLogged ? <Componente /> : <Navigate to={`/?redirect=${window.location.href}`} />;
   };
 
   const notPathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
-    return userToken ? <Navigate to={'/home-page'} /> : <Componente />;
+    return isLogged ? <Navigate to={'/home-page'} /> : <Componente />;
   };
 
   return [

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import './styles/index.css';
 import { BrowserRouter } from 'react-router-dom';
-import AppLayout from './router';
+import Router from './router';
 import { axiosInterceptor } from './interceptors';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -27,7 +27,7 @@ const App = () => {
           }}
         >
           <Suspense fallback={<div />}>
-            <AppLayout />
+            <Router />
           </Suspense>
           <ReactQueryDevtools />
         </SnackbarProvider>
