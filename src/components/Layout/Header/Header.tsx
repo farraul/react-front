@@ -17,6 +17,7 @@ import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { TitleMenu } from './TitleMenu';
+import { useGetUserIsLogged } from 'src/app/features/selectors/userSelectors';
 
 const languageValues = {
   es: 'Es',
@@ -27,7 +28,7 @@ const fontSizeMenu = { fontSize: 17 };
 
 function Header() {
   const dispatch = useAppDispatch();
-  const userToken = useAppSelector((state) => state.user?.userInfo?.userToken);
+  const isLogged = useGetUserIsLogged();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'translation.header' });
   const [openCallApi, setOpenCallApi] = React.useState(false);
@@ -80,7 +81,7 @@ function Header() {
                 options={languageValues}
               />
             </div>
-            {userToken ? (
+            {isLogged ? (
               <div>
                 <IconButton
                   size="large"
