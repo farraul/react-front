@@ -21,6 +21,7 @@ const HookImperativeHandle = lazy(
   () => import('src/pages/HookImperativeHandlePage/HookImperativeHandlePage'),
 );
 const ReactWindowPage = lazy(() => import('src/pages/ReactWindowPage'));
+const ProxyPage = lazy(() => import('src/pages/ProxyPage'));
 
 export const Path = (isLogged: boolean) => {
   const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
@@ -107,6 +108,10 @@ export const Path = (isLogged: boolean) => {
             {
               path: '/react-windows',
               element: pathSession(ReactWindowPage),
+            },
+            {
+              path: '/proxy',
+              element: pathSession(ProxyPage),
             },
             {
               path: '*',

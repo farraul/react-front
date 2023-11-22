@@ -12,5 +12,6 @@ export { default as CallApiPro } from './CallApiFecthPro.tsxPage';
 export { default as CallApiTanStack } from './CallApiTanStackPage';
 export { default as CallApiUseFetch } from './CallApiUseFetchPage';
 export { default as ReactWindows } from './ReactWindowPage';
+export { default as ProxyPage } from './ProxyPage';
 
 export * from './index';

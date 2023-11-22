@@ -158,6 +158,9 @@ function Header() {
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hoc-pattern')}>
                     {t('hoc-pattern')}
                   </MenuItem>
+                  <MenuItem sx={fontSizeMenu} onClick={() => navigate('/proxy')}>
+                    Proxy
+                  </MenuItem>
 
                   <TitleMenu text="Hooks React" />
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hook-imperative-handle')}>
