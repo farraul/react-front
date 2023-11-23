@@ -1,9 +1,14 @@
+function propertiesExist<T extends { [index: string]: string }>(object: T, prop: string) {
+  const ojectFromEnum = Object.values(object);
+  return ojectFromEnum.includes(prop);
+}
+
 export const createApi = (url: any, acceptedResources: any) => {
   return new Proxy(
     {},
     {
       get: (target, prop: string) => async (id: any) => {
-        if (!acceptedResources.includes(prop)) {
+        if (!propertiesExist(acceptedResources, prop)) {
           return Promise.reject({ error: `Resource ${prop} not accepted` });
         }
 
