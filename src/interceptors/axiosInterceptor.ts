@@ -1,11 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { SnackbarUtilities } from 'src/utilities';
-import { getValidationError } from 'src/utilities/getValidation';
+import { SnackbarUtilities, getValidationError } from 'src/utilities';
 import Cookies from 'js-cookie';
-// import { logout } from 'src/app/features/user/userSlices';
-// import { useAppDispatch } from 'src/hooks/useApp';
-
-// const dispatch = useAppDispatch();
 
 export const axiosInterceptor = () => {
   axios.interceptors.response.use(

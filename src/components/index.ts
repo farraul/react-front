@@ -5,3 +5,4 @@ export { default as Button } from './Ui/Button';
 export { default as Input } from './Ui/Input';
 export { default as Modal } from './Ui/Modal';
 export { default as Spinner } from './Ui/Spinner';
+export { default as Select } from './Ui/Select';

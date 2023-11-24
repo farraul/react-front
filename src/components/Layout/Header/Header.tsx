@@ -12,7 +12,7 @@ import { logout } from 'src/app/features/user/userSlices';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Select } from '../../Ui/Select';
+import { Select } from 'src/components';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -63,7 +63,6 @@ function Header() {
 
   return (
     <>
-      {/* {isFetching && <Spinner />} */}
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ px: 5 }}>
           <Toolbar>

@@ -10,11 +10,3 @@ export const getValidationError = (errorCode: string) => {
   };
   return codeMatcher[errorCode];
 };
-
-// export const getValidationSucces = (successCode: string) => {
-//   const codeMatcher: TypeWithKey<string> = {
-//     '': '',
-
-//   };
-//   return codeMatcher[successCode];
-// };

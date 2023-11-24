@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'; //para mostrar children
 import { CacheProvider } from '@emotion/react'; // es para no colisionar material ui y tailwind
 import createCache from '@emotion/cache';
-import { SnackbarUtilitiesConfigurator } from '../../utilities';
+import { SnackbarUtilitiesConfigurator } from 'src/utilities';
 import { Header } from './Header';
 import React from 'react';
 

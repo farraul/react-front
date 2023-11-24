@@ -158,48 +158,40 @@ const ProductPage = () => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <ErrorBoundary fallbackComponent={<>ERROR !</>} resetCondition={rowData} error={errorQuery}>
-      <section className="h-[calc(100vh-64px)] p-16 bg-gray-600">
-        <div>
-          <button
-            type="button"
-            id="productModalButton"
-            onClick={handleAddProduct}
-            className="flex items-center justify-center text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-4 py-2"
-          >
-            <IoMdAdd className="w-6 h-6" />
-            Add product
-          </button>
-        </div>
-        <Modal close={handleAddProduct} title="Add product" isOpen={addProduct}>
-          <FormCRUD
-            handleIsOpen={handleAddProduct}
-            action={addProductMutation}
-            focus={addProduct}
-          />
-        </Modal>
+    //<ErrorBoundary fallbackComponent={<>ERROR !</>} resetCondition={rowData} error={errorQuery}>
+    //</ErrorBoundary>
+    <section className="h-[calc(100vh-64px)] p-16 bg-gray-600">
+      <div>
+        <button
+          type="button"
+          id="productModalButton"
+          onClick={handleAddProduct}
+          className="flex items-center justify-center text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-4 py-2"
+        >
+          <IoMdAdd className="w-6 h-6" />
+          Add product
+        </button>
+      </div>
+      <Modal close={handleAddProduct} title="Add product" isOpen={addProduct}>
+        <FormCRUD handleIsOpen={handleAddProduct} action={addProductMutation} focus={addProduct} />
+      </Modal>
 
-        <Modal close={handleEditProduct} title="Edit product" isOpen={updateProduct}>
-          <FormCRUD
-            handleIsOpen={handleEditProduct}
-            action={updateProductMutation}
-            product={productUpdate as Product}
-            focus={updateProduct}
-          />
-        </Modal>
-        <div style={containerStyle} className="mt-2">
-          <div style={{ height: '100%', boxSizing: 'border-box' }}>
-            <div style={gridStyle} className="ag-theme-alpine">
-              <AgGridReact
-                rowData={rowData}
-                columnDefs={columnDefs}
-                defaultColDef={defaultColDef}
-              />
-            </div>
+      <Modal close={handleEditProduct} title="Edit product" isOpen={updateProduct}>
+        <FormCRUD
+          handleIsOpen={handleEditProduct}
+          action={updateProductMutation}
+          product={productUpdate as Product}
+          focus={updateProduct}
+        />
+      </Modal>
+      <div style={containerStyle} className="mt-2">
+        <div style={{ height: '100%', boxSizing: 'border-box' }}>
+          <div style={gridStyle} className="ag-theme-alpine">
+            <AgGridReact rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
           </div>
         </div>
-      </section>
-    </ErrorBoundary>
+      </div>
+    </section>
   );
 };
 

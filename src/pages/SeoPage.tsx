@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
-import { validateUrl } from 'src/utilities/validateUrl';
+import { validateUrl } from 'src/utilities';
 import { getAnalyseUrlSeo } from 'src/services';
 import { createUrlsSeo, getUrlsSeo } from 'src/api/user';
 import { useAppSelector } from 'src/hooks/useApp';
