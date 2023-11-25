@@ -19,6 +19,7 @@ export interface Ricky {
 const CallApiTanStack = () => {
   const [ricky, setRicky] = useState<Ricky[]>([]);
 
+  //misma línea .env y luego en constantes
   const getRicky = async () => {
     return fetch('https://rickandmortyapi.com/api/character').then((res) => res.json());
   };
@@ -44,12 +45,12 @@ const CallApiTanStack = () => {
   }, [rickystate]);
 
   return (
-    <section className="p-16">
-      <div className="w-2/3">
-        <h1 className="text-3xl">
+    <section className='p-16'>
+      <div className='w-2/3'>
+        <h1 className='text-3xl'>
           Página para ver funcionamiento de una llamada con: useQuery de @tanstack/react-query{' '}
         </h1>
-        <div className="mt-10">
+        <div className='mt-10'>
           {!isLoading && ricky.map((element, index) => <p key={index}>{element.name}</p>)}
         </div>
       </div>

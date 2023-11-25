@@ -74,16 +74,16 @@ const ProductPage = () => {
   const DeleteRenderer = (props: any) => {
     const id = props.value;
     return (
-      <div className="flex gap-4 justify-start items-center">
+      <div className='flex gap-4 justify-start items-center'>
         <button
-          className="p-4 bg-red-600 text-white hover:opacity-80 font-semibold flex justify-center items-center w-20 h-10 rounded-3xl hover:scale-110 active:scale-90 transition"
+          className='p-4 bg-red-600 text-white hover:opacity-80 font-semibold flex justify-center items-center w-20 h-10 rounded-3xl hover:scale-110 active:scale-90 transition'
           onClick={() => {
             deleteProductMutation.mutate(id);
           }}
         >
           {deleteProductMutation.isLoading ? (
             <>
-              <VscLoading className="h-5 w-5 animate-spin transition" />
+              <VscLoading className='h-5 w-5 animate-spin transition' />
               <h3>Deleting</h3>
             </>
           ) : (
@@ -96,9 +96,9 @@ const ProductPage = () => {
 
   const UpdateRenderer = (props: any) => {
     return (
-      <div className="flex gap-4 justify-start items-center">
+      <div className='flex gap-4 justify-start items-center'>
         <button
-          className="p-4 bg-blue-600 text-white	hover:opacity-80 font-semibold flex justify-center items-center w-20 h-10 rounded-3xl hover:scale-110 active:scale-90 transition"
+          className='p-4 bg-blue-600 text-white	hover:opacity-80 font-semibold flex justify-center items-center w-20 h-10 rounded-3xl hover:scale-110 active:scale-90 transition'
           onClick={() => {
             handleEditProduct();
             setProductUpdate(props.data);
@@ -106,7 +106,7 @@ const ProductPage = () => {
         >
           {updateProductMutation.isLoading ? (
             <>
-              <VscLoading className="h-5 w-5 animate-spin transition" />
+              <VscLoading className='h-5 w-5 animate-spin transition' />
               <h3>Updating</h3>
             </>
           ) : (
@@ -160,23 +160,23 @@ const ProductPage = () => {
   return (
     //<ErrorBoundary fallbackComponent={<>ERROR !</>} resetCondition={rowData} error={errorQuery}>
     //</ErrorBoundary>
-    <section className="h-[calc(100vh-64px)] p-16 bg-gray-600">
+    <section className='h-[calc(100vh-64px)] p-16 bg-gray-600'>
       <div>
         <button
-          type="button"
-          id="productModalButton"
+          type='button'
+          id='productModalButton'
           onClick={handleAddProduct}
-          className="flex items-center justify-center text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-4 py-2"
+          className='flex items-center justify-center text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-4 py-2'
         >
-          <IoMdAdd className="w-6 h-6" />
+          <IoMdAdd className='w-6 h-6' />
           Add product
         </button>
       </div>
-      <Modal close={handleAddProduct} title="Add product" isOpen={addProduct}>
+      <Modal close={handleAddProduct} title='Add product' isOpen={addProduct}>
         <FormCRUD handleIsOpen={handleAddProduct} action={addProductMutation} focus={addProduct} />
       </Modal>
 
-      <Modal close={handleEditProduct} title="Edit product" isOpen={updateProduct}>
+      <Modal close={handleEditProduct} title='Edit product' isOpen={updateProduct}>
         <FormCRUD
           handleIsOpen={handleEditProduct}
           action={updateProductMutation}
@@ -184,9 +184,9 @@ const ProductPage = () => {
           focus={updateProduct}
         />
       </Modal>
-      <div style={containerStyle} className="mt-2">
+      <div style={containerStyle} className='mt-2'>
         <div style={{ height: '100%', boxSizing: 'border-box' }}>
-          <div style={gridStyle} className="ag-theme-alpine">
+          <div style={gridStyle} className='ag-theme-alpine'>
             <AgGridReact rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
           </div>
         </div>

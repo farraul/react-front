@@ -92,21 +92,21 @@ const Seo = () => {
   };
 
   return (
-    <section className="p-16">
-      <div className="w-1/3">
+    <section className='p-16'>
+      <div className='w-1/3'>
         <h2>Seo</h2>
         <p>Bienvenido a Seo</p>
 
-        <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+        <Box component='form' noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
+            <InputLabel id='demo-simple-select-label'>
               {t('Welcome')}Selecciona URL recientes
             </InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
               value={url}
-              label="Url recientes"
+              label='Url recientes'
               onChange={(event) => setUrl(event.target.value)}
             >
               {urlsRecent.map((url, index) => (
@@ -118,29 +118,29 @@ const Seo = () => {
           </FormControl>
 
           <TextField
-            margin="normal"
+            margin='normal'
             required
             fullWidth
-            id="email"
-            label="Escribe URL"
-            name="url"
-            autoComplete="url"
+            id='email'
+            label='Escribe URL'
+            name='url'
+            autoComplete='url'
             autoFocus
             onChange={handleChange}
             value={url}
           />
 
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
             Analizar
           </Button>
         </Box>
       </div>
 
-      <div className="flex">
+      <div className='flex'>
         {headings?.length ? (
-          <div className="mx-8">
+          <div className='mx-8'>
             <>
-              <h2 className="text-2xl font-bold  mt-10 mb-5">Headings</h2>
+              <h2 className='text-2xl font-bold  mt-10 mb-5'>Headings</h2>
               <List
                 sx={{
                   width: '100%',
@@ -204,7 +204,7 @@ const Seo = () => {
           {title ? (
             <div>
               <>
-                <h2 className="text-2xl font-bold  mt-10 mb-5">Title</h2>
+                <h2 className='text-2xl font-bold  mt-10 mb-5'>Title</h2>
 
                 <List
                   key={title}
@@ -230,7 +230,7 @@ const Seo = () => {
           {description ? (
             <div>
               <>
-                <h2 className="text-2xl font-bold  mt-10 mb-5">Description</h2>
+                <h2 className='text-2xl font-bold  mt-10 mb-5'>Description</h2>
 
                 <List
                   sx={{
@@ -255,7 +255,7 @@ const Seo = () => {
           {countLinks ? (
             <div>
               <>
-                <h2 className="text-2xl font-bold  mt-10 mb-5">Links totales</h2>
+                <h2 className='text-2xl font-bold  mt-10 mb-5'>Links totales</h2>
                 <List
                   sx={{
                     width: '100%',

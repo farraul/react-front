@@ -28,12 +28,12 @@ const ProxyPage = () => {
   }, []);
 
   return (
-    <section className="p-16">
+    <section className='p-16'>
       <div>ProxyPage</div>
       <h2>Api Poke</h2>
       {charactersPoke?.name}
 
-      <h2 className="mt-20">Api Star Wars</h2>
+      <h2 className='mt-20'>Api Star Wars</h2>
       {charactersStarWars?.name}
     </section>
   );

@@ -68,7 +68,7 @@ export const TableMui = ({
 
     return (
       <GridToolbarContainer>
-        <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+        <Button color='primary' startIcon={<AddIcon />} onClick={handleClick}>
           Add recordd
         </Button>
       </GridToolbarContainer>
@@ -148,7 +148,7 @@ export const TableMui = ({
               return [
                 <GridActionsCellItem
                   icon={<SaveIcon />}
-                  label="Save"
+                  label='Save'
                   sx={{
                     color: 'primary.main',
                   }}
@@ -156,10 +156,10 @@ export const TableMui = ({
                 />,
                 <GridActionsCellItem
                   icon={<CancelIcon />}
-                  label="Cancel"
-                  className="textPrimary"
+                  label='Cancel'
+                  className='textPrimary'
                   onClick={handleCancelClick(id)}
-                  color="inherit"
+                  color='inherit'
                 />,
               ];
             }
@@ -167,16 +167,16 @@ export const TableMui = ({
             return [
               <GridActionsCellItem
                 icon={<EditIcon />}
-                label="Edit"
-                className="textPrimary"
+                label='Edit'
+                className='textPrimary'
                 onClick={handleEditClick(id)}
-                color="inherit"
+                color='inherit'
               />,
               <GridActionsCellItem
                 icon={<DeleteIcon />}
-                label="Delete"
+                label='Delete'
                 onClick={() => handleDeleteClick(id)}
-                color="inherit"
+                color='inherit'
               />,
             ];
           },

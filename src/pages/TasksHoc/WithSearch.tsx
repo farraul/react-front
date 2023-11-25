@@ -8,7 +8,7 @@ const WithSearch = ({ Component, dataSet }: { Component: any; dataSet: any }) =>
   };
   return (
     <>
-      <input onChange={handleChange} type="text" className="border-2 border-black " />
+      <input onChange={handleChange} type='text' className='border-2 border-black ' />
       <Component query={query} dataSet={dataSet} />
     </>
   );

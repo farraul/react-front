@@ -65,8 +65,8 @@ export default function Clients() {
   }, [dataClients]);
 
   return (
-    <div className="w-full flex justify-center py-40">
-      <div className="max-w-6xl	">
+    <div className='w-full flex justify-center py-40'>
+      <div className='max-w-6xl	'>
         <Box
           sx={{
             height: 500,
@@ -85,7 +85,7 @@ export default function Clients() {
             rowModesModel={rowModesModel}
             setRowModesModel={setRowModesModel}
             columns={columns}
-            editMode="row"
+            editMode='row'
             initValueEdit={{ id: '', name: '', email: '', url: '' }}
             create={addClientMutation}
             update={updateProductMutation}

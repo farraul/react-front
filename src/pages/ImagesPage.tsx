@@ -96,25 +96,25 @@ const ImagesPage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center">
-        <div className="p-36 pb-20 font-bold text-5xl text-center">Images</div>
+      <div className='flex flex-col items-center'>
+        <div className='p-36 pb-20 font-bold text-5xl text-center'>Images</div>
         <input
-          className="col-3 w-96 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark text-center"
-          type="text"
-          placeholder="Escribe lo que quieras buscar..."
+          className='col-3 w-96 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark text-center'
+          type='text'
+          placeholder='Escribe lo que quieras buscar...'
           value={nameSearch}
           onChange={handleChange}
         />
         {images.length ? (
-          <div className="min-h-screen d-flex flex-wrap justify-content-evenly flex mt-20 w-full">
+          <div className='min-h-screen d-flex flex-wrap justify-content-evenly flex mt-20 w-full'>
             {images.map((val, index) => {
               return (
                 <>
-                  <div key={index} className="w-2/6 border-solid border-white border-2	">
+                  <div key={index} className='w-2/6 border-solid border-white border-2	'>
                     <img
-                      className="col-3 img-fluid img-thumbnail w-full"
+                      className='col-3 img-fluid img-thumbnail w-full'
                       src={val.url}
-                      alt="val.alt_description"
+                      alt='val.alt_description'
                     />
                   </div>
                 </>
@@ -122,7 +122,7 @@ const ImagesPage = () => {
             })}
           </div>
         ) : null}
-        <div id="observer-target" style={{ height: '5px' }}></div>
+        <div id='observer-target' style={{ height: '5px' }}></div>
       </div>
     </>
   );

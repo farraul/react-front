@@ -23,7 +23,7 @@ const CommentList = forwardRef(function CommentList(props, ref) {
   }
 
   return (
-    <div className="CommentList" ref={divRef}>
+    <div className='CommentList' ref={divRef}>
       {comments}
     </div>
   );

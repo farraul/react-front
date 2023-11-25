@@ -29,21 +29,21 @@ function HookFormPage() {
   console.log(watch('exampleRequired'));
 
   return (
-    <section className="h-[calc(100vh-64px)] p-16 bg-gray-600 text-white">
+    <section className='h-[calc(100vh-64px)] p-16 bg-gray-600 text-white'>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input className="text-black" defaultValue="test" {...register('example')} />
+        <input className='text-black' defaultValue='test' {...register('example')} />
         <br />
         {errors.example && <span>This field is required</span>}
         <br />
-        <input className="text-black" {...register('exampleRequired')} />
+        <input className='text-black' {...register('exampleRequired')} />
         <br />
         {errors.exampleRequired && <span>{errors.exampleRequired.message}</span>}
         <br />
-        <input type="number" className="text-black" {...register('phone')} />
+        <input type='number' className='text-black' {...register('phone')} />
         <br />
         {errors.phone && <span>{errors.phone.message}</span>}
         <br />
-        <input type="submit" />
+        <input type='submit' />
       </form>
     </section>
   );

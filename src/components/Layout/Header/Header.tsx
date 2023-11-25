@@ -66,37 +66,37 @@ function Header() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ px: 5 }}>
+        <AppBar position='static' sx={{ px: 5 }}>
           <Toolbar>
-            <Typography variant="h6" component="a" sx={{ flexGrow: 1 }} href="/">
+            <Typography variant='h6' component='a' sx={{ flexGrow: 1 }} href='/'>
               {t('logo')}
             </Typography>
 
-            <div className="w-15">
+            <div className='w-15'>
               <Select
-                id="language"
-                name="languaje"
+                id='language'
+                name='languaje'
                 values={language}
                 onChange={handleChangeLanguage}
-                placeholder=""
+                placeholder=''
                 options={languageValues}
               />
             </div>
             {isLogged ? (
               <div>
                 <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
+                  size='large'
+                  aria-label='account of current user'
+                  aria-controls='menu-appbar'
+                  aria-haspopup='true'
                   onClick={handleMenu}
-                  color="inherit"
+                  color='inherit'
                 >
-                  <MenuIcon className="ml-5" />
+                  <MenuIcon className='ml-5' />
                 </IconButton>
                 {/*Menú lateral*/}
                 <Menu
-                  id="menu-appbar"
+                  id='menu-appbar'
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: 'top',
@@ -116,41 +116,41 @@ function Header() {
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/profile')}>
                     {t('profile')}
                   </MenuItem>
-                  <TitleMenu text="Herramientas creadas" />
+                  <TitleMenu text='Herramientas creadas' />
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/seo')}>
                     {t('seo')}
                   </MenuItem>
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/images')}>
                     {t('images')}
                   </MenuItem>
-                  <TitleMenu text="Ejemplos" />
+                  <TitleMenu text='Ejemplos' />
 
                   <ListItemButton onClick={handleCallApi}>
-                    <ListItemText primary="Calls Api" sx={fontSizeMenu} disableTypography={true} />
+                    <ListItemText primary='Calls Api' sx={fontSizeMenu} disableTypography={true} />
                     {openCallApi ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
-                  <Collapse in={openCallApi} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
+                  <Collapse in={openCallApi} timeout='auto' unmountOnExit>
+                    <List component='div' disablePadding>
                       <ListItemButton
                         sx={{ pl: 4, flexDirection: 'column', alignItems: 'flex-start' }}
                       >
                         <ListItemText
                           sx={fontSizeMenu}
                           disableTypography={true}
-                          primary="TanStack"
+                          primary='TanStack'
                           onClick={() => navigate('/call-api-tanstack')}
                         />
                         <ListItemText
                           sx={fontSizeMenu}
                           disableTypography={true}
-                          primary="useFecth"
+                          primary='useFecth'
                           onClick={() => navigate('/call-api-usefetch')}
                         />
 
                         <ListItemText
                           sx={fontSizeMenu}
                           disableTypography={true}
-                          primary="FecthPro"
+                          primary='FecthPro'
                           onClick={() => navigate('/call-api-fetch-pro')}
                         />
                       </ListItemButton>
@@ -163,17 +163,17 @@ function Header() {
                     Proxy
                   </MenuItem>
 
-                  <TitleMenu text="Hooks React" />
+                  <TitleMenu text='Hooks React' />
                   <MenuItem sx={fontSizeMenu} onClick={() => navigate('/hook-imperative-handle')}>
                     useImperativeHandle
                   </MenuItem>
-                  <TitleMenu text="Librerías externas" />
+                  <TitleMenu text='Librerías externas' />
                   <ListItemButton sx={fontSizeMenu} onClick={handleTables}>
-                    <ListItemText sx={fontSizeMenu} primary="Tables" disableTypography={true} />
+                    <ListItemText sx={fontSizeMenu} primary='Tables' disableTypography={true} />
                     {openTable ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
-                  <Collapse in={openTable} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
+                  <Collapse in={openTable} timeout='auto' unmountOnExit>
+                    <List component='div' disablePadding>
                       <ListItemButton
                         sx={{
                           pl: 4,
@@ -185,13 +185,13 @@ function Header() {
                         <ListItemText
                           sx={fontSizeMenu}
                           disableTypography={true}
-                          primary="AgGridReact"
+                          primary='AgGridReact'
                           onClick={() => navigate('/products')}
                         />
                         <ListItemText
                           sx={fontSizeMenu}
                           disableTypography={true}
-                          primary="Mui"
+                          primary='Mui'
                           onClick={() => navigate('/clients')}
                         />
                       </ListItemButton>
@@ -207,7 +207,7 @@ function Header() {
                     React Windows
                   </MenuItem>
                   <MenuItem
-                    className="bg-slate-300"
+                    className='bg-slate-300'
                     sx={{ fontSizeMenu, bgcolor: '#ff9292' }}
                     onClick={handleLogout}
                   >
