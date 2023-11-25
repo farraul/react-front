@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { createApi } from 'src/utilities';
-import { SERVICE_APIS_PUBLIC } from 'src/models/typeServicesPublic';
 import {
   STAR_WARS_ACCEPTED_RESOURCES,
   POKE_API_ACCEPTED_RESOURCES,
 } from 'src/models/resourcesPublic';
+import { API_URL_POKE, API_URL_STAR_WARS } from 'src/constants/API';
 
 const ProxyPage = () => {
   const [charactersStarWars, setCharactersStarWars] = useState({}) as any;
   const [charactersPoke, setCharactersPoke] = useState({}) as any;
 
   const fetchCharacters = async () => {
-    const starWarsApi = createApi(
-      SERVICE_APIS_PUBLIC.STAR_WARS_API_URL,
-      STAR_WARS_ACCEPTED_RESOURCES,
-    );
-    const pokeApi = createApi(SERVICE_APIS_PUBLIC.POKE_API_URL, POKE_API_ACCEPTED_RESOURCES);
+    const starWarsApi = createApi(API_URL_STAR_WARS, STAR_WARS_ACCEPTED_RESOURCES);
+    const pokeApi = createApi(API_URL_POKE, POKE_API_ACCEPTED_RESOURCES);
     const luke = await starWarsApi.people(1);
     const picachu = await pokeApi.pokemon(1);
-
     setCharactersStarWars(luke);
     setCharactersPoke(picachu);
   };

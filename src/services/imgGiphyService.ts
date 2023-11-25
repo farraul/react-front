@@ -1,9 +1,8 @@
-import { URL_GIPHY_API } from 'src/constants/API';
+import { API_KEY_GIPHY, API_URL_GIPHY } from 'src/constants/API';
 import { ApiResponse } from 'src/models/imgGiphy';
 import { AddQueryByField } from 'src/utilities';
 
-const API_KEY = import.meta.env.VITE_APP_API_KEY;
-const baseApiGiphy = URL_GIPHY_API;
+const baseApiGiphy = API_URL_GIPHY;
 
 const fromAPIResponse = (apiResponse: ApiResponse) => {
   const { data = [] } = apiResponse;
@@ -22,7 +21,7 @@ const fromAPIResponse = (apiResponse: ApiResponse) => {
 
 export const getImages = async (img: string, limit = 10, page = 0) => {
   const ApiURL = `${baseApiGiphy}/gifs/search${AddQueryByField({
-    api_key: API_KEY,
+    api_key: API_KEY_GIPHY,
     q: img,
     limit,
     offset: page,

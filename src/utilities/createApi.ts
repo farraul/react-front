@@ -3,7 +3,7 @@ function propertiesExist<T extends { [index: string]: string }>(object: T, prop:
   return ojectFromEnum.includes(prop);
 }
 
-export const createApi = (url: any, acceptedResources: any) => {
+export const createApi = (url: any, acceptedResources: any): any => {
   return new Proxy(
     {},
     {

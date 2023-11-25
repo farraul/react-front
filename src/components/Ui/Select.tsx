@@ -1,4 +1,5 @@
 import React from 'react';
+//revisar uuid https://es.react.dev/reference/react/useId
 
 interface SelectProps {
   values: string;
@@ -31,8 +32,8 @@ export const Select = ({
         className ? className : ''
       }`}
     >
-      {Object.entries(options).map(([key, value]) => (
-        <option key={key} value={key}>
+      {Object.entries(options).map(([key, value], index) => (
+        <option key={`${key}--${index}`} value={key}>
           {value}
         </option>
       ))}

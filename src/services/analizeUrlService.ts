@@ -1,4 +1,4 @@
-import { RAPID_API_HOST, URL_RAPID_API } from 'src/constants/API';
+import { API_HOST_RAPID, API_KEY_RAPID, API_URL_RAPID } from 'src/constants/API';
 import axios from 'axios';
 
 export const getAnalyseUrlSeo = async (url: string) => {
@@ -7,11 +7,11 @@ export const getAnalyseUrlSeo = async (url: string) => {
 
   const options = {
     method: 'POST',
-    url: URL_RAPID_API,
+    url: API_URL_RAPID,
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
-      'X-RapidAPI-Key': import.meta.env.VITE_APP_API_KEY_RAPIDAPI,
-      'X-RapidAPI-Host': RAPID_API_HOST,
+      'X-RapidAPI-Key': API_KEY_RAPID,
+      'X-RapidAPI-Host': API_HOST_RAPID,
     },
     data: encodedParams,
   };
