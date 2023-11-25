@@ -1,7 +1,7 @@
 import { FormEvent, useEffect } from 'react';
 import useSeoData from 'src/hooks/useSeoData';
 import { Headings, SeoHeading, Seo as SeoInterface } from 'src/models/seo';
-import { Button, TextField, Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { Button, TextField, Box } from '@mui/material';
 import { SnackbarUtilities } from 'src/utilities';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -14,6 +14,7 @@ import { createUrlsSeo, getUrlsSeo } from 'src/api/user';
 import { useAppSelector } from 'src/hooks/useApp';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
+import { FormControlUrl } from 'src/components/FormControlUrl';
 
 const Seo = () => {
   const {
@@ -98,24 +99,7 @@ const Seo = () => {
         <p>Bienvenido a Seo</p>
 
         <Box component='form' noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
-          <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>
-              {t('Welcome')}Selecciona URL recientes
-            </InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={url}
-              label='Url recientes'
-              onChange={(event) => setUrl(event.target.value)}
-            >
-              {urlsRecent.map((url, index) => (
-                <MenuItem key={index} value={url}>
-                  {url}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <FormControlUrl setUrl={setUrl} urlsRecent={urlsRecent} />
 
           <TextField
             margin='normal'

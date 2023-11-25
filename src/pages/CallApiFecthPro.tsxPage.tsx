@@ -1,8 +1,8 @@
 import { fetchData } from 'src/utilities/fetchDataPro';
 import React, { Suspense } from 'react';
+import { API_URL_RICK_AND_MORTY } from 'src/constants/API';
 
-//misma línea .env y luego en constantes
-const apiData = fetchData('https://rickandmortyapi.com/api/character');
+const apiData = fetchData(API_URL_RICK_AND_MORTY);
 
 const CallApiPro = () => {
   const data = apiData.read();

@@ -44,3 +44,6 @@ git push
 
 ## Requirements
 The project needs the file .env with the variables for correct operation
+
+## Shortcodes
+rafc: para crear componentes

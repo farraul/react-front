@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userApi } from 'src/services/jwtService';
-import userReducer from './features/user/userSlices'; // cambiamos nombre
+import userReducer from './features/user/userSlices'; // We change name
 
 export const store = configureStore({
   reducer: {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { API_URL_RICK_AND_MORTY } from 'src/constants/API';
 
 export interface Ricky {
   created: string;
@@ -19,9 +20,8 @@ export interface Ricky {
 const CallApiTanStack = () => {
   const [ricky, setRicky] = useState<Ricky[]>([]);
 
-  //misma línea .env y luego en constantes
   const getRicky = async () => {
-    return fetch('https://rickandmortyapi.com/api/character').then((res) => res.json());
+    return fetch(API_URL_RICK_AND_MORTY).then((res) => res.json());
   };
 
   const {

@@ -1,13 +1,21 @@
+interface Api {
+  [key: string]: (id: number) => Promise<any>;
+}
+
+interface Resources {
+  [index: string]: string;
+}
+
 function propertiesExist<T extends { [index: string]: string }>(object: T, prop: string) {
   const ojectFromEnum = Object.values(object);
   return ojectFromEnum.includes(prop);
 }
 
-export const createApi = (url: any, acceptedResources: any): any => {
+export const createApi = (url: string, acceptedResources: Resources): Api => {
   return new Proxy(
     {},
     {
-      get: (target, prop: string) => async (id: any) => {
+      get: (target, prop: string) => async (id: number) => {
         if (!propertiesExist(acceptedResources, prop)) {
           return Promise.reject({ error: `Resource ${prop} not accepted` });
         }

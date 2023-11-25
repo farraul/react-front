@@ -16,5 +16,3 @@ export const updateClientRequest = async (product: Client) => {
 export const deleteClientRequest = async (_id: string) => {
   await axios.delete('/user/clients', { data: { _id } });
 };
-
-// export const getPRequest = async (id: string) => axios.get(`/api/product/${id}`);

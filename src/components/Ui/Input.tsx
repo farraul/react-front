@@ -8,7 +8,6 @@ type AttributeProps = React.DetailedHTMLProps<
 
 type InputGeneric = AttributeProps & { isFocused?: boolean };
 
-//revisar este bloque
 const Input = forwardRef(
   (
     {

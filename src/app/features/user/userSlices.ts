@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userRegister, userLogin } from './userActions';
 import Cookies from 'js-cookie';
@@ -16,7 +15,6 @@ const initialState: User = {
 };
 
 const userSlice = createSlice({
-  //redux: para estados
   name: 'user',
   initialState,
   reducers: {

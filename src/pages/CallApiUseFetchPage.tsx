@@ -1,11 +1,9 @@
 import { useFetch } from 'src/hooks/useFetch';
 import React from 'react';
+import { API_URL_RICK_AND_MORTY } from 'src/constants/API';
 
-//misma línea .env y luego en constantes
 const CallApiUseFetch = () => {
-  const { data, loading, error, handleCancelRequest } = useFetch(
-    'https://rickandmortyapi.com/api/character',
-  );
+  const { data, loading, error, handleCancelRequest } = useFetch(API_URL_RICK_AND_MORTY);
 
   return (
     <section className='p-16'>

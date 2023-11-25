@@ -1,5 +1,5 @@
 import React from 'react';
-//revisar uuid https://es.react.dev/reference/react/useId
+// Check https://es.react.dev/reference/react/useId
 
 interface SelectProps {
   values: string;
