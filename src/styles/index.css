@@ -36,3 +36,7 @@
     background-color: #f8f8f0;
   }
   
+  @font-face {
+    font-family: "Graphik";
+    src: url("../../public/assets/fonts/inter/Inter-italic.var.woff2");
+  }

@@ -15,9 +15,9 @@ import { useAppSelector } from 'src/hooks/useApp';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { FormControlUrl } from 'src/components/FormControlUrl';
+import Cookies from 'js-cookie';
 
 const Seo = () => {
-  console.log('seo page');
   const {
     url,
     setUrl,
@@ -34,8 +34,7 @@ const Seo = () => {
     handleChange,
   } = useSeoData();
 
-  //Revisar al recargar a veces no tenemos la Id
-  const { _id } = useAppSelector((state) => state.user.userInfo);
+  const id = Cookies.get('userId');
 
   const getUrlSeo = async (_id: string) => {
     const urls = await (await getUrlsSeo(_id)).data;
@@ -44,7 +43,9 @@ const Seo = () => {
 
   const { data: dataUrlSeo } = useQuery({
     queryKey: ['urlSeo'],
-    queryFn: () => getUrlSeo(_id),
+    queryFn: () => {
+      if (id) return getUrlSeo(id);
+    },
     cacheTime: 10000,
     staleTime: 10000,
   });
@@ -82,7 +83,7 @@ const Seo = () => {
         setCountLinks(response.data.links.length);
 
         if (!urlsRecent.includes(url)) {
-          createUrlsSeo(_id, url);
+          if (id) createUrlsSeo(id, url);
         }
       } catch (error) {
         console.error(error);

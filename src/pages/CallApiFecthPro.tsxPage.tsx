@@ -7,7 +7,6 @@ const apiData = fetchData(API_URL_RICK_AND_MORTY);
 
 const CallApiPro = () => {
   const data = apiData.read();
-  console.log({ data });
 
   return (
     <section className='p-16'>
