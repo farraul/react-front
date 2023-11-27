@@ -1,4 +1,4 @@
-import { FormEvent, useEffect } from 'react';
+import { FormEvent, useCallback, useEffect } from 'react';
 import useSeoData from 'src/hooks/useSeoData';
 import { Headings, SeoHeading, Seo as SeoInterface } from 'src/models/seo';
 import { Button, TextField, Box } from '@mui/material';
@@ -17,6 +17,7 @@ import { useQuery } from '@tanstack/react-query';
 import { FormControlUrl } from 'src/components/FormControlUrl';
 
 const Seo = () => {
+  console.log('seo page');
   const {
     url,
     setUrl,
@@ -33,11 +34,10 @@ const Seo = () => {
     handleChange,
   } = useSeoData();
 
+  //Revisar al recargar a veces no tenemos la Id
   const { _id } = useAppSelector((state) => state.user.userInfo);
-  const { t } = useTranslation();
 
   const getUrlSeo = async (_id: string) => {
-    console.log({ _id });
     const urls = await (await getUrlsSeo(_id)).data;
     return urls;
   };

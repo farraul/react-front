@@ -5,28 +5,11 @@ import {
   POKE_API_ACCEPTED_RESOURCES,
 } from 'src/models/resourcesPublic';
 import { API_URL_POKE, API_URL_STAR_WARS } from 'src/constants/API';
+import { StarWarsResponse } from 'src/models/starWars';
+import { PokeResponse } from 'src/models/poke';
 
 interface Resources {
   [index: string]: string;
-}
-
-export interface StarWarsResponse {
-  name: string;
-  height: string;
-  mass: string;
-  hair_color: string;
-  skin_color: string;
-  eye_color: string;
-  birth_year: string;
-  gender: string;
-  homeworld: string;
-  films: string[];
-  species: string[];
-  vehicles: string[];
-  starships: string[];
-  created: Date;
-  edited: Date;
-  url: string;
 }
 
 interface ApiResponse<T> {
@@ -43,11 +26,10 @@ const ProxyPage = () => {
       API_URL_STAR_WARS,
       STAR_WARS_ACCEPTED_RESOURCES as unknown as Resources,
     );
-    const pokeApi = createApi(API_URL_POKE, POKE_API_ACCEPTED_RESOURCES);
+    const pokeApi = createApi(API_URL_POKE, POKE_API_ACCEPTED_RESOURCES as unknown as Resources);
 
     const luke: ApiResponse<StarWarsResponse> = await starWarsApi.people(1);
-
-    const picachu: ApiResponse<T> = await pokeApi.pokemon(1);
+    const picachu: ApiResponse<PokeResponse> = await pokeApi.pokemon(1);
 
     setCharactersStarWars(luke);
     setCharactersPoke(picachu);

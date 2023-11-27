@@ -32,7 +32,7 @@ export const userRegister = createAsyncThunk(
   userServicesConfig.UserRegister,
   async ({ firstName, email, password }: SignUp, { rejectWithValue }) => {
     try {
-      await axios.post('/api/user/register', { firstName, email, password }, config);
+      await axios.post('/user/register', { firstName, email, password }, config);
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

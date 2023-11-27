@@ -20,7 +20,6 @@ export const Select = ({
   className,
   options,
 }: SelectProps) => {
-  console.log({ values });
   return (
     <select
       id={id}

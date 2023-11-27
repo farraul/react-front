@@ -6,6 +6,7 @@ export function SnackbarUtilitiesConfigurator() {
   return null;
 }
 
+//revisar
 export const SnackbarUtilities = {
   toast(msg: string, variant: VariantType = 'default') {
     useSnackbarRef.enqueueSnackbar(msg, { variant });

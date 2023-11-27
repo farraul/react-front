@@ -2,6 +2,7 @@ import { fetchData } from 'src/utilities/fetchDataPro';
 import React, { Suspense } from 'react';
 import { API_URL_RICK_AND_MORTY } from 'src/constants/API';
 
+//revisar
 const apiData = fetchData(API_URL_RICK_AND_MORTY);
 
 const CallApiPro = () => {

@@ -64,7 +64,6 @@ function RegisterPage() {
               <Input
                 className='bg-gray-400 w-full h-8 px-2'
                 required
-                isFocused
                 placeholder='Nombre'
                 type='firstName'
                 name='firstName'
@@ -74,7 +73,6 @@ function RegisterPage() {
               <Input
                 className='bg-gray-400 w-full h-8 px-2'
                 required
-                isFocused
                 placeholder='Email'
                 type='email'
                 name='email'

@@ -7,8 +7,3 @@ export interface SignIn {
 export interface SignUp extends SignIn {
   firstName: string;
 }
-
-export enum RoutesNotAuth {
-  Login = '/login',
-  Register = '/register',
-}

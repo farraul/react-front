@@ -1,5 +1,6 @@
 //way pro to do the Fetch
 
+//revisar
 const getSuspender = (promise: Promise<any>) => {
   let status = 'pending';
   let response: any;
@@ -16,6 +17,7 @@ const getSuspender = (promise: Promise<any>) => {
   );
 
   const read = () => {
+    console.log({ status });
     switch (status) {
       case 'pending':
         throw suspender;

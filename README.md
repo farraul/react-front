@@ -3,12 +3,14 @@
 * Redux toolkit
 * React-router-dom
 * I18next
-* Axios - Interceptors
+* Axios & Interceptors
 * Tanstack/react-query
 
 * Eslint
 * Prettier
 * Husky
+
+* Jest
 
 * Mui
 * Notistack
@@ -27,9 +29,9 @@
 * Js-cookie
 * Use-debounce
 
-### Commandos
-#### How to upload changes
-git add.
+### Commands
+### How to upload changes
+git add .
 
 git commit -m "..."
 
@@ -42,8 +44,10 @@ git commit --amend --no-edit
 git push
 
 
-## Requirements
-The project needs the file .env with the variables for correct operation
+### Shortcodes
+rafc: to create components
 
-## Shortcodes
-rafc: para crear componentes
+### Environment Variables
+* .env
+* env.local
+* env.production

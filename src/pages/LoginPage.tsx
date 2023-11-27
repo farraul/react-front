@@ -46,7 +46,7 @@ function LoginPage() {
   return (
     <>
       <img
-        src='/assets/background.webp'
+        src='/public/assets/images/background.webp'
         alt='image of products'
         className='w-full h-screen z-[-1] fixed top-0 left-0'
       />

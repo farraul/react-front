@@ -10,6 +10,7 @@ export const getMe = async (userToken: string) => {
   });
 };
 
+//revisar
 export const getUrlsSeo = async (id: string) => {
   return await axios({
     method: 'GET',

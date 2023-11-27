@@ -34,8 +34,6 @@ function Header() {
   const [openCallApi, setOpenCallApi] = React.useState(false);
   const [openTable, setOpenTable] = React.useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  console.log('Header  anchorEl:', anchorEl);
-
   const [language, setLanguage] = useState('');
 
   const handleTables = () => {

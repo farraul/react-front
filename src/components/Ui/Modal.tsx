@@ -1,5 +1,8 @@
 import React, { ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { IoMdClose } from 'react-icons/io';
+
+createPortal;
 
 interface ModalProps {
   close: () => void;
@@ -9,7 +12,7 @@ interface ModalProps {
 }
 
 const Modal = ({ close, isOpen, title, children }: ModalProps) => {
-  return (
+  return createPortal(
     <>
       <div
         onClick={close}
@@ -40,7 +43,8 @@ const Modal = ({ close, isOpen, title, children }: ModalProps) => {
           </div>
         </div>
       </div>
-    </>
+    </>,
+    document.body,
   );
 };
 
