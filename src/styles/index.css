@@ -38,5 +38,5 @@
   
   @font-face {
     font-family: "Graphik";
-    src: url("../../public/assets/fonts/inter/Inter-italic.var.woff2");
+    src: url("/assets/fonts/inter/Inter-italic.var.woff2");
   }

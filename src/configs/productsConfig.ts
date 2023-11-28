@@ -1,5 +1,6 @@
 import { GridColDef } from '@mui/x-data-grid';
 
+//revisar + configs????
 export const columns: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 150, editable: true },
   { field: 'email', headerName: 'Email', width: 180, editable: true },
