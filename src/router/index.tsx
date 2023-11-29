@@ -11,7 +11,6 @@ const Router = () => {
   const appContext = useContext(AppContext);
   const { routes } = appContext;
   const isLogged = useGetUserIsLogged();
-  console.log('Router  isLogged:', isLogged);
   const routing = useRoutes(routes(isLogged));
   const { loading } = useFetchMe();
 

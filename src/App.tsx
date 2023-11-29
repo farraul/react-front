@@ -10,9 +10,8 @@ import axios from 'axios';
 import withAppProviders from './withAppProviders';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import es from 'date-fns/locale/es';
-import en from 'date-fns/locale/en-GB';
-// const locales = { 'en-us': undefined, 'es': es, 'zh-cn': zhCN, de };
+import { useSelector } from 'react-redux';
+import { selectCurrentDateFnsLocale } from './store/i18nSlice';
 
 axiosInterceptor();
 const queryClient = new QueryClient();
@@ -20,26 +19,28 @@ const queryClient = new QueryClient();
 axios.defaults.baseURL = `${import.meta.env.VITE_PUBLIC_API_URL}/api`;
 
 const App = () => {
+  const currentDateFnsLocale = useSelector(selectCurrentDateFnsLocale);
+
   return (
-    // <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale="es">
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <SnackbarProvider
-          maxSnack={3}
-          autoHideDuration={3000}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-        >
-          <Suspense fallback={<div />}>
-            <Router />
-          </Suspense>
-          <ReactQueryDevtools />
-        </SnackbarProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
-    // </LocalizationProvider>
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={currentDateFnsLocale}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <SnackbarProvider
+            maxSnack={3}
+            autoHideDuration={3000}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+          >
+            <Suspense fallback={<div />}>
+              <Router />
+            </Suspense>
+            <ReactQueryDevtools />
+          </SnackbarProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </LocalizationProvider>
   );
 };
 

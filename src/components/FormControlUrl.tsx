@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 export const FormControlUrl = memo(({ setUrl, urlsRecent }: any) => {
   const { t } = useTranslation();
-  console.log('renderrr');
 
   return (
     <FormControl fullWidth>
