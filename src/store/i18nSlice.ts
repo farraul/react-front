@@ -7,13 +7,14 @@ import i18n from '../i18n';
 
 moment.locale(i18n.options.lng);
 
-export const changeLanguage = (languageId) => (dispatch) => {
+export const changeLanguage = (languageId: any) => (dispatch: any) => {
   moment.locale(languageId);
 
   return i18n.changeLanguage(languageId).then(() => {
     dispatch(i18nSlice.actions.languageChanged(languageId));
   });
 };
+
 const i18nSlice = createSlice({
   name: 'i18n',
   initialState: {
@@ -30,15 +31,17 @@ const i18nSlice = createSlice({
   },
 });
 
-export const selectCurrentLanguageId = ({ i18n: _i18n }) => _i18n.language;
+export const selectCurrentLanguageId = ({ i18n: _i18n }: { i18n: any; _i18n: any }) =>
+  _i18n.language;
 
-export const selectCurrentDateFnsLocale = ({ i18n: _i18n }) =>
+//revisar
+export const selectCurrentDateFnsLocale = ({ i18n: _i18n }: { i18n: any; _i18n: any }) =>
   ({
     es,
     en,
   }[_i18n.language]);
 
-export const selectLanguages = ({ i18n: _i18n }) => _i18n.languages;
+export const selectLanguages = ({ i18n: _i18n }: { i18n: any; _i18n: any }) => _i18n.languages;
 
 export const selectCurrentLanguageDirection = createSelector([selectCurrentLanguageId], (id) => {
   return i18n.dir(id);
@@ -47,7 +50,7 @@ export const selectCurrentLanguageDirection = createSelector([selectCurrentLangu
 export const selectCurrentLanguage = createSelector(
   [selectCurrentLanguageId, selectLanguages],
   (id, languages) => {
-    return languages.find((lng) => lng.id === id);
+    return languages.find((lng: any) => lng.id === id);
   },
 );
 

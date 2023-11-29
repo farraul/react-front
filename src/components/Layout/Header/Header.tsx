@@ -9,20 +9,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { logout } from 'src/store/userSlice';
-import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
+import { useAppDispatch } from 'src/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Select } from 'src/components';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { TitleMenu } from './TitleMenu';
 import { useGetUserIsLogged } from 'src/store/selectors/userSelectors';
-
-const languageValues = {
-  es: 'Es',
-  en: 'En',
-};
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 const fontSizeMenu = { fontSize: 17 };
 
@@ -30,11 +25,10 @@ function Header() {
   const dispatch = useAppDispatch();
   const isLogged = useGetUserIsLogged();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation('translation', { keyPrefix: 'translation.header' });
+  const { t } = useTranslation('translation', { keyPrefix: 'translation.header' });
   const [openCallApi, setOpenCallApi] = React.useState(false);
   const [openTable, setOpenTable] = React.useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [language, setLanguage] = useState('');
 
   const handleTables = () => {
     setOpenTable(!openTable);
@@ -56,11 +50,6 @@ function Header() {
     navigate('/');
   };
 
-  const handleChangeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(e.target.value);
-    i18n.changeLanguage(e.target.value);
-  };
-
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -71,14 +60,7 @@ function Header() {
             </Typography>
 
             <div className='w-15'>
-              <Select
-                id='language'
-                name='languaje'
-                values={language}
-                onChange={handleChangeLanguage}
-                placeholder=''
-                options={languageValues}
-              />
+              <LanguageSwitcher />
             </div>
             {isLogged ? (
               <div>
