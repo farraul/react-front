@@ -87,7 +87,6 @@ export const TableMui = ({
 
   const handleDeleteClick = async (id: GridRowId) => {
     setRows(rows.filter((row) => row.id !== id));
-    console.log({ id });
     await remove.mutateAsync(id as string);
   };
 
@@ -127,7 +126,6 @@ export const TableMui = ({
 
   const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
     setRowModesModel(newRowModesModel);
-    console.log('save', newRowModesModel);
   };
 
   return (

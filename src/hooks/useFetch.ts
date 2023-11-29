@@ -15,7 +15,6 @@ export const useFetch = (url: string) => {
       .then((json) => setData(json))
       .catch((error) => {
         if (error.name === 'AbortError') {
-          console.log('Cancelled request');
         } else {
           setError(error);
         }

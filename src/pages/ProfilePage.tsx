@@ -7,7 +7,6 @@ import github from 'react-useanimations/lib/github';
 
 const ProfilePage = () => {
   const { firstName, email } = useAppSelector((state) => state.user.userInfo);
-  console.log(firstName);
 
   function stringAvatar(name: string) {
     return {

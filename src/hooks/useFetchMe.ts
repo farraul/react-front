@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from 'src/hooks/useApp';
-import { setCredentials } from 'src/app/features/user/userSlices';
-import { useGetUserInfo, useGetUserIsLogged } from 'src/app/features/selectors/userSelectors';
+import { setCredentials } from 'src/store/userSlice';
+import { useGetUserInfo, useGetUserIsLogged } from 'src/store/selectors/userSelectors';
 import { getMe } from 'src/api/user';
 import type { AxiosError } from 'axios';
 
@@ -11,15 +11,15 @@ interface UseFetchMe {
 
 export const useFetchMe = (): UseFetchMe => {
   const dispatch = useAppDispatch();
-  const { userToken } = useGetUserInfo();
+  const { token } = useGetUserInfo();
   const isLogged = useGetUserIsLogged();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchMe = async (userToken: string) => {
+  const fetchMe = async (token: string) => {
     setLoading(true);
     try {
-      const me = await (await getMe(userToken)).data;
-      if (me) dispatch(setCredentials({ ...me, userToken }));
+      const me = await (await getMe(token)).data;
+      if (me) dispatch(setCredentials({ ...me, token }));
     } catch (error) {
       const err = error as AxiosError;
       console.log(err.message);
@@ -30,9 +30,9 @@ export const useFetchMe = (): UseFetchMe => {
 
   useEffect(() => {
     if (isLogged) {
-      fetchMe(userToken);
+      fetchMe(token);
     }
-  }, [userToken, dispatch]);
+  }, [token, dispatch]);
 
   return { loading };
 };

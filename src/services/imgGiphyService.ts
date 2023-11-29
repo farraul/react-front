@@ -6,7 +6,6 @@ const baseApiGiphy = API_URL_GIPHY;
 
 const fromAPIResponse = (apiResponse: ApiResponse) => {
   const { data = [] } = apiResponse;
-  console.log({ apiResponse });
 
   if (Array.isArray(data)) {
     const gifs = data.map((image) => {
@@ -26,7 +25,6 @@ export const getImages = async (img: string, limit = 10, page = 0) => {
     limit,
     offset: page,
   })}&rating=g&lang=en&bundle=clips_grid_picker`;
-  console.log({ ApiURL });
   return fetch(ApiURL)
     .then((res) => res.json())
     .then(fromAPIResponse);

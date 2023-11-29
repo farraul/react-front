@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { userRegister, userLogin } from './userActions';
+import { userRegister, userLogin } from './actions/userActions';
 import Cookies from 'js-cookie';
 import { User, UserInfo } from 'src/models/user/user';
 
-const userToken = atob(Cookies.get('userToken') || '');
-const userInfoDefault = { _id: '', firstName: '', email: '' };
-const userTokenDefault = '';
+const token = atob(Cookies.get('userToken') || '');
+const infoDefault = { _id: '', firstName: '', email: '' };
+const tokenDefault = '';
 
 const initialState: User = {
   loading: false,
-  userInfo: { ...userInfoDefault, userToken },
+  userInfo: { ...infoDefault, token },
   error: null,
   success: false,
 };
@@ -22,7 +22,7 @@ const userSlice = createSlice({
       Cookies.remove('userToken');
       Cookies.remove('userId');
       state.loading = false;
-      state.userInfo = { ...userInfoDefault, userToken: userTokenDefault };
+      state.userInfo = { ...infoDefault, token: tokenDefault };
       state.error = null;
     },
     setCredentials: (state, action: PayloadAction<UserInfo>) => {

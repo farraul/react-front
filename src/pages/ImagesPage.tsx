@@ -27,7 +27,6 @@ const ImagesPage = () => {
       const targetElement = document.getElementById('observer-target');
 
       if (targetElement) {
-        console.log({ targetElement });
         observerRef.current = new IntersectionObserver(
           handleIntersection,
           IntersectionObserverOptions,

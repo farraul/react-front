@@ -38,11 +38,9 @@ const FormCRUD = ({
   function handleChange<T>(e: InputChangeEvent<T>) {
     const value = e.target.value as T;
     setValues({ ...values, [e.target.name]: value });
-    console.log({ values });
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    console.log({ values });
     e.preventDefault();
 
     if (values) {

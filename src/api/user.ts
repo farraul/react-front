@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-export const getMe = async (userToken: string) => {
+export const getMe = async (token: string) => {
   return await axios({
     method: 'GET',
     url: '/user/profile',
     headers: {
-      Authorization: `Bearer ${userToken}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 };
 
-//revisar
 export const getUrlsSeo = async (id: string) => {
   return await axios({
     method: 'GET',

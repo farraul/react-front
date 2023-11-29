@@ -1,7 +1,7 @@
 import { CssBaseline, Container } from '@mui/material';
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { userLogin } from 'src/app/features/user/userActions';
+import { userLogin } from 'src/store/actions/userActions';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import { SignIn } from 'src/models/auth';
 import { Button, Input } from 'src/components';

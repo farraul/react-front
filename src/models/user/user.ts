@@ -1,7 +1,7 @@
 import { Product } from '../product';
 
 export interface Token {
-  userToken: string;
+  token: string;
 }
 
 export interface UserInfo extends Token {

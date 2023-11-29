@@ -25,9 +25,6 @@ function HookFormPage() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log('data: ', data);
 
-  console.log(watch('example'));
-  console.log(watch('exampleRequired'));
-
   return (
     <section className='h-[calc(100vh-64px)] p-16 bg-gray-600 text-white'>
       <form onSubmit={handleSubmit(onSubmit)}>

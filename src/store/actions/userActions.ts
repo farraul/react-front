@@ -15,7 +15,6 @@ export const userLogin = createAsyncThunk(
   async ({ email, password }: SignIn, { rejectWithValue }) => {
     try {
       const info = await axios.post('/user/login', { email, password }, config);
-
       Cookies.set('userToken', btoa(info.data.data.userToken), {
         expires: 360000,
       });

@@ -23,13 +23,13 @@ const HookImperativeHandle = lazy(
 const ReactWindowPage = lazy(() => import('src/pages/ReactWindowPage'));
 const ProxyPage = lazy(() => import('src/pages/ProxyPage'));
 
-export const Path = (isLogged: boolean) => {
-  const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
-    return isLogged ? <Componente /> : <Navigate to={`/?redirect=${window.location.href}`} />;
-  };
-
+export const routes = (isLogged: boolean) => {
   const notPathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
     return isLogged ? <Navigate to={'/home-page'} /> : <Componente />;
+  };
+
+  const pathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
+    return isLogged ? <Componente /> : <Navigate to={`/?redirect=${window.location.href}`} />;
   };
 
   return [
