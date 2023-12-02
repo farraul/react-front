@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { CssBaseline, Container } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
-import { userRegister } from 'src/store/actions/userActions';
+import { userRegister } from 'src/store/user/userActions';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import { SignUp } from 'src/models/auth';
 import { Button, Input } from 'src/components';

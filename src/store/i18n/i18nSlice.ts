@@ -3,7 +3,7 @@ import moment from 'moment';
 import 'moment/locale/es';
 import es from 'date-fns/locale/es';
 import en from 'date-fns/locale/en-GB';
-import i18n from '../i18n';
+import i18n from '../../i18n';
 
 moment.locale(i18n.options.lng);
 
@@ -34,12 +34,13 @@ const i18nSlice = createSlice({
 export const selectCurrentLanguageId = ({ i18n: _i18n }: { i18n: any; _i18n: any }) =>
   _i18n.language;
 
-//revisar
-export const selectCurrentDateFnsLocale = ({ i18n: _i18n }: { i18n: any; _i18n: any }) =>
-  ({
+export const selectCurrentDateFnsLocale = ({ i18n: _i18n }: { i18n: any; _i18n: any }) => {
+  const localeObject: any = {
     es,
     en,
-  }[_i18n.language]);
+  };
+  return localeObject[_i18n.language];
+};
 
 export const selectLanguages = ({ i18n: _i18n }: { i18n: any; _i18n: any }) => _i18n.languages;
 

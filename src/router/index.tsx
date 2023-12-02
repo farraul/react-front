@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { Path } from './path';
 import { Spinner } from 'src/components';
-import { useGetUserIsLogged } from 'src/store/selectors/userSelectors';
+import { useGetUserIsLogged } from 'src/store/user/userSelectors';
 import { useFetchMe } from 'src/hooks/useFetchMe';
 import { AppContext } from 'src/AppContext';
 

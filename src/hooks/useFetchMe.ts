@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from 'src/hooks/useApp';
-import { setCredentials } from 'src/store/userSlice';
-import { useGetUserInfo, useGetUserIsLogged } from 'src/store/selectors/userSelectors';
+import { setCredentials } from 'src/store/user/userSlice';
+import { useGetUserInfo, useGetUserIsLogged } from 'src/store/user/userSelectors';
 import { getMe } from 'src/api/user';
 import type { AxiosError } from 'axios';
 

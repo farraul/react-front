@@ -10,6 +10,7 @@ const config = {
   },
 };
 
+//revisar
 export const userLogin = createAsyncThunk(
   userServicesConfig.UserLogin,
   async ({ email, password }: SignIn, { rejectWithValue }) => {
@@ -20,7 +21,9 @@ export const userLogin = createAsyncThunk(
       });
       Cookies.set('userId', info.data.data._id, { expires: 360000 });
 
-      return info.data.data;
+      return Object.assign(info.data.data, {
+        token: info.data.data.userToken,
+      });
     } catch (error: unknown) {
       return rejectWithValue(error);
     }

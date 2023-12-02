@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { useAppDispatch } from 'src/hooks/useApp';
 import { Select } from 'src/components';
-import { changeLanguage, selectCurrentLanguage } from 'src/store/i18nSlice';
+import { changeLanguage, selectCurrentLanguage } from 'src/store/i18n/i18nSlice';
 import { useSelector } from 'react-redux';
 import React from 'react';
 

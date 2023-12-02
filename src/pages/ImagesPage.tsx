@@ -42,6 +42,7 @@ const ImagesPage = () => {
     }
   }, [page]);
 
+  //revisar y las promesas?
   const fetchImageData = async (page: number) => {
     try {
       setIsLoading(true);

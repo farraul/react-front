@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate } from 'react-router-dom';
-import { logout } from 'src/store/userSlice';
+import { logout } from 'src/store/user/userSlice';
 import { useAppDispatch } from 'src/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +16,7 @@ import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { TitleMenu } from './TitleMenu';
-import { useGetUserIsLogged } from 'src/store/selectors/userSelectors';
+import { useGetUserIsLogged } from 'src/store/user/userSelectors';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 const fontSizeMenu = { fontSize: 17 };

@@ -15,7 +15,7 @@ if (import.meta.env.MODE === 'development') {
   middlewares.push(logger);
 }
 
-const store = configureStore({
+const store: any = configureStore({
   reducer: createReducer(),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
