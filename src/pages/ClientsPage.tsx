@@ -6,7 +6,7 @@ import {
   getClientsRequest,
   updateClientRequest,
   deleteClientRequest,
-} from 'src/services/clientService';
+} from 'src/api/clientService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 import { TableMui } from 'src/components';
