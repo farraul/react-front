@@ -4,18 +4,18 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { IoMdAdd } from 'react-icons/io';
-import {
-  createProductRequest,
-  deleteProductRequest,
-  getProductsRequest,
-  updateProductRequest,
-} from 'src/services';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Product } from 'src/models/product';
 import { ColDef } from 'ag-grid-community';
 import { VscLoading } from 'react-icons/vsc';
 import Cookies from 'js-cookie';
 import { ErrorBoundary } from 'src/utilities/errorBoundaries';
+import {
+  createProductRequest,
+  deleteProductRequest,
+  getProductsRequest,
+  updateProductRequest,
+} from 'src/api/productServices';
 
 const ProductPage = () => {
   const [addProduct, setAddProduct] = useState(false);
