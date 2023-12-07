@@ -11,12 +11,12 @@ const config = {
 };
 
 //revisar
-export const userLogin = createAsyncThunk(
-  userServicesConfig.UserLogin,
+export const signIn = createAsyncThunk(
+  userServicesConfig.signIn,
   async ({ email, password }: SignIn, { rejectWithValue }) => {
     try {
       const info = await axios.post('/user/login', { email, password }, config);
-      Cookies.set('userToken', btoa(info.data.data.userToken), {
+      Cookies.set('jwt_access_token', btoa(info.data.data.userToken), {
         expires: 360000,
       });
       Cookies.set('userId', info.data.data._id, { expires: 360000 });

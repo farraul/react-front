@@ -6,15 +6,20 @@ import { Spinner } from 'src/components';
 import { useGetUserIsLogged } from 'src/store/user/userSelectors';
 import { useFetchMe } from 'src/hooks/useFetchMe';
 import { AppContext } from 'src/AppContext';
+import { AuthContext } from 'src/auth/AuthContext';
+import { object } from 'yup';
 
 const Router = () => {
   const appContext = useContext(AppContext);
+  const { loading, me } = useContext(AuthContext);
   const { routes } = appContext;
+  console.log({ me, loading });
   const isLogged = useGetUserIsLogged();
-  const routing = useRoutes(routes(isLogged));
-  const { loading } = useFetchMe();
+  if (loading) return <Spinner />;
+  const routing = useRoutes(routes(Object.values(me).length ? true : false));
+  // const { loading } = useFetchMe();
 
-  return loading ? <Spinner /> : routing;
+  return routing;
 };
 
 export default Router;

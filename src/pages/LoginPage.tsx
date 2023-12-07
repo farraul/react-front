@@ -1,30 +1,39 @@
 import { CssBaseline, Container } from '@mui/material';
-import React, { useState, FormEvent, ChangeEvent } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import { userLogin } from 'src/store/user/userActions';
+import React, { useState, FormEvent, ChangeEvent, useContext } from 'react';
+import { Link, useSearchParams, Navigate } from 'react-router-dom';
+import { signIn } from 'src/store/user/userActions';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import { SignIn } from 'src/models/auth';
 import { Button, Input } from 'src/components';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { AuthContext } from 'src/auth/AuthContext';
+import { setCredentials } from 'src/store/user/userSlice';
 
+type InputChangeEvent<T> = ChangeEvent<HTMLInputElement> & {
+  target: {
+    name: string;
+    value: T;
+  };
+};
 const initialState: SignIn = {
   email: '',
   password: '',
 };
 
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
 function LoginPage() {
   const [searchParams] = useSearchParams();
-
+  const { setMe, setLoading } = useContext(AuthContext);
   const [value, setValue] = useState(initialState);
   const user = useAppSelector((state) => state.user);
 
   const dispatch = useAppDispatch();
-
-  type InputChangeEvent<T> = ChangeEvent<HTMLInputElement> & {
-    target: {
-      name: string;
-      value: T;
-    };
-  };
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const valueSignIn = e.target.value as T;
@@ -33,12 +42,34 @@ function LoginPage() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
+    setLoading(true);
     if (value) {
-      await dispatch(userLogin(value));
-      const redirect = searchParams.get('redirect');
-      if (redirect) {
-        window.location.href = redirect;
+      try {
+        const info = await axios.post(
+          '/user/login',
+          { email: value.email, password: value.password },
+          config,
+        );
+        setMe(info.data.data);
+        Cookies.set('jwt_access_token', info.data.data.userToken, {
+          expires: 360000,
+        });
+        Cookies.set('userId', info.data.data._id, { expires: 360000 });
+        const redirect = searchParams.get('redirect');
+        dispatch(setCredentials(info.data.data));
+
+        if (redirect) {
+          window.location.href = redirect;
+        } else {
+          return <Navigate to='/' />;
+        }
+        // return Object.assign(info.data.data, {
+        //   token: info.data.data.userToken,
+        // });
+      } catch (error: unknown) {
+        console.log({ error });
+      } finally {
+        setLoading(false);
       }
     }
   }
@@ -104,3 +135,6 @@ function LoginPage() {
 }
 
 export default LoginPage;
+function rejectWithValue(error: unknown) {
+  throw new Error('Function not implemented.');
+}

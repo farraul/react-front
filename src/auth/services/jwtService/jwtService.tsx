@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import jwtServiceConfig from 'src/configs/jwtServiceConfig';
 import AppUtils from 'src/utilities/AppUtils';
@@ -30,6 +31,7 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   handleAuthentication = () => {
+    console.log('token');
     const access_token = this.getAccessToken();
 
     if (!access_token) {
@@ -70,9 +72,9 @@ class JwtService extends AppUtils.EventEmitter {
         })
         .then((response) => {
           if (response.data.user) {
-            this.setSession(response.data.token, remember);
-            resolve(response.data.user);
-            this.emit('onLogin', response.data.user);
+            this.setSession(response.data.userToken, remember);
+            resolve(response.data);
+            this.emit('onLogin', response.data);
           } else {
             reject(response.data.error);
           }
@@ -104,10 +106,14 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   setSession = (access_token, remember = true) => {
+    console.log({ access_token });
     const storage = remember ? localStorage : sessionStorage;
     if (access_token) {
-      storage.setItem('jwt_access_token', access_token);
-      axios.defaults.headers.common['X-JWT-Assertion'] = access_token;
+      // storage.setItem('jwt_access_token', access_token);
+      Cookies.set('jwt_access_token', btoa(access_token));
+
+      // axios.defaults.headers.common['X-JWT-Assertion'] = access_token;
+      axios.defaults.headers.common['Authorization'] = access_token;
     } else {
       localStorage.removeItem('jwt_access_token');
       sessionStorage.removeItem('jwt_access_token');
@@ -135,7 +141,7 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   getAccessToken = () => {
-    return window.localStorage.getItem('jwt_access_token');
+    return atob(Cookies.get('jwt_access_token') || '');
   };
 }
 

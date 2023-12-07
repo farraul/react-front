@@ -17,7 +17,7 @@ export const axiosInterceptor = () => {
 
         if (message == 'jwt expired') {
           console.log('jwt expired');
-          Cookies.remove('userToken');
+          Cookies.remove('jwt_access_token');
           Cookies.remove('userId');
           window.location.href = '/';
         }

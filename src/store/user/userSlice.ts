@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { userRegister, userLogin } from './userActions';
+import { userRegister, signIn } from './userActions';
 import Cookies from 'js-cookie';
 import { User, UserInfo } from 'src/models/user/user';
 
-const token = atob(Cookies.get('userToken') || '');
+const token = Cookies.get('jwt_access_token') || '';
 const infoDefault = { _id: '', firstName: '', email: '' };
 const tokenDefault = '';
 
@@ -14,33 +14,35 @@ const initialState: User = {
   success: false,
 };
 
+console.log('file');
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
     logout: (state) => {
-      Cookies.remove('userToken');
+      Cookies.remove('jwt_access_token');
       Cookies.remove('userId');
       state.loading = false;
       state.userInfo = { ...infoDefault, token: tokenDefault };
       state.error = null;
     },
     setCredentials: (state, action: PayloadAction<UserInfo>) => {
+      console.log('setcrednetials');
       state.userInfo = action.payload;
     },
   },
   extraReducers: (builder) => {
     // login user
     builder
-      .addCase(userLogin.pending, (state) => {
+      .addCase(signIn.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(userLogin.fulfilled, (state, action: PayloadAction<User>) => {
+      .addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
         state.loading = false;
         state.userInfo = action.payload as unknown as UserInfo;
       })
-      .addCase(userLogin.rejected, (state, { payload }) => {
+      .addCase(signIn.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload as string;
       })

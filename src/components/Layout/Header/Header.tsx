@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -18,10 +18,12 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { TitleMenu } from './TitleMenu';
 import { useGetUserIsLogged } from 'src/store/user/userSelectors';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { AuthContext } from 'src/auth/AuthContext';
 
 const fontSizeMenu = { fontSize: 17 };
 
 function Header() {
+  const { setMe, setToken } = useContext(AuthContext);
   const dispatch = useAppDispatch();
   const isLogged = useGetUserIsLogged();
   const navigate = useNavigate();
@@ -47,6 +49,8 @@ function Header() {
   };
   const handleLogout = () => {
     dispatch(logout());
+    setMe({});
+    setToken('');
     navigate('/');
   };
 
