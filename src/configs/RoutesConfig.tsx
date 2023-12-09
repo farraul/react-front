@@ -24,6 +24,7 @@ const ReactWindowPage = lazy(() => import('src/pages/ReactWindowPage'));
 const ProxyPage = lazy(() => import('src/pages/ProxyPage'));
 
 export const routes = (isLogged: boolean) => {
+  console.log({ isLogged });
   const notPathSession = (Componente: LazyExoticComponent<() => JSX.Element>) => {
     return isLogged ? <Navigate to={'/home-page'} /> : <Componente />;
   };

@@ -81,6 +81,12 @@ export const AuthProvider = ({ children }: PropsProvider) => {
       pass();
     });
 
+    jwtService.on('onLogout', () => {
+      pass('Signed out');
+
+      dispatch(logout());
+    });
+
     jwtService.init();
 
     function success(user: any, message: any) {
@@ -98,7 +104,7 @@ export const AuthProvider = ({ children }: PropsProvider) => {
       });
     }
 
-    function pass(message: any | null) {
+    function pass(message?: any) {
       console.log('pass');
       if (message) {
         dispatch(showMessage({ message }));

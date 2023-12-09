@@ -14,7 +14,6 @@ const initialState: User = {
   success: false,
 };
 
-console.log('file');
 const userSlice = createSlice({
   name: 'user',
   initialState,

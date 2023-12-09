@@ -123,14 +123,15 @@ class JwtService extends AppUtils.EventEmitter {
       Cookies.set('jwt_access_token', access_token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
     } else {
+      Cookies.remove('jwt_access_token');
       localStorage.removeItem('jwt_access_token');
       sessionStorage.removeItem('jwt_access_token');
-      Cookies.remove('jwt_access_token');
       delete axios.defaults.headers.common['Authorization'];
     }
   };
 
   logout = () => {
+    console.log('out');
     this.setSession(null);
     this.emit('onLogout', 'Logged out');
   };
