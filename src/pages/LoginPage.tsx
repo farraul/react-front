@@ -9,6 +9,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { AuthContext } from 'src/auth/AuthContext';
 import { setCredentials } from 'src/store/user/userSlice';
+import jwtService from 'src/auth/services/jwtService/jwtService';
 
 type InputChangeEvent<T> = ChangeEvent<HTMLInputElement> & {
   target: {
@@ -44,33 +45,45 @@ function LoginPage() {
     e.preventDefault();
     setLoading(true);
     if (value) {
-      try {
-        const info = await axios.post(
-          '/user/login',
-          { email: value.email, password: value.password },
-          config,
-        );
-        setMe(info.data.data);
-        Cookies.set('jwt_access_token', info.data.data.userToken, {
-          expires: 360000,
+      jwtService
+        .signInWithEmailAndPassword(value.email, value.password, value.remember)
+        .then((user) => {
+          // No need to do anything, user data will be set at app/auth/AuthContext
+        })
+        .catch((error) => {
+          console.log({ error });
+        })
+        .finally(() => {
+          setLoading(false);
         });
-        Cookies.set('userId', info.data.data._id, { expires: 360000 });
-        const redirect = searchParams.get('redirect');
-        dispatch(setCredentials(info.data.data));
 
-        if (redirect) {
-          window.location.href = redirect;
-        } else {
-          return <Navigate to='/' />;
-        }
-        // return Object.assign(info.data.data, {
-        //   token: info.data.data.userToken,
-        // });
-      } catch (error: unknown) {
-        console.log({ error });
-      } finally {
-        setLoading(false);
-      }
+      // try {
+      //   const info = await axios.post(
+      //     '/user/login',
+      //     { email: value.email, password: value.password },
+      //     config,
+      //   );
+      //   setMe(info.data.data);
+      //   Cookies.set('jwt_access_token', info.data.data.token, {
+      //     expires: 360000,
+      //   });
+      //   Cookies.set('userId', info.data.data._id, { expires: 360000 });
+      //   const redirect = searchParams.get('redirect');
+      //   dispatch(setCredentials(info.data.data));
+
+      //   if (redirect) {
+      //     window.location.href = redirect;
+      //   } else {
+      //     return <Navigate to='/' />;
+      //   }
+      //   // return Object.assign(info.data.data, {
+      //   //   token: info.data.data.userToken,
+      //   // });
+      // } catch (error: unknown) {
+      //   console.log({ error });
+      // } finally {
+      //   setLoading(false);
+      // }
     }
   }
 

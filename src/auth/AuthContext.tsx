@@ -42,26 +42,69 @@ export const AuthProvider = ({ children }: PropsProvider) => {
 
   const dispatch = useAppDispatch();
 
-  const fetchMe = async (token: string) => {
-    setLoading(true);
-    try {
-      const me = await (await getMe(token)).data;
-      console.log({ me });
-      if (me) dispatch(setCredentials({ ...me, token }));
-      setMe(me);
-    } catch (error) {
-      const err = error as AxiosError;
-      console.log(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchMe = async (token: string) => {
+  //   setLoading(true);
+  //   try {
+  //     const me = await (await getMe(token)).data;
+  //     console.log({ me });
+  //     if (me) dispatch(setCredentials({ ...me, token }));
+  //     setMe(me);
+  //   } catch (error) {
+  //     const err = error as AxiosError;
+  //     console.log(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (token) {
+  //     fetchMe(token);
+  //   }
+  // }, [token]);
 
   useEffect(() => {
-    if (token) {
-      fetchMe(token);
+    jwtService.on('onLogin', (user) => {
+      console.log('onlogin');
+      // success(user, 'Signed in');      success(user, 'Signed in');
+      success(user, 'Signed in');
+
+      console.log({ me });
+      // if (me)
+      dispatch(setCredentials(user));
+      setMe(user);
+      console.log({ user });
+    });
+
+    jwtService.on('onAutoLogin', () => {
+      console.log('onoutlogin');
+      dispatch(showMessage({ message: 'Signing in with JWT' }));
+
+      /**
+       * Sign in and retrieve user data with stored token
+       */
+      jwtService
+        .signInWithToken()
+        .then((user) => {
+          dispatch(setCredentials(user));
+          setMe(user);
+
+          // success(user, 'Signed in with JWT');
+        })
+        .catch((error) => {
+          // pass(error.message);
+        });
+    });
+
+    jwtService.init();
+
+    function success(user, message) {
+      if (message) {
+        dispatch(showMessage({ message }));
+      }
     }
-  }, [token]);
+    console.log({ dispatch });
+  }, [dispatch]);
 
   const value = { token, setToken, me, setMe, loading, setLoading };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

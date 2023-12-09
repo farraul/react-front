@@ -16,14 +16,12 @@ export const signIn = createAsyncThunk(
   async ({ email, password }: SignIn, { rejectWithValue }) => {
     try {
       const info = await axios.post('/user/login', { email, password }, config);
-      Cookies.set('jwt_access_token', btoa(info.data.data.userToken), {
+      Cookies.set('jwt_access_token', btoa(info.data.data.token), {
         expires: 360000,
       });
       Cookies.set('userId', info.data.data._id, { expires: 360000 });
 
-      return Object.assign(info.data.data, {
-        token: info.data.data.userToken,
-      });
+      return info.data.data;
     } catch (error: unknown) {
       return rejectWithValue(error);
     }
