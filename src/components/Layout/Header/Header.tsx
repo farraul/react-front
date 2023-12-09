@@ -19,6 +19,7 @@ import { TitleMenu } from './TitleMenu';
 import { useGetUserIsLogged } from 'src/store/user/userSelectors';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { AuthContext } from 'src/auth/AuthContext';
+import jwtService from 'src/auth/services/jwtService/jwtService';
 
 const fontSizeMenu = { fontSize: 17 };
 
@@ -193,7 +194,7 @@ function Header() {
                   <MenuItem
                     className='bg-slate-300'
                     sx={{ fontSizeMenu, bgcolor: '#ff9292' }}
-                    onClick={handleLogout}
+                    onClick={() => jwtService.logout()}
                   >
                     {t('logout')}
                   </MenuItem>

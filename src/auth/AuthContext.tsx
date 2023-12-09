@@ -12,6 +12,7 @@ import Cookies from 'js-cookie';
 import { AppContext } from 'src/AppContext';
 import { type } from 'os';
 import { useAppDispatch } from 'src/hooks/useApp';
+import { Spinner } from 'src/components';
 
 type PropsProvider = {
   children: React.ReactNode;
@@ -37,47 +38,17 @@ export const AuthContext = createContext<Values>({
 
 export const AuthProvider = ({ children }: PropsProvider) => {
   const [me, setMe] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(Cookies.get('jwt_access_token') || '');
+  const [waitAuthCheck, setWaitAuthCheck] = useState(true);
 
   const dispatch = useAppDispatch();
 
-  // const fetchMe = async (token: string) => {
-  //   setLoading(true);
-  //   try {
-  //     const me = await (await getMe(token)).data;
-  //     console.log({ me });
-  //     if (me) dispatch(setCredentials({ ...me, token }));
-  //     setMe(me);
-  //   } catch (error) {
-  //     const err = error as AxiosError;
-  //     console.log(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (token) {
-  //     fetchMe(token);
-  //   }
-  // }, [token]);
-
   useEffect(() => {
-    jwtService.on('onLogin', (user) => {
-      console.log('onlogin');
-      // success(user, 'Signed in');      success(user, 'Signed in');
-      success(user, 'Signed in');
-
-      console.log({ me });
-      // if (me)
-      dispatch(setCredentials(user));
-      setMe(user);
-      console.log({ user });
-    });
+    console.log('auth');
 
     jwtService.on('onAutoLogin', () => {
-      console.log('onoutlogin');
+      console.log('jwtService.on  onAutoLogin:');
       dispatch(showMessage({ message: 'Signing in with JWT' }));
 
       /**
@@ -86,26 +57,66 @@ export const AuthProvider = ({ children }: PropsProvider) => {
       jwtService
         .signInWithToken()
         .then((user) => {
-          dispatch(setCredentials(user));
-          setMe(user);
+          success(user, 'Signed in with JWT');
 
           // success(user, 'Signed in with JWT');
         })
         .catch((error) => {
-          // pass(error.message);
+          pass(error.message);
+        })
+        .finally(() => {
+          setLoading(false);
         });
+    });
+
+    jwtService.on('onLogin', (user: any) => {
+      console.log('jwtService.on  onLogin:');
+
+      success(user, 'Signed in');
+      dispatch(setCredentials(user));
+      setMe(user);
+    });
+
+    jwtService.on('onNoAccessToken', () => {
+      pass();
     });
 
     jwtService.init();
 
-    function success(user, message) {
+    function success(user: any, message: any) {
       if (message) {
         dispatch(showMessage({ message }));
       }
+
+      Promise.all([
+        dispatch(setCredentials(user)),
+        setMe(user),
+        // You can receive data in here before app initialization
+      ]).then((values) => {
+        console.log('false');
+        setWaitAuthCheck(false);
+      });
     }
-    console.log({ dispatch });
+
+    function pass(message: any | null) {
+      console.log('pass');
+      if (message) {
+        dispatch(showMessage({ message }));
+      }
+
+      setWaitAuthCheck(false);
+    }
   }, [dispatch]);
 
-  const value = { token, setToken, me, setMe, loading, setLoading };
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return waitAuthCheck ? (
+    <Spinner />
+  ) : (
+    <AuthContext.Provider value={{ token, setToken, me, setMe, loading, setLoading }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
+
+//   const value = { token, setToken, me, setMe, loading, setLoading };
+//   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+// };

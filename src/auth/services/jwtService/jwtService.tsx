@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { error } from 'console';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import jwtServiceConfig from 'src/configs/jwtServiceConfig';
@@ -32,6 +33,7 @@ class JwtService extends AppUtils.EventEmitter {
   // };
 
   handleAuthentication = () => {
+    console.log('handle');
     const access_token = this.getAccessToken();
 
     if (!access_token) {
@@ -41,9 +43,12 @@ class JwtService extends AppUtils.EventEmitter {
     }
 
     if (this.isAuthTokenValid(access_token)) {
+      console.log('JwtService  access_token:', access_token);
+
       this.setSession(access_token);
       this.emit('onAutoLogin', true);
     } else {
+      console.log('else');
       this.setSession(null);
       this.emit('onAutoLogout', 'access_token expired');
     }
@@ -78,8 +83,12 @@ class JwtService extends AppUtils.EventEmitter {
             resolve(response.data.data);
             this.emit('onLogin', response.data.data);
           } else {
+            console.log('falaa');
             reject(response.data.error);
           }
+        })
+        .catch((error) => {
+          reject(error);
         });
     });
   };
@@ -104,6 +113,7 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   getMe = () => {
+    console.log('nmuestro');
     return axios.get(jwtServiceConfig.getMe);
   };
 
@@ -113,9 +123,9 @@ class JwtService extends AppUtils.EventEmitter {
       Cookies.set('jwt_access_token', access_token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
     } else {
-      console.log('elseee');
       localStorage.removeItem('jwt_access_token');
       sessionStorage.removeItem('jwt_access_token');
+      Cookies.remove('jwt_access_token');
       delete axios.defaults.headers.common['Authorization'];
     }
   };

@@ -11,14 +11,10 @@ import { object } from 'yup';
 
 const Router = () => {
   const appContext = useContext(AppContext);
-  const { loading, me } = useContext(AuthContext);
+  const { loading, me, token } = useContext(AuthContext);
   const { routes } = appContext;
-  console.log({ me, loading });
-  const isLogged = useGetUserIsLogged();
-  if (loading) return <Spinner />;
   const routing = useRoutes(routes(Object.values(me).length ? true : false));
-  // const { loading } = useFetchMe();
-
+  // if (loading) return <Spinner />;
   return routing;
 };
 

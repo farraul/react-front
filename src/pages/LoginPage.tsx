@@ -51,39 +51,11 @@ function LoginPage() {
           // No need to do anything, user data will be set at app/auth/AuthContext
         })
         .catch((error) => {
-          console.log({ error });
+          console.log(error);
         })
         .finally(() => {
           setLoading(false);
         });
-
-      // try {
-      //   const info = await axios.post(
-      //     '/user/login',
-      //     { email: value.email, password: value.password },
-      //     config,
-      //   );
-      //   setMe(info.data.data);
-      //   Cookies.set('jwt_access_token', info.data.data.token, {
-      //     expires: 360000,
-      //   });
-      //   Cookies.set('userId', info.data.data._id, { expires: 360000 });
-      //   const redirect = searchParams.get('redirect');
-      //   dispatch(setCredentials(info.data.data));
-
-      //   if (redirect) {
-      //     window.location.href = redirect;
-      //   } else {
-      //     return <Navigate to='/' />;
-      //   }
-      //   // return Object.assign(info.data.data, {
-      //   //   token: info.data.data.userToken,
-      //   // });
-      // } catch (error: unknown) {
-      //   console.log({ error });
-      // } finally {
-      //   setLoading(false);
-      // }
     }
   }
 
