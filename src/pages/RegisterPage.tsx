@@ -12,7 +12,7 @@ const initialState: SignUp = {
   password: '',
 };
 
-function RegisterPage() {
+export function RegisterPage() {
   const [value, setValue] = useState(initialState);
   const navigate = useNavigate();
   const { loading, userInfo, success } = useAppSelector((state) => state.user);
@@ -111,5 +111,3 @@ function RegisterPage() {
     </>
   );
 }
-
-export default RegisterPage;

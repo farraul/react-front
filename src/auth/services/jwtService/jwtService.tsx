@@ -1,39 +1,34 @@
 import axios from 'axios';
-import { error } from 'console';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import jwtServiceConfig from 'src/configs/jwtServiceConfig';
 import AppUtils from 'src/utilities/AppUtils';
 
-/* eslint-disable camelcase */
-
 class JwtService extends AppUtils.EventEmitter {
   init() {
-    // this.setInterceptors();
-    console.log('init');
+    this.setInterceptors();
     this.handleAuthentication();
   }
 
-  // setInterceptors = () => {
-  //   axios.interceptors.response.use(
-  //     (response) => {
-  //       return response;
-  //     },
-  //     (err) => {
-  //       return new Promise((resolve, reject) => {
-  //         if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
-  //           // if you ever get an unauthorized response, logout the user
-  //           this.emit('onAutoLogout', 'Invalid access_token');
-  //           this.setSession(null);
-  //         }
-  //         throw err;
-  //       });
-  //     },
-  //   );
-  // };
+  setInterceptors = () => {
+    axios.interceptors.response.use(
+      (response) => {
+        return response;
+      },
+      (err) => {
+        return new Promise((resolve, reject) => {
+          if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
+            // if you ever get an unauthorized response, logout the user
+            this.emit('onAutoLogout', 'Invalid access_token');
+            this.setSession(null);
+          }
+          throw err;
+        });
+      },
+    );
+  };
 
   handleAuthentication = () => {
-    console.log('handle');
     const access_token = this.getAccessToken();
 
     if (!access_token) {
@@ -43,18 +38,15 @@ class JwtService extends AppUtils.EventEmitter {
     }
 
     if (this.isAuthTokenValid(access_token)) {
-      console.log('JwtService  access_token:', access_token);
-
       this.setSession(access_token);
       this.emit('onAutoLogin', true);
     } else {
-      console.log('else');
       this.setSession(null);
       this.emit('onAutoLogout', 'access_token expired');
     }
   };
 
-  createUser = (user, queryParams = new URLSearchParams()) => {
+  createUser = (user: any, queryParams = new URLSearchParams()) => {
     return new Promise((resolve, reject) => {
       axios.post(`${jwtServiceConfig.signUp}?${queryParams}`, user).then((response) => {
         if (response.data.user) {
@@ -68,7 +60,9 @@ class JwtService extends AppUtils.EventEmitter {
     });
   };
 
-  signInWithEmailAndPassword = (email, password, remember = true) => {
+  signInWithEmailAndPassword = (email: string, password: string, remember = true) => {
+    console.log('signInWithEmailAndPassword');
+
     return new Promise((resolve, reject) => {
       axios
         .post(jwtServiceConfig.signIn, {
@@ -76,14 +70,12 @@ class JwtService extends AppUtils.EventEmitter {
           password,
         })
         .then((response) => {
-          console.log({ response });
           if (response.data.data) {
-            console.log('idfff');
+            console.log(response);
             this.setSession(response.data.data.token, remember);
             resolve(response.data.data);
             this.emit('onLogin', response.data.data);
           } else {
-            console.log('falaa');
             reject(response.data.error);
           }
         })
@@ -94,6 +86,7 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   signInWithToken = () => {
+    console.log('signInWithToken');
     return new Promise((resolve, reject) => {
       this.getMe()
         .then((response) => {
@@ -113,12 +106,11 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   getMe = () => {
-    console.log('nmuestro');
     return axios.get(jwtServiceConfig.getMe);
   };
 
   setSession = (access_token: string | null, remember = true) => {
-    const storage = remember ? localStorage : sessionStorage;
+    // const storage = remember ? localStorage : sessionStorage;
     if (access_token) {
       Cookies.set('jwt_access_token', access_token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
@@ -131,7 +123,6 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   logout = () => {
-    console.log('out');
     this.setSession(null);
     this.emit('onLogout', 'Logged out');
   };
@@ -140,7 +131,7 @@ class JwtService extends AppUtils.EventEmitter {
     if (!access_token) {
       return false;
     }
-    const decoded = jwtDecode(access_token);
+    const decoded: any = jwtDecode(access_token);
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
       console.warn('access token expired');

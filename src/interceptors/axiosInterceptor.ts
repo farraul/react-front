@@ -6,6 +6,7 @@ export const axiosInterceptor = () => {
   axios.interceptors.response.use(
     (response: AxiosResponse) => {
       if (response.data.message) {
+        console.log('inn');
         SnackbarUtilities.success(response.data.message);
       }
       return response;

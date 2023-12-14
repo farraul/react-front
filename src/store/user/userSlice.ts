@@ -26,7 +26,6 @@ const userSlice = createSlice({
       state.error = null;
     },
     setCredentials: (state, action: PayloadAction<UserInfo>) => {
-      console.log('setcrednetials');
       state.userInfo = action.payload;
     },
   },

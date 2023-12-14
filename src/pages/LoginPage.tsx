@@ -28,7 +28,7 @@ const config = {
   },
 };
 
-function LoginPage() {
+export function LoginPage() {
   const [searchParams] = useSearchParams();
   const { setMe, setLoading } = useContext(AuthContext);
   const [value, setValue] = useState(initialState);
@@ -119,7 +119,6 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
 function rejectWithValue(error: unknown) {
   throw new Error('Function not implemented.');
 }
