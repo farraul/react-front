@@ -5,6 +5,3 @@ enum jwtServiceConfig {
 }
 
 export default jwtServiceConfig;
-
-// UserLogin = 'user/login',
-// UserRegister = 'user/register',
