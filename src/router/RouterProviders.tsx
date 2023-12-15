@@ -7,7 +7,7 @@ import { useGetUserIsLogged } from 'src/store/user/userSelectors';
 import { Spinner } from 'src/components';
 
 export const RouterProviders = () => {
-  const isLogin = useGetUserIsLogged()
+  const isLogin = useGetUserIsLogged();
 
   return (
     <Suspense fallback={<Spinner />}>

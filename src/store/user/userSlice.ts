@@ -44,19 +44,19 @@ const userSlice = createSlice({
     //     state.loading = false;
     //     state.error = payload as string;
     //   })
-      // register user
-      // .addCase(userRegister.pending, (state) => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(userRegister.fulfilled, (state) => {
-      //   state.loading = false;
-      //   state.success = true;
-      // })
-      // .addCase(userRegister.rejected, (state, { payload }) => {
-      //   state.loading = false;
-      //   state.error = payload as string;
-      // });
+    // register user
+    // .addCase(userRegister.pending, (state) => {
+    //   state.loading = true;
+    //   state.error = null;
+    // })
+    // .addCase(userRegister.fulfilled, (state) => {
+    //   state.loading = false;
+    //   state.success = true;
+    // })
+    // .addCase(userRegister.rejected, (state, { payload }) => {
+    //   state.loading = false;
+    //   state.error = payload as string;
+    // });
   },
 });
 

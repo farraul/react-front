@@ -14,13 +14,11 @@ type PropsProvider = {
 type Values = {
   token: string;
   setToken: React.Dispatch<React.SetStateAction<string>>;
-
 };
 
 export const AuthContext = createContext<Values>({
   token: '',
   setToken: () => false,
-
 });
 
 export const AuthProvider = ({ children }: PropsProvider) => {
@@ -41,8 +39,7 @@ export const AuthProvider = ({ children }: PropsProvider) => {
         .catch((error) => {
           pass(error.message);
         })
-        .finally(() => {
-        });
+        .finally(() => {});
     });
 
     jwtService.on('onLogin', (user: any) => {
@@ -85,8 +82,6 @@ export const AuthProvider = ({ children }: PropsProvider) => {
   return waitAuthCheck ? (
     <Spinner />
   ) : (
-    <AuthContext.Provider value={{ token, setToken }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ token, setToken }}>{children}</AuthContext.Provider>
   );
 };
