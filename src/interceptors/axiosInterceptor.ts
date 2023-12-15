@@ -3,6 +3,7 @@ import { SnackbarUtilities, getValidationError } from 'src/utilities';
 import Cookies from 'js-cookie';
 
 export const axiosInterceptor = () => {
+  //check 2 times wehn he login
   axios.interceptors.response.use(
     (response: AxiosResponse) => {
       if (response.data.message) {

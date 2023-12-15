@@ -34,7 +34,7 @@ const Seo = () => {
     handleChange,
   } = useSeoData();
 
-  const id = Cookies.get('userId');
+  const { _id } = useAppSelector((state) => state.user.userInfo);
 
   const getUrlSeo = async (_id: string) => {
     const urls = await (await getUrlsSeo(_id)).data;
@@ -44,7 +44,7 @@ const Seo = () => {
   const { data: dataUrlSeo } = useQuery({
     queryKey: ['urlSeo'],
     queryFn: () => {
-      if (id) return getUrlSeo(id);
+      if (_id) return getUrlSeo(_id);
     },
     cacheTime: 10000,
     staleTime: 10000,

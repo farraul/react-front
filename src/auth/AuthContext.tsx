@@ -14,24 +14,16 @@ type PropsProvider = {
 type Values = {
   token: string;
   setToken: React.Dispatch<React.SetStateAction<string>>;
-  me: any;
-  setMe: React.Dispatch<React.SetStateAction<any>>;
-  loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+
 };
 
 export const AuthContext = createContext<Values>({
   token: '',
   setToken: () => false,
-  me: {},
-  setMe: () => false,
-  loading: false,
-  setLoading: () => false,
+
 });
 
 export const AuthProvider = ({ children }: PropsProvider) => {
-  const [me, setMe] = useState({});
-  const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(Cookies.get('jwt_access_token') || '');
   const [waitAuthCheck, setWaitAuthCheck] = useState(true);
 
@@ -50,14 +42,13 @@ export const AuthProvider = ({ children }: PropsProvider) => {
           pass(error.message);
         })
         .finally(() => {
-          setLoading(false);
         });
     });
 
     jwtService.on('onLogin', (user: any) => {
       success(user, 'Signed in');
-      dispatch(setCredentials(user));
-      setMe(user);
+      // dispatch(setCredentials(user));
+      setToken(user.token);
     });
 
     jwtService.on('onNoAccessToken', () => {
@@ -67,7 +58,6 @@ export const AuthProvider = ({ children }: PropsProvider) => {
     jwtService.on('onLogout', () => {
       pass('Signed out');
       dispatch(logout());
-      setMe({});
       setToken('');
     });
 
@@ -78,11 +68,7 @@ export const AuthProvider = ({ children }: PropsProvider) => {
         dispatch(showMessage({ message }));
       }
 
-      Promise.all([
-        dispatch(setCredentials(user)),
-        setMe(user),
-        // You can receive data in here before app initialization
-      ]).then((values) => {
+      Promise.all([dispatch(setCredentials(user))]).then((values) => {
         setWaitAuthCheck(false);
       });
     }
@@ -99,7 +85,7 @@ export const AuthProvider = ({ children }: PropsProvider) => {
   return waitAuthCheck ? (
     <Spinner />
   ) : (
-    <AuthContext.Provider value={{ token, setToken, me, setMe, loading, setLoading }}>
+    <AuthContext.Provider value={{ token, setToken }}>
       {children}
     </AuthContext.Provider>
   );

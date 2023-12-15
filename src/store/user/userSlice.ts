@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { userRegister, signIn } from './userActions';
+// import { userRegister, signIn } from './userActions';
 import Cookies from 'js-cookie';
 import { User, UserInfo } from 'src/models/user/user';
 
@@ -31,32 +31,32 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     // login user
-    builder
-      .addCase(signIn.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
-        state.loading = false;
-        state.userInfo = action.payload as unknown as UserInfo;
-      })
-      .addCase(signIn.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload as string;
-      })
+    // builder
+    //   .addCase(signIn.pending, (state) => {
+    //     state.loading = true;
+    //     state.error = null;
+    //   })
+    //   .addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
+    //     state.loading = false;
+    //     state.userInfo = action.payload as unknown as UserInfo;
+    //   })
+    //   .addCase(signIn.rejected, (state, { payload }) => {
+    //     state.loading = false;
+    //     state.error = payload as string;
+    //   })
       // register user
-      .addCase(userRegister.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(userRegister.fulfilled, (state) => {
-        state.loading = false;
-        state.success = true;
-      })
-      .addCase(userRegister.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload as string;
-      });
+      // .addCase(userRegister.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = null;
+      // })
+      // .addCase(userRegister.fulfilled, (state) => {
+      //   state.loading = false;
+      //   state.success = true;
+      // })
+      // .addCase(userRegister.rejected, (state, { payload }) => {
+      //   state.loading = false;
+      //   state.error = payload as string;
+      // });
   },
 });
 

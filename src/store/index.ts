@@ -27,6 +27,8 @@ const store: any = configureStore({
 
 store.asyncReducers = {};
 
+
+//check
 export const injectReducer = (key: any, reducer: any) => {
   if (store.asyncReducers[key]) {
     return false;

@@ -1,14 +1,10 @@
 import { CssBaseline, Container } from '@mui/material';
 import React, { useState, FormEvent, ChangeEvent, useContext } from 'react';
 import { Link, useSearchParams, Navigate } from 'react-router-dom';
-import { signIn } from 'src/store/user/userActions';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import { SignIn } from 'src/models/auth';
 import { Button, Input } from 'src/components';
-import axios from 'axios';
-import Cookies from 'js-cookie';
 import { AuthContext } from 'src/auth/AuthContext';
-import { setCredentials } from 'src/store/user/userSlice';
 import jwtService from 'src/auth/services/jwtService/jwtService';
 
 type InputChangeEvent<T> = ChangeEvent<HTMLInputElement> & {
@@ -22,19 +18,9 @@ const initialState: SignIn = {
   password: '',
 };
 
-const config = {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
-
 export function LoginPage() {
-  const [searchParams] = useSearchParams();
-  const { setMe, setLoading } = useContext(AuthContext);
   const [value, setValue] = useState(initialState);
   const user = useAppSelector((state) => state.user);
-
-  const dispatch = useAppDispatch();
 
   function handleChange<T>(e: InputChangeEvent<T>) {
     const valueSignIn = e.target.value as T;
@@ -43,7 +29,6 @@ export function LoginPage() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
     if (value) {
       jwtService
         .signInWithEmailAndPassword(value.email, value.password, value.remember)
@@ -53,9 +38,7 @@ export function LoginPage() {
         .catch((error) => {
           console.log(error);
         })
-        .finally(() => {
-          setLoading(false);
-        });
+        .finally(() => {});
     }
   }
 

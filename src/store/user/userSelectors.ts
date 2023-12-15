@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { useContext } from 'react';
 import { AuthContext } from 'src/auth/AuthContext';
 
+//check
 export const useGetUserInfo = (): UserInfo => {
   const userInfo = useAppSelector((state: RootState) => state.user.userInfo);
 
@@ -12,7 +13,12 @@ export const useGetUserInfo = (): UserInfo => {
 };
 
 export const useGetUserIsLogged = (): boolean => {
-  const { me } = useContext(AuthContext);
-  console.log(Boolean(Object.values(me).length));
-  return Boolean(Object.values(me).length);
+  const { token } = useContext(AuthContext);
+  return Boolean(Object.values(token).length);
+};
+
+export const useGetUserToken = (): string => {
+  const { token } = useContext(AuthContext);
+
+  return token;
 };
