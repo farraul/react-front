@@ -61,8 +61,6 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   signInWithEmailAndPassword = (email: string, password: string, remember = true) => {
-    console.log('signInWithEmailAndPassword');
-
     return new Promise((resolve, reject) => {
       axios
         .post(jwtServiceConfig.signIn, {
@@ -71,7 +69,6 @@ class JwtService extends AppUtils.EventEmitter {
         })
         .then((response) => {
           if (response.data.data) {
-            console.log(response);
             this.setSession(response.data.data.token, remember);
             resolve(response.data.data);
             this.emit('onLogin', response.data.data);
@@ -86,7 +83,7 @@ class JwtService extends AppUtils.EventEmitter {
   };
 
   signInWithToken = () => {
-    console.log('signInWithToken');
+    console.log('SignInWithToken jwtService');
     return new Promise((resolve, reject) => {
       this.getMe()
         .then((response) => {

@@ -18,7 +18,7 @@ const initialState: SignIn = {
   password: '',
 };
 
-export function LoginPage() {
+export default function LoginPage() {
   const [value, setValue] = useState(initialState);
   const user = useAppSelector((state) => state.user);
 

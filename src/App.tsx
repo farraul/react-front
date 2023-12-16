@@ -1,4 +1,4 @@
-import React, { Suspense, useContext } from 'react';
+import React from 'react';
 import './styles/index.css';
 import { axiosInterceptor } from './interceptors';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -14,8 +14,7 @@ import { AuthProvider } from 'src/auth/AuthContext';
 import DynamicMetaTags from './components/DynamicMetaTags'; // when we change the page its slowly
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import { useAppSelector } from './hooks/useApp';
-import { RouterProviders } from './router/RouterProviders';
+import { RouterProvider } from './router/RouterProvider';
 
 axiosInterceptor();
 const queryClient = new QueryClient();
@@ -45,7 +44,7 @@ const App = () => {
                 horizontal: 'right',
               }}
             >
-              <RouterProviders />
+              <RouterProvider />
               <ReactQueryDevtools />
             </SnackbarProvider>
           </AuthProvider>

@@ -1,3 +1,5 @@
+//check all whit enums?
+
 export enum SelectProductBrand {
   Apple = 'apple',
   Microsoft = 'microsoft',

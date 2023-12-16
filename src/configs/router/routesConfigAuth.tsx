@@ -1,6 +1,6 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from 'src/components';
-import React, { LazyExoticComponent, Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 
 const ProfilePage = lazy(() => import('src/pages/ProfilePage'));
 const ErrorPage = lazy(() => import('src/pages/ErrorPage'));

@@ -10,7 +10,7 @@ import {
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 import { TableMui } from 'src/components';
-import { columns } from 'src/configs/productsConfig';
+import { columns } from 'src/configs/router/productsConfig';
 
 export default function Clients() {
   const id = Cookies.get('userId');

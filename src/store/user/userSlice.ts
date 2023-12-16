@@ -20,7 +20,6 @@ const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       Cookies.remove('jwt_access_token');
-      Cookies.remove('userId');
       state.loading = false;
       state.userInfo = { ...infoDefault, token: tokenDefault };
       state.error = null;
@@ -29,35 +28,35 @@ const userSlice = createSlice({
       state.userInfo = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    // login user
-    // builder
-    //   .addCase(signIn.pending, (state) => {
-    //     state.loading = true;
-    //     state.error = null;
-    //   })
-    //   .addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
-    //     state.loading = false;
-    //     state.userInfo = action.payload as unknown as UserInfo;
-    //   })
-    //   .addCase(signIn.rejected, (state, { payload }) => {
-    //     state.loading = false;
-    //     state.error = payload as string;
-    //   })
-    // register user
-    // .addCase(userRegister.pending, (state) => {
-    //   state.loading = true;
-    //   state.error = null;
-    // })
-    // .addCase(userRegister.fulfilled, (state) => {
-    //   state.loading = false;
-    //   state.success = true;
-    // })
-    // .addCase(userRegister.rejected, (state, { payload }) => {
-    //   state.loading = false;
-    //   state.error = payload as string;
-    // });
-  },
+  // extraReducers: (builder) => {
+  // login user
+  // builder
+  //   .addCase(signIn.pending, (state) => {
+  //     state.loading = true;
+  //     state.error = null;
+  //   })
+  //   .addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
+  //     state.loading = false;
+  //     state.userInfo = action.payload as unknown as UserInfo;
+  //   })
+  //   .addCase(signIn.rejected, (state, { payload }) => {
+  //     state.loading = false;
+  //     state.error = payload as string;
+  //   })
+  // register user
+  // .addCase(userRegister.pending, (state) => {
+  //   state.loading = true;
+  //   state.error = null;
+  // })
+  // .addCase(userRegister.fulfilled, (state) => {
+  //   state.loading = false;
+  //   state.success = true;
+  // })
+  // .addCase(userRegister.rejected, (state, { payload }) => {
+  //   state.loading = false;
+  //   state.error = payload as string;
+  // });
+  // },
 });
 
 export const { logout, setCredentials } = userSlice.actions;

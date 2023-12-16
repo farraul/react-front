@@ -16,15 +16,15 @@ import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { TitleMenu } from './TitleMenu';
-import { useGetUserIsLogged } from 'src/store/user/userSelectors';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { AuthContext } from 'src/auth/AuthContext';
 import jwtService from 'src/auth/services/jwtService/jwtService';
+import { useGetUserIsLogged } from 'src/hooks/useGetUserIsLogged';
 
 const fontSizeMenu = { fontSize: 17 };
 
 function Header() {
-  const { setMe, setToken } = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
   const dispatch = useAppDispatch();
   const isLogged = useGetUserIsLogged();
   const navigate = useNavigate();
@@ -50,8 +50,7 @@ function Header() {
   };
   const handleLogout = () => {
     dispatch(logout());
-    setMe({});
-    setToken('');
+    // setToken('');
     navigate('/');
   };
 
@@ -194,7 +193,9 @@ function Header() {
                   <MenuItem
                     className='bg-slate-300'
                     sx={{ fontSizeMenu, bgcolor: '#ff9292' }}
-                    onClick={() => jwtService.logout()}
+                    onClick={() => {
+                      jwtService.logout(), navigate('/');
+                    }}
                   >
                     {t('logout')}
                   </MenuItem>

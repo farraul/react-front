@@ -6,6 +6,7 @@ import jwtService from './services/jwtService/jwtService';
 import Cookies from 'js-cookie';
 import { useAppDispatch } from 'src/hooks/useApp';
 import { Spinner } from 'src/components';
+import { useNavigate } from 'react-router-dom';
 
 type PropsProvider = {
   children: React.ReactNode;
@@ -44,7 +45,6 @@ export const AuthProvider = ({ children }: PropsProvider) => {
 
     jwtService.on('onLogin', (user: any) => {
       success(user, 'Signed in');
-      // dispatch(setCredentials(user));
       setToken(user.token);
     });
 

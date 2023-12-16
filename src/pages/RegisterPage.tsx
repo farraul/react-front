@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { CssBaseline, Container } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
-import { userRegister } from 'src/store/user/userActions';
+// import { userRegister } from 'src/store/user/userActions';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import { SignUp } from 'src/models/auth';
 import { Button, Input } from 'src/components';
@@ -12,7 +12,7 @@ const initialState: SignUp = {
   password: '',
 };
 
-export function RegisterPage() {
+export default function RegisterPage() {
   const [value, setValue] = useState(initialState);
   const navigate = useNavigate();
   const { loading, userInfo, success } = useAppSelector((state) => state.user);
@@ -33,7 +33,7 @@ export function RegisterPage() {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (value) {
-      dispatch(userRegister(value));
+      // dispatch(userRegister(value));
     }
   }
 
