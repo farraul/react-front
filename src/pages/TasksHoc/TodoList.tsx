@@ -12,8 +12,8 @@ const TodoList = ({ query, dataSet }: { query: string; dataSet: dataSet[] }) => 
   const items = filterItems(query, dataSet);
   return (
     <div>
-      {items.map((product) => (
-        <ToDoItem title={product.title} completed={product.completed} />
+      {items.map((product, index) => (
+        <ToDoItem key={index} title={product.title} completed={product.completed} />
       ))}
     </div>
   );

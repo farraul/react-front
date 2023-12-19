@@ -83,7 +83,7 @@ const Seo = () => {
         setCountLinks(response.data.links.length);
 
         if (!urlsRecent.includes(url)) {
-          if (id) createUrlsSeo(id, url);
+          if (_id) createUrlsSeo(_id, url);
         }
       } catch (error) {
         console.error(error);

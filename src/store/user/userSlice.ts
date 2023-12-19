@@ -7,7 +7,7 @@ const token = Cookies.get('jwt_access_token') || '';
 const infoDefault = { _id: '', firstName: '', email: '' };
 const tokenDefault = '';
 
-const initialState: User = {
+const userEmptyState: User = {
   loading: false,
   userInfo: { ...infoDefault, token },
   error: null,
@@ -16,7 +16,7 @@ const initialState: User = {
 
 const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: userEmptyState,
   reducers: {
     logout: (state) => {
       Cookies.remove('jwt_access_token');
