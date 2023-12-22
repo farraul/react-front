@@ -7,7 +7,7 @@ const ErrorPage = lazy(() => import('src/pages/ErrorPage'));
 const CallApiTanStack = lazy(() => import('src/pages/CallApiTanStackPage'));
 const CallApiUseFetch = lazy(() => import('src/pages/CallApiUseFetchPage'));
 const CallApiFetchPro = lazy(() => import('src/pages/CallApiFecthPro.tsxPage'));
-const Clients = lazy(() => import('src/pages/ClientsPage'));
+const ClientsPage = lazy(() => import('src/pages/ClientsPage'));
 const HomePage = lazy(() => import('src/pages/HomePage'));
 const ProductsPage = lazy(() => import('src/pages/ProductsPage'));
 const Seo = lazy(() => import('src/pages/SeoPage'));
@@ -67,7 +67,7 @@ export const routesConfigAuth = createBrowserRouter([
             path: '/clients',
             element: (
               <Suspense fallback={<>loading</>}>
-                <Clients />
+                <ClientsPage />
               </Suspense>
             ),
           },

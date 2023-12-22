@@ -16,13 +16,14 @@ import {
   getProductsRequest,
   updateProductRequest,
 } from 'src/api/productServices';
+import { useGetUserInfo } from 'src/store/user/userSelectors';
 
 const ProductPage = () => {
+  const { _id } = useGetUserInfo() as any;
+
   const [addProduct, setAddProduct] = useState(false);
   const [updateProduct, setEditProduct] = useState(false);
   const [productUpdate, setProductUpdate] = useState<Product>();
-
-  const id = Cookies.get('userId');
 
   const {
     data: dataProducts,
@@ -31,7 +32,7 @@ const ProductPage = () => {
   } = useQuery({
     queryKey: ['products'],
     queryFn: () => {
-      if (id) return getProductsRequest(id);
+      if (_id) return getProductsRequest(_id);
     },
     cacheTime: 100000,
     refetchOnWindowFocus: false,

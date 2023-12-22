@@ -8,19 +8,19 @@ import {
   deleteClientRequest,
 } from 'src/api/clientService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
 import { TableMui } from 'src/components';
 import { columns } from 'src/configs/router/productsConfig';
+import { useGetUserInfo } from 'src/store/user/userSelectors';
 
-export default function Clients() {
-  const id = Cookies.get('userId');
+const ClientsPage = () => {
+  const { _id } = useGetUserInfo() as any;
   const [rows, setRows] = useState<GridValidRowModel[]>([]);
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({});
 
   const { data: dataClients = [] } = useQuery({
     queryKey: ['clients'],
     queryFn: () => {
-      if (id) return getClientsRequest(id);
+      if (_id) return getClientsRequest(_id);
     },
     cacheTime: 100000,
     refetchOnWindowFocus: false,
@@ -95,4 +95,6 @@ export default function Clients() {
       </div>
     </div>
   );
-}
+};
+
+export default ClientsPage;

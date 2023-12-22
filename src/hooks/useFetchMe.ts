@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from 'src/hooks/useApp';
 import { setCredentials } from 'src/store/user/userSlice';
-import { useGetUserInfo, useGetUserIsLogged } from 'src/store/user/userSelectors';
+import { useGetUserInfo } from 'src/store/user/userSelectors';
 import { getMe } from 'src/api/user';
 import type { AxiosError } from 'axios';
+import { useGetUserToken } from './useGetUserToken';
 
 interface UseFetchMe {
   loading: boolean;
@@ -12,7 +13,7 @@ interface UseFetchMe {
 export const useFetchMe = (): UseFetchMe => {
   const dispatch = useAppDispatch();
   const { token } = useGetUserInfo();
-  const isLogged = useGetUserIsLogged();
+  const isLogged = useGetUserToken();
   const [loading, setLoading] = useState<boolean>(false);
 
   const fetchMe = async (token: string) => {
