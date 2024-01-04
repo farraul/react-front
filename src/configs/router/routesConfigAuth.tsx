@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Layout } from 'src/components';
+import { Layout, Spinner } from 'src/components';
 import React, { Suspense, lazy } from 'react';
 
 const ProfilePage = lazy(() => import('src/pages/ProfilePage'));
@@ -34,7 +34,7 @@ export const routesConfigAuth = createBrowserRouter([
             index: true,
             path: '/home-page',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <HomePage />
               </Suspense>
             ),
@@ -42,7 +42,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/times',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <Times />
               </Suspense>
             ),
@@ -50,7 +50,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/profile',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <ProfilePage />
               </Suspense>
             ),
@@ -58,7 +58,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/products',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <ProductsPage />
               </Suspense>
             ),
@@ -66,7 +66,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/clients',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <ClientsPage />
               </Suspense>
             ),
@@ -74,7 +74,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/seo',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <Seo />
               </Suspense>
             ),
@@ -82,7 +82,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/images',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <Images />
               </Suspense>
             ),
@@ -90,7 +90,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/call-api-tanstack',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <CallApiTanStack />
               </Suspense>
             ),
@@ -98,7 +98,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/call-api-tanstack',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <CallApiTanStack />
               </Suspense>
             ),
@@ -106,7 +106,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/call-api-fetch-pro',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <CallApiFetchPro />
               </Suspense>
             ),
@@ -114,7 +114,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/call-api-usefetch',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <CallApiUseFetch />
               </Suspense>
             ),
@@ -122,7 +122,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/hook-form',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <HookFormPage />
               </Suspense>
             ),
@@ -130,7 +130,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/hoc-pattern',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <HocPattern />
               </Suspense>
             ),
@@ -138,7 +138,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/hook-imperative-handle',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <HookImperativeHandle />
               </Suspense>
             ),
@@ -146,7 +146,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/react-windows',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <ReactWindowPage />
               </Suspense>
             ),
@@ -154,7 +154,7 @@ export const routesConfigAuth = createBrowserRouter([
           {
             path: '/proxy',
             element: (
-              <Suspense fallback={<>loading</>}>
+              <Suspense fallback={<Spinner />}>
                 <ProxyPage />
               </Suspense>
             ),

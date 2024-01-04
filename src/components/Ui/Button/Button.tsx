@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonHTMLAttributes } from 'react';
 
-export default function PrimaryButton({
+export default function Button({
   className = '',
   disabled,
   children,

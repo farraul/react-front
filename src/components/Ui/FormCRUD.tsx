@@ -1,5 +1,5 @@
 import React, { useState, FormEvent, useEffect } from 'react';
-import Input from './Input';
+import Input from './Input/Input';
 import { IoMdAdd } from 'react-icons/io';
 import { InputChangeEvent } from 'src/models/form';
 import { useAppSelector } from 'src/hooks/useApp';
