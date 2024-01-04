@@ -28,20 +28,18 @@ const ProfilePage = () => {
             <h1 className='text-2xl font-bold ml-3'>Your profile</h1>
           </div>
           {firstName && (
-            <>
-              <Card className='p-10 max-w-md ' style={{ backgroundColor: '#f0f0f0' }}>
-                <Avatar {...stringAvatar(firstName)} />
-                <div className='py-8'>
-                  <p>
-                    <b>Namee: </b> {firstName}
-                  </p>
-                  <p>
-                    {' '}
-                    <b>Email: </b> {email}
-                  </p>
-                </div>
-              </Card>
-            </>
+            <Card className='p-10 max-w-md ' style={{ backgroundColor: '#f0f0f0' }}>
+              <Avatar {...stringAvatar(firstName)} />
+              <div className='py-8'>
+                <p>
+                  <b>Namee: </b> {firstName}
+                </p>
+                <p>
+                  {' '}
+                  <b>Email: </b> {email}
+                </p>
+              </div>
+            </Card>
           )}
         </div>
       </div>

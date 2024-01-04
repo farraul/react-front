@@ -15,7 +15,7 @@ import {
   deleteProductRequest,
   getProductsRequest,
   updateProductRequest,
-} from 'src/api/productServices';
+} from 'src/api/product';
 import { useGetUserInfo } from 'src/store/user/userSelectors';
 
 const ProductPage = () => {

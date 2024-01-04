@@ -6,10 +6,10 @@ import {
   getClientsRequest,
   updateClientRequest,
   deleteClientRequest,
-} from 'src/api/clientService';
+} from 'src/api/client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { TableMui } from 'src/components';
-import { columns } from 'src/configs/router/productsConfig';
+import { columns } from 'src/configs/productsConfig';
 import { useGetUserInfo } from 'src/store/user/userSelectors';
 
 const ClientsPage = () => {

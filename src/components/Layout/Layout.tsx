@@ -4,11 +4,6 @@ import { SnackbarUtilitiesConfigurator } from 'src/utilities';
 import { Header } from './Header';
 import React from 'react';
 
-const emotionCacheOptions = createCache({
-  key: 'my-prefix-key',
-  stylisPlugins: [],
-});
-
 function Layout() {
   return (
     <>
