@@ -1,11 +1,11 @@
 import { Product, ProductCreate } from 'src/models/product';
 import axios from 'axios';
-import { getProductsAdapter } from 'src/adapters/getProductsAdapter';
+import { productsAdapter } from 'src/adapters/productsAdapter';
 
 export const getProductsRequest = async (id: string): Promise<Product[]> => {
   const response = await axios.get(`/user/products/${id}`);
 
-  return getProductsAdapter(response.data);
+  return productsAdapter(response.data);
 };
 
 export const createProductRequest = async (product: ProductCreate) => {

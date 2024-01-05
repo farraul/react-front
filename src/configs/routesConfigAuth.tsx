@@ -2,24 +2,30 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Layout, Spinner } from 'src/components';
 import React, { Suspense, lazy } from 'react';
 
-const ProfilePage = lazy(() => import('src/pages/ProfilePage'));
-const ErrorPage = lazy(() => import('src/pages/ErrorPage'));
-const CallApiTanStack = lazy(() => import('src/pages/CallApiTanStackPage'));
-const CallApiUseFetch = lazy(() => import('src/pages/CallApiUseFetchPage'));
-const CallApiFetchPro = lazy(() => import('src/pages/CallApiFecthPro.tsxPage'));
-const ClientsPage = lazy(() => import('src/pages/ClientsPage'));
-const HomePage = lazy(() => import('src/pages/HomePage'));
-const ProductsPage = lazy(() => import('src/pages/ProductsPage'));
-const Seo = lazy(() => import('src/pages/SeoPage'));
-const Images = lazy(() => import('src/pages/ImagesPage'));
-const HocPattern = lazy(() => import('src/pages/TasksHoc/HocPatternPage'));
-const Times = lazy(() => import('src/pages/TimesPage'));
-const HookFormPage = lazy(() => import('src/pages/HookFormPage'));
-const HookImperativeHandle = lazy(
-  () => import('src/pages/HookImperativeHandlePage/HookImperativeHandlePage'),
+const ProfilePage = lazy(() => import('src/pages/Authenticated/ProfilePage'));
+const ErrorPage = lazy(() => import('src/pages/Authenticated/ErrorPage'));
+const CallApiTanStack = lazy(
+  () => import('src/pages/Authenticated/CallApiPages/CallApiTanStackPage'),
 );
-const ReactWindowPage = lazy(() => import('src/pages/ReactWindowPage'));
-const ProxyPage = lazy(() => import('src/pages/ProxyPage'));
+const CallApiUseFetch = lazy(
+  () => import('src/pages/Authenticated/CallApiPages/CallApiUseFetchPage'),
+);
+const CallApiFetchPro = lazy(
+  () => import('src/pages/Authenticated/CallApiPages/CallApiFecthPro.tsxPage'),
+);
+const ClientsPage = lazy(() => import('src/pages/Authenticated/ClientsPage'));
+const HomePage = lazy(() => import('src/pages/Authenticated/HomePage'));
+const ProductsPage = lazy(() => import('src/pages/Authenticated/ProductsPage'));
+const Seo = lazy(() => import('src/pages/Authenticated/SeoPage'));
+const Images = lazy(() => import('src/pages/Authenticated/ImagesPage'));
+const HocPattern = lazy(() => import('src/pages/Authenticated/HocPatternPage'));
+const Times = lazy(() => import('src/pages/Authenticated/TimesPage'));
+const HookFormPage = lazy(() => import('src/pages/Authenticated/HookFormPage'));
+const HookImperativeHandle = lazy(
+  () => import('src/pages/Authenticated/HookImperativeHandlePage/HookImperativeHandlePage'),
+);
+const ReactWindowPage = lazy(() => import('src/pages/Authenticated/ReactWindowPage'));
+const ProxyPage = lazy(() => import('src/pages/Authenticated/ProxyPage'));
 
 export const routesConfigAuth = createBrowserRouter([
   {

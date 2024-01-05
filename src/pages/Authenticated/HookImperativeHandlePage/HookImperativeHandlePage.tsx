@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import Post from 'src/pages/HookImperativeHandlePage/Post';
+import Post from 'src/pages/Authenticated/HookImperativeHandlePage/Post';
 import React from 'react';
 
 const HookImperativeHandle = () => {

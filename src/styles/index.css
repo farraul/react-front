@@ -88,7 +88,7 @@
 @tailwind utilities; */
 
 
-/* .CommentList {
+.CommentList {
   height: 100px;
   max-width: 300px;
   overflow: scroll;
@@ -99,4 +99,4 @@
 
 .List {
   border: 1px solid #d9dddd;
-} */
+}

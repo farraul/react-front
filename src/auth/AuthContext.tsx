@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState, createContext } from 'react';
 import { logout, setCredentials } from 'src/store/user/userSlice';
 import { showMessage } from 'src/store/messageSlice';
-import jwtService from './services/jwtService/jwtService';
+import jwtService from './jwtService';
 import Cookies from 'js-cookie';
 import { useAppDispatch } from 'src/hooks/useApp';
 import { Spinner } from 'src/components';

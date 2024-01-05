@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom'; //para mostrar children
-import createCache from '@emotion/cache';
 import { SnackbarUtilitiesConfigurator } from 'src/utilities';
-import { Header } from './Header';
+import { Header } from '../components/Header';
 import React from 'react';
 
 function Layout() {

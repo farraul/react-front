@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { encript } from 'src/adapters/encript';
+import { encriptAdapter } from 'src/adapters/encriptAdapter';
 import jwtServiceConfig from 'src/configs/jwtServiceConfig';
 import AppUtils from 'src/utilities/AppUtils';
 
@@ -128,7 +128,7 @@ class JwtService extends AppUtils.EventEmitter {
     if (!access_token) {
       return false;
     }
-    const decoded: any = encript(access_token);
+    const decoded: any = encriptAdapter(access_token);
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
       console.warn('access token expired');

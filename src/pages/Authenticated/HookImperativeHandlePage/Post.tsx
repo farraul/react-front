@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react';
-import AddComment from 'src/pages/HookImperativeHandlePage/AddComment';
-import CommentList from 'src/pages/HookImperativeHandlePage/CommentList';
+import AddComment from 'src/pages/Authenticated/HookImperativeHandlePage/AddComment';
+import CommentList from 'src/pages/Authenticated/HookImperativeHandlePage/CommentList';
 
 const Post = forwardRef((props, ref) => {
   const commentsRef = useRef<any>(null);

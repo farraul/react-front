@@ -1,4 +1,4 @@
-export const getProductsAdapter = (products: any) => {
+export const productsAdapter = (products: any) => {
   const productsFormatted = products.map((product: any) => {
     product.id = product._id;
     delete product._id;

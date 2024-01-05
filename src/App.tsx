@@ -15,7 +15,7 @@ import DynamicMetaTags from './components/DynamicMetaTags'; // when we change th
 import { CacheProvider } from '@emotion/react';
 //cache to css
 import createCache from '@emotion/cache';
-import { RouterProvider } from './router/RouterProvider';
+import RouterProvider from './router/RouterProvider';
 
 axiosInterceptor();
 const queryClient = new QueryClient();

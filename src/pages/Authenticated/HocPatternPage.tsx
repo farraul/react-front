@@ -1,6 +1,6 @@
 import React from 'react';
-import Services from './Services';
-import Tasks from './Tasks';
+import Services from '../../components/TasksHoc/Services';
+import Tasks from '../../components/TasksHoc/Tasks';
 const HocPattern = () => {
   return (
     <>

@@ -18,7 +18,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { TitleMenu } from './TitleMenu';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { AuthContext } from 'src/auth/AuthContext';
-import jwtService from 'src/auth/services/jwtService/jwtService';
+import jwtService from 'src/auth/jwtService';
 import { useGetUserIsLogged } from 'src/hooks/useGetUserIsLogged';
 
 const fontSizeMenu = { fontSize: 17 };
