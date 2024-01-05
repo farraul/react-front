@@ -1,0 +1,12 @@
+.CommentList {
+    height: 100px;
+    max-width: 300px;
+    overflow: scroll;
+    border: 1px solid black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .List {
+    border: 1px solid #d9dddd;
+  }

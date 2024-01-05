@@ -14,7 +14,7 @@ import { createUrlsSeo, getUrlsSeo } from 'src/api/user';
 import { useAppSelector } from 'src/hooks/useApp';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { FormControlUrl } from 'src/components/FormControlUrl';
+import { FormControlUrl } from 'src/components/Forms/FormControlUrl';
 import Cookies from 'js-cookie';
 
 const Seo = () => {

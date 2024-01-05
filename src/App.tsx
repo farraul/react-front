@@ -11,7 +11,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { useSelector } from 'react-redux';
 import { selectCurrentDateFnsLocale } from './store/i18n/i18nSlice';
 import { AuthProvider } from 'src/auth/AuthContext';
-import DynamicMetaTags from './components/DynamicMetaTags'; // when we change the page its slowly
+import DynamicMetaTags from './components/MetaTags/DynamicMetaTags'; // when we change the page its slowly
 import { CacheProvider } from '@emotion/react';
 //cache to css
 import createCache from '@emotion/cache';
