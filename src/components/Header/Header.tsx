@@ -28,7 +28,7 @@ const fontSizeMenu = { fontSize: 17 };
 function Header() {
   const dispatch = useAppDispatch();
   const { mode } = useAppSelector((state) => state.settings);
-  console.log({mode})
+  console.log({ mode });
   const isLogged = useGetUserIsLogged();
   const navigate = useNavigate();
   const { t } = useTranslation('translation', { keyPrefix: 'translation.header' });
@@ -58,7 +58,7 @@ function Header() {
   };
 
   const handleTheme = () => {
-    const theme = mode === 'light' ? 'dark' : 'light'
+    const theme = mode === 'light' ? 'dark' : 'light';
     dispatch(changeTheme(theme));
   };
 

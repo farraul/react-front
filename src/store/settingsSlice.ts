@@ -20,8 +20,6 @@ const settingsEmptyState: any = {
   mode: 'light',
 };
 
-
-
 const settingsSlice = createSlice({
   name: 'settings',
   initialState: settingsEmptyState,

@@ -31,10 +31,8 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 const App = () => {
   const currentDateFnsLocale = useSelector(selectCurrentDateFnsLocale);
-  const {color} = useAppSelector((state) => state.settings);
-  console.log("App  color:", color);
-
-
+  const { color } = useAppSelector((state) => state.settings);
+  console.log('App  color:', color);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={currentDateFnsLocale}>

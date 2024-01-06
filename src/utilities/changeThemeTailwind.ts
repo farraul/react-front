@@ -1,8 +1,11 @@
+import { appDark } from 'src/colors';
+
 export const changeThemeTailwind = (theme: string) => {
   const root = document.querySelector(':root') as HTMLElement;
   if (theme === 'dark') {
-    root.style.setProperty('--primary', '#464646');
     //pillar los de appdark y appblue para que sea todos del mismo
+
+    root.style.setProperty('--primary', '#464646');
     root.style.setProperty('--secondary', '#343434');
     root.style.setProperty('--footer', '#ffffffac');
     root.style.setProperty('--text-primary', '#ffffff');
