@@ -1,5 +1,6 @@
 @import './list.css';
 @import './root.css';
+@import './vars.css';
 
 @tailwind base;
 @layer base {

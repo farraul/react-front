@@ -30,7 +30,7 @@ function HookFormPage() {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log('data: ', data);
 
   return (
-    <section className='h-[calc(100vh-64px)] p-16 bg-gray-600 text-white'>
+    <section className='h-[calc(100vh-64px)] p-16 bg-primary text-white'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input className='text-black' defaultValue='test' {...register('example')} />
         <br />

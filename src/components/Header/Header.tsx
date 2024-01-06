@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { logout } from 'src/store/user/userSlice';
-import { useAppDispatch } from 'src/hooks/useApp';
+import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
@@ -20,11 +20,15 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import { AuthContext } from 'src/auth/AuthContext';
 import jwtService from 'src/auth/jwtService';
 import { useGetUserIsLogged } from 'src/hooks/useGetUserIsLogged';
+import { CiSun } from 'react-icons/ci';
+import { changeTheme } from 'src/store/settingsSlice';
 
 const fontSizeMenu = { fontSize: 17 };
 
 function Header() {
   const dispatch = useAppDispatch();
+  const { mode } = useAppSelector((state) => state.settings);
+  console.log({mode})
   const isLogged = useGetUserIsLogged();
   const navigate = useNavigate();
   const { t } = useTranslation('translation', { keyPrefix: 'translation.header' });
@@ -53,6 +57,11 @@ function Header() {
     navigate('/');
   };
 
+  const handleTheme = () => {
+    const theme = mode === 'light' ? 'dark' : 'light'
+    dispatch(changeTheme(theme));
+  };
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -65,6 +74,10 @@ function Header() {
             <div className='w-15'>
               <LanguageSwitcher />
             </div>
+            <button className='ml-2' onClick={handleTheme}>
+              <CiSun />
+            </button>
+
             {isLogged ? (
               <div>
                 <IconButton

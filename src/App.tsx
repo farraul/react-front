@@ -15,6 +15,8 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import RouterProvider from './router/RouterProvider';
 import { selectCurrentDateFnsLocale } from './store/i18n/i18Selectors';
+import { ThemeProvider } from '@mui/material/styles';
+import { useAppSelector } from './hooks/useApp';
 
 axiosInterceptor();
 const queryClient = new QueryClient();
@@ -29,6 +31,10 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 const App = () => {
   const currentDateFnsLocale = useSelector(selectCurrentDateFnsLocale);
+  const {color} = useAppSelector((state) => state.settings);
+  console.log("App  color:", color);
+
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={currentDateFnsLocale}>
@@ -36,17 +42,19 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
           <DynamicMetaTags />
           <AuthProvider>
-            <SnackbarProvider
-              maxSnack={2}
-              autoHideDuration={3000}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-            >
-              <RouterProvider />
-              <ReactQueryDevtools />
-            </SnackbarProvider>
+            <ThemeProvider theme={color}>
+              <SnackbarProvider
+                maxSnack={2}
+                autoHideDuration={3000}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+              >
+                <RouterProvider />
+                <ReactQueryDevtools />
+              </SnackbarProvider>
+            </ThemeProvider>
           </AuthProvider>
         </QueryClientProvider>
       </CacheProvider>

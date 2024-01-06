@@ -1,4 +1,5 @@
-const skyBlue = {
+const appBlue = {
+  main: '#fff',
   50: '#e4fafd',
   100: '#bdf2fa',
   200: '#91e9f7',
@@ -15,4 +16,4 @@ const skyBlue = {
   A700: '#8de6ff',
 };
 
-export default skyBlue;
+export default appBlue;

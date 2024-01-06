@@ -25,14 +25,14 @@ const ProfilePage = () => {
             <UseAnimations animation={github} size={35} />
 
             {/* revisar tamaños h1*/}
-            <h1 className='text-2xl font-bold ml-3'>Your profile</h1>
+            <h1 className='text-2xl font-bold ml-3 text-red-700 md:text-red-200'>Your profile</h1>
           </div>
           {firstName && (
             <Card className='p-10 max-w-md ' style={{ backgroundColor: '#f0f0f0' }}>
               <Avatar {...stringAvatar(firstName)} />
               <div className='py-8'>
                 <p>
-                  <b>Namee: </b> {firstName}
+                  <b>Name: </b> {firstName}
                 </p>
                 <p>
                   {' '}
