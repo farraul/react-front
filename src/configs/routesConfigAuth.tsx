@@ -37,7 +37,6 @@ export const routesConfigAuth = createBrowserRouter([
         children: [
           {
             index: true,
-            // path: '/home-page',
             element: (
               <Suspense fallback={<Spinner />}>
                 <HomePage />

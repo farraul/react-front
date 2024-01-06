@@ -2,17 +2,20 @@ import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { object, string, number } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { CustomInput } from 'src/components/PrimitiveElements/Input';
 
 type Inputs = {
   example?: string;
   exampleRequired: string;
   phone: number;
+  lastName: string;
 };
 
 const userSchema = object({
   example: string(),
   exampleRequired: string().required(),
   phone: number().required().integer(),
+  lastName: string().required(),
 });
 
 //check more ideas
@@ -41,6 +44,23 @@ function HookFormPage() {
         <br />
         {errors.phone && <span>{errors.phone.message}</span>}
         <br />
+        <CustomInput
+          label='Nombres'
+          name='name'
+          error={errors.lastName?.message as string}
+          register={register}
+          rules={{
+            required: true,
+            maxLength: {
+              value: 10,
+              message: 'This input exceed maxLength.',
+            },
+          }}
+          type='text'
+          id='name'
+          isRequired={true}
+          placeholder='Nombre'
+        />
         <input type='submit' />
       </form>
     </section>
