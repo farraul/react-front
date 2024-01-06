@@ -4,7 +4,6 @@ import { Header } from '../components/Header';
 import React from 'react';
 
 function Layout() {
-  console.log('l');
   return (
     <>
       <SnackbarUtilitiesConfigurator />

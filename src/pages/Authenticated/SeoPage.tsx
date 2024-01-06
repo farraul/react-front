@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect } from 'react';
+import { FormEvent, useEffect } from 'react';
 import useSeoData from 'src/hooks/useSeoData';
 import { Headings, SeoHeading, Seo as SeoInterface } from 'src/models/seo';
 import { Button, TextField, Box } from '@mui/material';
@@ -12,10 +12,8 @@ import { validateUrl } from 'src/utilities';
 import { getAnalyseUrlSeo } from 'src/services';
 import { createUrlsSeo, getUrlsSeo } from 'src/api/user';
 import { useAppSelector } from 'src/hooks/useApp';
-import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { FormControlUrl } from 'src/components/Forms/FormControlUrl';
-import Cookies from 'js-cookie';
+import { FormControlUrl } from 'src/components/Forms';
 
 const Seo = () => {
   const {

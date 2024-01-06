@@ -25,4 +25,4 @@ const FormControlUrl = memo(({ setUrl, urlsRecent }: any) => {
   );
 });
 
-export default FormControl;
+export default FormControlUrl;

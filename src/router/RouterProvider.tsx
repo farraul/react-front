@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useContext } from 'react';
+import React, { Suspense } from 'react';
 import { RouterProvider as Provider } from 'react-router-dom';
 import { routesConfigAuth } from '../configs/routesConfigAuth';
 import { routesConfigUnAuth } from '../configs/routesConfigUnAuth';

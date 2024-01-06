@@ -24,7 +24,6 @@ import { useGetUserIsLogged } from 'src/hooks/useGetUserIsLogged';
 const fontSizeMenu = { fontSize: 17 };
 
 function Header() {
-  const { setToken } = useContext(AuthContext);
   const dispatch = useAppDispatch();
   const isLogged = useGetUserIsLogged();
   const navigate = useNavigate();

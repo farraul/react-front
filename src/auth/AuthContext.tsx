@@ -6,7 +6,6 @@ import jwtService from './jwtService';
 import Cookies from 'js-cookie';
 import { useAppDispatch } from 'src/hooks/useApp';
 import { Spinner } from 'src/components';
-import { useNavigate } from 'react-router-dom';
 
 type PropsProvider = {
   children: React.ReactNode;

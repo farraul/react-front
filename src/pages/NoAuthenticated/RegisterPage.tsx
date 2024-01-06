@@ -4,7 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 // import { userRegister } from 'src/store/user/userActions';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import { SignUp } from 'src/models/auth';
-import { Button, Input } from 'src/components';
+import { Input } from 'src/components/PrimitiveElements/Input';
+import { Button } from 'src/components/PrimitiveElements/Button';
 
 const initialState: SignUp = {
   firstName: '',
@@ -15,8 +16,7 @@ const initialState: SignUp = {
 export default function RegisterPage() {
   const [value, setValue] = useState(initialState);
   const navigate = useNavigate();
-  const { loading, userInfo, success } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+  const { loading, success } = useAppSelector((state) => state.user);
 
   type InputChangeEvent<T> = ChangeEvent<HTMLInputElement> & {
     target: {

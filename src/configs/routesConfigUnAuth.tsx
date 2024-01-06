@@ -7,7 +7,7 @@ export const routesConfigUnAuth = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         // errorElement: <ErrorPage />,
