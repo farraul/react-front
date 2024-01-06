@@ -16,7 +16,7 @@ const Template = (args: any) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 
-export const Secundary = Template.bind({});
+export const Secundary: any = Template.bind({});
 Secundary.args = {
   children: 'secundary',
 };

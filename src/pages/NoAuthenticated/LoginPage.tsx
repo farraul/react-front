@@ -3,9 +3,9 @@ import React, { useState, FormEvent, ChangeEvent, useContext } from 'react';
 import { Link, useSearchParams, Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import { SignIn } from 'src/models/auth';
-import { Button, Input } from 'src/components';
 import { AuthContext } from 'src/auth/AuthContext';
 import jwtService from 'src/auth/jwtService';
+import { Button, Input } from 'src/components/PrimitiveElements';
 
 type InputChangeEvent<T> = ChangeEvent<HTMLInputElement> & {
   target: {

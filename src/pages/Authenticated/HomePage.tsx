@@ -5,7 +5,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from 'src/components/Ui/accordion';
+} from 'src/components/PrimitiveElements/accordion';
 
 function HomePage() {
   const { t } = useTranslation('translation', { keyPrefix: 'translation.home' });

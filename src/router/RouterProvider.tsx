@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useContext } from 'react';
 import { RouterProvider as Provider } from 'react-router-dom';
 import { routesConfigAuth } from '../configs/routesConfigAuth';
-import { routesConfigUnAuth } from '../configs/i18n/routesConfigUnAuth';
+import { routesConfigUnAuth } from '../configs/routesConfigUnAuth';
 import { Spinner } from 'src/components';
 import { useGetUserIsLogged } from 'src/hooks/useGetUserIsLogged';
 

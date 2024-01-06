@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Layout, Spinner } from 'src/components';
+import { Spinner } from 'src/components';
 import React, { Suspense, lazy } from 'react';
+import Layout from 'src/layouts';
 
 const ProfilePage = lazy(() => import('src/pages/Authenticated/ProfilePage'));
 const ErrorPage = lazy(() => import('src/pages/Authenticated/ErrorPage'));
@@ -21,9 +22,7 @@ const Images = lazy(() => import('src/pages/Authenticated/ImagesPage'));
 const HocPattern = lazy(() => import('src/pages/Authenticated/HocPatternPage'));
 const Times = lazy(() => import('src/pages/Authenticated/TimesPage'));
 const HookFormPage = lazy(() => import('src/pages/Authenticated/HookFormPage'));
-const HookImperativeHandle = lazy(
-  () => import('src/pages/Authenticated/HookImperativeHandlePage/HookImperativeHandlePage'),
-);
+const HookImperativeHandle = lazy(() => import('src/pages/Authenticated/HookImperativeHandlePage'));
 const ReactWindowPage = lazy(() => import('src/pages/Authenticated/ReactWindowPage'));
 const ProxyPage = lazy(() => import('src/pages/Authenticated/ProxyPage'));
 

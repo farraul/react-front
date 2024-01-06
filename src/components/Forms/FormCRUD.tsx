@@ -1,5 +1,4 @@
 import React, { useState, FormEvent, useEffect } from 'react';
-import Input from '../Ui/Input/Input';
 import { IoMdAdd } from 'react-icons/io';
 import { InputChangeEvent } from 'src/models/form';
 import { useAppSelector } from 'src/hooks/useApp';
@@ -7,7 +6,8 @@ import { VscLoading } from 'react-icons/vsc';
 import { Product, SelectProductBrand } from 'src/models/product';
 import { UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
-import { Select } from '../Ui/Select';
+import Input from '../PrimitiveElements/Input/Input';
+import { Select } from '../PrimitiveElements';
 
 const options = {
   apple: SelectProductBrand.Apple,

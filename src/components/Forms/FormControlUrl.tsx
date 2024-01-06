@@ -2,7 +2,7 @@ import { Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const FormControlUrl = memo(({ setUrl, urlsRecent }: any) => {
+const FormControlUrl = memo(({ setUrl, urlsRecent }: any) => {
   const { t } = useTranslation();
 
   return (
@@ -24,3 +24,5 @@ export const FormControlUrl = memo(({ setUrl, urlsRecent }: any) => {
     </FormControl>
   );
 });
+
+export default FormControl;
