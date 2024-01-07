@@ -1,20 +1,13 @@
 /* se puede hacer en un useefect o porner aqui las que tenemos en applight */
 :root {
-    --primary: #ffffff;
-    --secondary: #f8fbff;
-    --footer: #000000b8;
     --text-primary: #000000;
-    --text-footer: #ffffff;
-    --btn-primary: #222a11;
-    --btn-hover-primary: #262a31;
+
+    --bg-primary: #ffffff;
+    --bg-secondary: #a9a9a9;
+    
+
     --btn-text-primary: #ffffff;
-    --btn-border-primary: #222a11;
-    --btn-secondary: #f9fafb;
-    --btn-hover-secondary: #e9ebed;
-    --btn-text-secondary: #000000;
-    --btn-border-primary: #f9fafb;
-    --btn-ternary: #f3f4f6;
-    --btn-hover-ternary: #f3f4f7;
-    --btn-preview: #9ca3af;
-    --btn-hover-preview: #cccccc;
+    --btn-bg-primary: #222a11;
+
+
 }

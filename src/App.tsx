@@ -11,12 +11,12 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { useSelector } from 'react-redux';
 import { AuthProvider } from 'src/auth/AuthContext';
 import DynamicMetaTags from './components/MetaTags/DynamicMetaTags'; // when we change the page its slowly
-import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import RouterProvider from './router/RouterProvider';
 import { selectCurrentDateFnsLocale } from './store/i18n/i18Selectors';
 import { ThemeProvider } from '@mui/material/styles';
 import { useAppSelector } from './hooks/useApp';
+import { CssBaseline } from '@mui/material';
 
 axiosInterceptor();
 const queryClient = new QueryClient();
@@ -31,16 +31,17 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 const App = () => {
   const currentDateFnsLocale = useSelector(selectCurrentDateFnsLocale);
-  const { color } = useAppSelector((state) => state.settings);
-  console.log('App  color:', color);
+  const { theme, mode } = useAppSelector((state) => state.settings);
+  console.log('App  color:', mode);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={currentDateFnsLocale}>
-      <CacheProvider value={emotionCacheOptions}>
         <QueryClientProvider client={queryClient}>
           <DynamicMetaTags />
           <AuthProvider>
-            <ThemeProvider theme={color}>
+            {/* <ThemeProvider theme={theme}> */}
+            <CssBaseline />
+
               <SnackbarProvider
                 maxSnack={2}
                 autoHideDuration={3000}
@@ -52,10 +53,9 @@ const App = () => {
                 <RouterProvider />
                 <ReactQueryDevtools />
               </SnackbarProvider>
-            </ThemeProvider>
+            {/* </ThemeProvider> */}
           </AuthProvider>
         </QueryClientProvider>
-      </CacheProvider>
     </LocalizationProvider>
   );
 };

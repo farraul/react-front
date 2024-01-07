@@ -1,20 +1,22 @@
-import { appDark } from 'src/colors';
+import { appDark, appLight } from 'src/colors';
 
 export const changeThemeTailwind = (theme: string) => {
   const root = document.querySelector(':root') as HTMLElement;
   if (theme === 'dark') {
-    //pillar los de appdark y appblue para que sea todos del mismo
+    root.style.setProperty('--text-primary', appDark[0]);
 
-    root.style.setProperty('--primary', '#464646');
-    root.style.setProperty('--secondary', '#343434');
-    root.style.setProperty('--footer', '#ffffffac');
-    root.style.setProperty('--text-primary', '#ffffff');
-    root.style.setProperty('--text-footer', '#000000');
+    root.style.setProperty('--bg-primary', appDark[400]);
+    root.style.setProperty('--bg-secondary', appDark[600]);
+
+    root.style.setProperty('--btn-bg-primary', appDark[50]);
+    root.style.setProperty('--btn-text-primary', appDark[1000]);
   } else {
-    root.style.removeProperty('--primary');
-    root.style.removeProperty('--secondary');
-    root.style.removeProperty('--footer');
     root.style.removeProperty('--text-primary');
-    root.style.removeProperty('--text-footer');
+
+    root.style.removeProperty('--bg-primary');
+    root.style.removeProperty('--bg-secondary');
+
+    root.style.removeProperty('--btn-bg-primary');
+    root.style.removeProperty('--btn-text-primary');
   }
 };
