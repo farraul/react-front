@@ -36,26 +36,26 @@ const App = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={currentDateFnsLocale}>
-        <QueryClientProvider client={queryClient}>
-          <DynamicMetaTags />
-          <AuthProvider>
-            {/* <ThemeProvider theme={theme}> */}
-            <CssBaseline />
+      <QueryClientProvider client={queryClient}>
+        <DynamicMetaTags />
+        <AuthProvider>
+          {/* <ThemeProvider theme={theme}> */}
+          <CssBaseline />
 
-              <SnackbarProvider
-                maxSnack={2}
-                autoHideDuration={3000}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-              >
-                <RouterProvider />
-                <ReactQueryDevtools />
-              </SnackbarProvider>
-            {/* </ThemeProvider> */}
-          </AuthProvider>
-        </QueryClientProvider>
+          <SnackbarProvider
+            maxSnack={2}
+            autoHideDuration={3000}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+          >
+            <RouterProvider />
+            <ReactQueryDevtools />
+          </SnackbarProvider>
+          {/* </ThemeProvider> */}
+        </AuthProvider>
+      </QueryClientProvider>
     </LocalizationProvider>
   );
 };

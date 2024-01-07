@@ -67,7 +67,13 @@ function Header() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position='static' sx={{ px: 5 }} className='bg-primary'>
           <Toolbar>
-            <Typography variant='h6' component='a' sx={{ flexGrow: 1 }} href='/' className='text-color-primary '>
+            <Typography
+              variant='h6'
+              component='a'
+              sx={{ flexGrow: 1 }}
+              href='/'
+              className='text-color-primary '
+            >
               {t('logo')}
             </Typography>
 
