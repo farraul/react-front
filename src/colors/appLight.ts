@@ -1,3 +1,4 @@
+/* We dont use this because its in the styles/vars */
 const appLight = {
   0: '#000',
   50: '#0d121b',

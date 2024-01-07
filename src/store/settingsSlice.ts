@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { changeThemeTailwind } from 'src/utilities/changeThemeTailwind';
 
 const settingsEmptyState: any = {
-  mode: 'dark',
+  mode: 'light',
 };
 
 const settingsSlice = createSlice({

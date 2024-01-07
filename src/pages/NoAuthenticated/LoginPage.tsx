@@ -51,8 +51,8 @@ export default function LoginPage() {
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <div className='w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 z-20'>
-          <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
-            <h4 className='text-center text-xl font-light leading-tight tracking-tight text-gray-900 md:text-4xl '>
+          <div className='p-6 space-y-4 md:space-y-6 sm:p-8 bg-thirdary'>
+            <h4 className='text-center text-xl font-light leading-tight tracking-tight text-color-secondary md:text-4xl '>
               Loguea tu cuenta
             </h4>
             <form
@@ -78,13 +78,13 @@ export default function LoginPage() {
                 value={value.password}
               />
               <Button
-                className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center justify-center'
+                className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center bg-color-secondary text-color-primary justify-center'
                 type='submit'
                 disabled={user.loading}
               >
                 Loguearse
               </Button>
-              <p className='text-sm font-light text-black dark:text-black flex gap-4'>
+              <p className='text-sm font-light text-color-secondary dark:text-black flex gap-4'>
                 ¿Aun no estas logueado?
                 <Link
                   to='/register'

@@ -27,6 +27,9 @@ module.exports = {
     extend: {
       colors: {
         'color-primary': 'var(--text-primary)',
+        'color-secondary': 'var(--text-secondary)',
+
+
         'btn-color-primary': 'var(--btn-text-primary)',
 
         border: 'hsl(var(--border))',
@@ -66,6 +69,8 @@ module.exports = {
       backgroundColor: {
         primary: 'var(--bg-primary)',
         secondary: 'var(--bg-secondary)',
+        thirdary: 'var(--bg-thirdary)',
+
         'btn-primary': 'var(--btn-bg-primary)',
       },
       borderRadius: {

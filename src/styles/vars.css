@@ -1,13 +1,18 @@
-/* se puede hacer en un useefect o porner aqui las que tenemos en applight */
+/* Default mode: light */
 :root {
     --text-primary: #000000;
+    --text-secondary: #ffffff;
+
 
     --bg-primary: #ffffff;
     --bg-secondary: #a9a9a9;
+    --bg-thirdary: #131313;
     
 
     --btn-text-primary: #ffffff;
+    
     --btn-bg-primary: #222a11;
+    --btn-bg-secondary: #ffffff;
 
 
 }
