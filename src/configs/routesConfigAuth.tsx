@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Spinner } from 'src/components';
 import React, { Suspense, lazy } from 'react';
 import Layout from 'src/layouts';
+import NewUrlTwo from 'src/components/profile/NewUrlTwo';
+import NewUrl from 'src/components/profile/NewUrl';
 
 const ProfilePage = lazy(() => import('src/pages/Authenticated/ProfilePage'));
 const ErrorPage = lazy(() => import('src/pages/Authenticated/ErrorPage'));
@@ -58,6 +60,26 @@ export const routesConfigAuth = createBrowserRouter([
                 <ProfilePage />
               </Suspense>
             ),
+            children: [
+              {
+                path: '/profile/newurl',
+                // index: true,
+                element: (
+                  <Suspense fallback={<Spinner />}>
+                    <NewUrl />
+                  </Suspense>
+                ),
+              },
+              {
+                path: '/profile/newurltwo',
+
+                element: (
+                  <Suspense fallback={<Spinner />}>
+                    <NewUrlTwo />
+                  </Suspense>
+                ),
+              },
+            ],
           },
           {
             path: '/products',

@@ -11,7 +11,7 @@ export default function Button({
     <button
       {...props}
       className={
-        `inline-flex items-center px-4 py-2 bg-btn-primary border border-transparent rounded-md font-semibold text-xs text-btn-color-primary uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-200 focus:bg-gray-700 dark:focus:bg-gray-200 active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none  transition ease-in-out duration-150 ${
+        `inline-flex items-center px-4 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-200 focus:bg-gray-700 dark:focus:bg-gray-200 active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none  transition ease-in-out duration-150 ${
           disabled && 'opacity-25'
         } ` + className
       }

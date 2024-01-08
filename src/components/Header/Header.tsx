@@ -65,14 +65,14 @@ function Header() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position='static' sx={{ px: 5 }} className='bg-primary'>
+        <AppBar position='static' sx={{ px: 5 }} className='bg-theme-primary'>
           <Toolbar>
             <Typography
               variant='h6'
               component='a'
               sx={{ flexGrow: 1 }}
               href='/'
-              className='text-color-primary '
+              className='text-theme-primary '
             >
               {t('logo')}
             </Typography>
@@ -93,8 +93,9 @@ function Header() {
                   aria-haspopup='true'
                   onClick={handleMenu}
                   color='inherit'
+                  className='ml-5 '
                 >
-                  <MenuIcon className='ml-5' />
+                  <MenuIcon className=' text-theme-primary' />
                 </IconButton>
                 {/*Menú lateral*/}
                 <Menu

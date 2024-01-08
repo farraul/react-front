@@ -12,21 +12,21 @@ type typeInput = 'text' | 'password' | 'number' | 'email' | '';
 type Props = {
   id: string;
   label: string;
+  isRequired?: boolean;
   name?: string;
   classAditional?: string;
-  register: UseFormRegister<any>;
-  isRequired?: boolean;
   type: typeInput;
   error: string;
   rules?: RegisterOptions;
+  register: UseFormRegister<any>;
 } & AttributeProps;
 
 const CustomInput = ({
-  label,
   id,
+  label,
   isRequired,
-  classAditional,
   type,
+  classAditional,
   name,
   placeholder,
   rules,

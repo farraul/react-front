@@ -49,10 +49,10 @@ export default function LoginPage() {
         className='w-full h-screen z-[-1] fixed top-0 left-0'
       />
       <Container component='main' maxWidth='xs'>
-        <CssBaseline />
-        <div className='w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 z-20'>
-          <div className='p-6 space-y-4 md:space-y-6 sm:p-8 bg-thirdary'>
-            <h4 className='text-center text-xl font-light leading-tight tracking-tight text-color-secondary md:text-4xl '>
+        {/* <CssBaseline /> */}
+        <div className='w-full bg-white rounded-lg shadow dark:border mt-4 md:mt-20 sm:max-w-md xl:p-0 z-20'>
+          <div className='p-6 space-y-4 md:space-y-6 sm:p-8 bg-primary'>
+            <h4 className='text-center text-xl font-light leading-tight tracking-tight text-white md:text-4xl '>
               Loguea tu cuenta
             </h4>
             <form
@@ -78,13 +78,13 @@ export default function LoginPage() {
                 value={value.password}
               />
               <Button
-                className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center bg-color-secondary text-color-primary justify-center'
+                className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center text-black bg-white justify-center'
                 type='submit'
                 disabled={user.loading}
               >
                 Loguearse
               </Button>
-              <p className='text-sm font-light text-color-secondary dark:text-black flex gap-4'>
+              <p className='text-sm font-light text-white dark:text-black flex gap-4'>
                 ¿Aun no estas logueado?
                 <Link
                   to='/register'

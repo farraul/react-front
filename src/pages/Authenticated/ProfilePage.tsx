@@ -4,6 +4,8 @@ import { useAppSelector } from 'src/hooks/useApp';
 import Card from '@mui/material/Card';
 import UseAnimations from 'react-useanimations';
 import github from 'react-useanimations/lib/github';
+import { Link, Outlet } from 'react-router-dom';
+import { Box, Tab, Tabs } from '@mui/material';
 
 const ProfilePage = () => {
   const { firstName, email } = useAppSelector((state) => state.user.userInfo);
@@ -16,6 +18,12 @@ const ProfilePage = () => {
       children: `${name.split(' ')[0][0]}`,
     };
   }
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
   return (
     <section className='p-16'>
@@ -41,6 +49,25 @@ const ProfilePage = () => {
               </div>
             </Card>
           )}
+
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
+              <Link
+                to='/profile/newurltwo'
+                className='hover:scale-110 transition font-medium text-primary-600 hover:underline'
+              >
+                <Tab label='Item One' />
+              </Link>
+              <Link
+                to='/profile/newurl'
+                className='hover:scale-110 transition font-medium text-primary-600 hover:underline'
+              >
+                <Tab label='Item Two' />
+              </Link>
+            </Tabs>
+          </Box>
+
+          <Outlet />
         </div>
       </div>
     </section>
